@@ -1,0 +1,39 @@
+\tikzstyle{vecArrow} = [thick,
+   decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]  
+\tikzstyle{dvecArrow} = [thick,
+   decoration={markings,mark=at position 0 with {\arrow[rotate=180, semithick]{open triangle 60}}},
+   decoration={markings,mark=at position 1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.4pt,
+   shorten >= 5.5pt,
+   shorten <=5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]  
+\tikzstyle{innerWhite} = [semithick, white,line width=2.4pt, shorten >= 4.5pt]
+\tikzstyle{dinnerWhite} = [semithick, white,line width=2.4pt, shorten >= 4.5pt, shorten <= 4.5pt]
+
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[thick]
+  \node[draw,rectangle, minimum width = 6em, minimum height = 10em] (ATMEGA) {ATmega32u4};
+  \node[inner sep=0,minimum size=0,left of=ATMEGA, node distance = 10em] (LEFT) {}; % invisible node
+  \node[inner sep=0,minimum size=0,right of=ATMEGA, node distance = 5em] (RIGHT) {}; % invisible node
+  \node[draw, rectangle, minimum width = 5em, above of=LEFT, node distance = 3.5em, minimum height = 3em] (TMP) {TMP112};
+  \node[draw, rectangle, minimum width = 5em, below of=LEFT, node distance = 3.5em, minimum height = 3em] (BMA) {BMA222e};
+  \node[draw, rectangle, minimum width = 5em, right of = RIGHT, node distance = 5em, minimum height = 3em] (SD) {SD-card};
+  \node[] at (-5.25em,1em) {I$^2$C};
+  \node[] at (5.25em,1em) {SPI};
+  \draw[dvecArrow] (TMP) to (BMA);
+  \draw[dvecArrow] (ATMEGA) to (SD);
+  \draw[vecArrow] (LEFT) to (ATMEGA);
+  \draw[dinnerWhite] (TMP) to (BMA);
+  \draw[dinnerWhite] (ATMEGA) to (SD);
+  \draw[innerWhite] (LEFT) to (ATMEGA);
+\end{tikzpicture}
+\caption{Block diagram of the device. The temperature sensor and acceleration sensor are connected to the micro-controller via I$^2$C-bus, whereas, SD-card is connected via SPI-bus.}
+\label{serialdiagram}
+\end{figure}

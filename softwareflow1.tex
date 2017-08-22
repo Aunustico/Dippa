@@ -1,0 +1,70 @@
+% Define block styles
+\tikzstyle{decision} = [diamond, draw,, aspect=2, fill=blue!20, 
+    text width=7.5em, text badly centered, node distance=2.5cm, inner sep=0pt]  
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, node distance=2.5cm, rounded corners, minimum height=4em]   
+\tikzstyle{invisible} = [inner sep=0,minimum size=0, node distance = 2.5cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=2.5cm,
+    minimum height=2em]
+    
+\begin{figure}
+\centering
+\begin{tikzpicture}[node distance = 2.0cm, auto]
+    \node [block] (INIT) {Initialize};
+    \node [cloud, left of = INIT, node distance = 4cm] (START) {Start};
+    \node [decision, below of = INIT] (INTERRUPT) {Interrupt};
+    \node [block, right of = INTERRUPT, node distance = 5cm] (READACC) {Read acceleration data};
+    \node [decision, below of = READACC] (SAVEDATA) {Save data};
+    \node [block, below of=SAVEDATA] (SAVETOSD) {Save data to SD-card};
+    \node [invisible, left of = SAVEDATA] (MID2) {};
+    \node [invisible, left of = SAVEDATA, node distance = 5cm] (MID1) {};
+    \node [invisible, left of = SAVETOSD, node distance = 5cm] (MID6) {};
+    \node [invisible, below of = MID6, node distance = 1.5cm] (MID10) {};
+    \node [decision, below of = MID10, node distance = 1.5cm] (TIMER) {Timer};
+    \node [invisible, below of = TIMER, node distance =1.5 cm] (MID7) {};
+    \node [decision, below of = MID7, node distance = 1.5 cm] (TIMEOUT) {Timeout};
+    \node [invisible, below of = TIMEOUT, node distance = 1.5 cm] (MID8) {};
+    \node [decision, below of = MID8, node distance = 1.5 cm] (ERRORS) {Errors};
+    \node [invisible, below of = ERRORS, node distance = 1.5cm] (MID9) {};
+    \node [decision, below of = MID9, node distance = 1.5cm] (BUFFER) {Buffer empty}; 
+    \node [block, right of = TIMER, node distance = 5 cm] (READTEMP) {Read Temperature};
+    \node [block, right of = TIMEOUT, node distance = 5 cm] (SETFLAG) {Set interrupt flag};
+    \node [block, right of = BUFFER, node distance = 5 cm] (WRITEDATA) {Write buffer to SD-card};
+    \node [block, right of = ERRORS, node distance = 5 cm] (HANDLE) {Handle errors}; 
+    \node [invisible, left of = BUFFER, node distance = 4cm] (MID4) {};
+    \node [invisible, left of = INTERRUPT, node distance = 4cm] (MID5) {};
+    \node [invisible, below of = WRITEDATA, node distance = 1.75] (MID11){};
+    \node [invisible, below of = MID4, node distance = 1.5 cm] (MID12){};
+    \path [line] (INIT) -- (INTERRUPT);
+    \path [line] (START) -- (INIT);
+    \path [line] (INTERRUPT) -- node {true}(READACC);
+    \path [line] (READACC) -- (SAVEDATA);
+    \path [line] (SAVEDATA) -- node {true}(SAVETOSD);
+    \path [draw] (SAVEDATA) -- node[above] {false} (MID2);
+    \path [line] (MID2) -- (MID1);
+    \path [line] (SAVETOSD) |- (MID10); 
+    \path [draw] (INTERRUPT) --  node[left]{false}(MID1);
+    \path [line] (MID1) -- (TIMER);   
+    \path [draw] (TIMER) -- node [left]{false} (MID7);
+    \path [line] (MID7) -- (TIMEOUT);
+    \path [draw] (TIMEOUT) -- node [left]{false} (MID8);
+    \path [line] (MID8) -- (ERRORS);
+    \path [draw] (ERRORS) -- node [left]{false} (MID9);
+    \path [line] (MID9) -- (BUFFER);   
+    \path [line] (TIMER) -- node[above] {true} (READTEMP);
+    \path [line] (READTEMP) |- (MID7);
+    \path [line] (TIMEOUT) -- node{true} (SETFLAG);
+    \path [line] (SETFLAG) |- (MID8);   
+    \path [line] (BUFFER) -- node {false} (WRITEDATA);
+    \path [line] (ERRORS) -- node {true} (HANDLE);
+    \path [line] (HANDLE) |- (MID9);
+    \path [line] (BUFFER) -- node[above] {true}(MID4);
+    \path [draw] (MID4) -- (MID5);
+	\path [line] (MID5) -- (INTERRUPT);    
+    \path [draw] (WRITEDATA) |- (MID12);
+    \path [draw] (MID12) -- (MID4) ; 
+\end{tikzpicture}
+\caption{The flow of data logging program}
+\label{softwareflow1}
+\end{figure}

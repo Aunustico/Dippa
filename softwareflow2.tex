@@ -1,0 +1,42 @@
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[node distance = 2.0cm, auto]
+    \node [block] (INIT) {Initialize};
+    \node [cloud, left of = INIT, node distance = 4cm] (START) {Start};
+    \node [decision, below of = INIT] (FIFO) {FIFO-level > 0};
+    \node [invisible, below of = FIFO, node distance = 1.5 cm] (MID4) {};
+    \node [decision, below of = MID4, node distance = 1.5 cm] (WDT) {WDT flag};
+    \node [block, right of = WDT, node distance = 5 cm] (GETTEMP) {Read Temperature};
+    \node [block, below of = GETTEMP] (OPENFILE) {Open file};
+    \node [block, below of = OPENFILE] (WRITEDATA) {Write data to file};
+    \node [block, below of = WRITEDATA] (CLOSEFILE) {Close file};
+    \node [invisible, left of = CLOSEFILE, node distance = 5cm] (MID5) {};
+    \node [decision, below of = MID5, node distance = 1.5 cm] (FIFO2) {FIFO-level > 0};
+    \node [block, below of = FIFO2] (SLEEP) {Sleep};
+    \node [invisible, left of = FIFO2, node distance = 4 cm] (MID2) {};
+    \node [invisible, below of = WDT] (MID3) {};
+    \node [block, right of = FIFO, node distance = 5 cm] (READACC) {Read acceleration};
+    \node [invisible, left of = SLEEP, node distance = 4 cm] (MID6) {};
+    \path [line] (START) -- (INIT);
+    \path [line] (INIT) -- (FIFO);
+    \path [draw] (FIFO) -- node[left]{false}(MID4);
+    \path [line] (MID4) -- (WDT);
+    \path [draw] (WDT) -- node [left]{false}(MID3);
+    \path [line] (WDT) -- node{true}(GETTEMP);
+    \path [line] (MID3) -- (FIFO2);
+    \path [line] (FIFO) -- node{true}(READACC);
+    \path [line] (READACC) |- (MID4);
+    \path [line] (GETTEMP) -- (OPENFILE);
+    \path [line] (OPENFILE) -- (WRITEDATA);
+    \path [line] (WRITEDATA) -- (CLOSEFILE);
+    \path [line] (CLOSEFILE) -- (MID5);
+    \path [line] (FIFO2) -- node[left]{false}(SLEEP);
+    \path [line] (FIFO2) -- node[above]{true}(MID2);
+    \path [line] (MID2) |- (FIFO);
+    \path [draw] (SLEEP) -- node [above]{wake up}(MID6);
+    \path [draw] (MID6) -- (MID2);
+\end{tikzpicture}
+\caption{The program flow of the second data logging software}
+\label{softwareflow2}
+\end{figure}
