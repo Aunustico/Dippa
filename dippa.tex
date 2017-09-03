@@ -96,7 +96,7 @@ style = numeric]{biblatex}
 
 \univdegree{MSc}
 \author{Miika Ihonen}
-\thesistitle{Thesis work}
+\thesistitle{Sensor Based Dairy Cow Estrus Detection}
 \place{Espoo}
 
 %% Kandidaatintyön päivämäärä on sen esityspäivämäärä! 
@@ -341,14 +341,19 @@ Estrus a.k.a standing heat. \\
 
 \subsection{Health Monitoring and Estrus Detection} \label{healthmonitoringandestrusdetectionsection}
 
-The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study included basic information of the cow and its environments. Moreover, we studied lactation and estrus cycles and their affect of milk yield and, consequently profitability. Additionally, we briefly discussed the most common health issues of dairy cow. In continuation, this subsection discusses of different methods for detecting estrus es well as potential health issues. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchanddevelopmentsection} discusses of  studies of existing technology as well as recent development projects for future solutions.   \\
+The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study of dairy cow included basic knowledge of the cow and its environments. Moreover, we discussed of lactation and estrus cycles and their affect on the milk yield and profitability. Additionally, we briefly surveyed through the most common health issues with dairy cow. In continuation to previous discussions, this subsection discusses of different methods for detecting estrus and health issues. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchanddevelopmentsection} discusses of studies of existing technology as well as recent development projects for future solutions.   \\
 
 
 \subsubsection{Current Solutions} \label{currentsolutionssection}
 
-In this subsection we will discuss of currently used methods for observing the cattle. The discussion starts from conventional and non-technical methods and ends to current commercial technical products. Traditionally, health monitoring and estrus detection has been responsibility of cattle tender. Moreover, the only method for monitoring and detection has been observing the cows sight-wise \cite{lehmahavaintoja}. Naturally, the reliability of the observations depends on several such factors as the experience of the cattle tender, availability of time and the amount of cattle. That is, the larger the cattle, the more work and, thus, the less time available. Consequently, the available time per cow decreases exponentially when the amount of cattle increases. In addition to the experience level of the tender, it is fundamental to know the cattle.
+In this subsection we will discuss of currently used methods for observing the cattle. The discussion starts from conventional and non-technical methods and ends to current commercial technical products.
 
-In despite of the challenges, observations of cattle tender are still the most common monitoring method in small farms and in developing countries \cite{BRUNASSI2010}. 
+Traditionally, health monitoring and estrus detection have been based on purely visual observations. However, this method is not considered efficient. In the USA, the rate of successfully detected estruses has been estimated below \SI{50}{\percent} in large farms. Additionally, this inefficiency leads to annual loss of 800 million dollars for the milk industry. \cite{BRUNASSI2010}
+
+
+Moreover, the only method for monitoring and detection has been observing the cows sight-wise \cite{lehmahavaintoja}. Naturally, the reliability of the observations depends on several such factors as the experience of the cattle tender, availability of time and the amount of cattle. That is, the larger the cattle, the more work and, thus, the less time available. Consequently, the available time per cow decreases exponentially when the amount of cattle increases. In addition to the experience level of the tender, it is fundamental to know the cattle. \\
+
+In despite of the challenges, observations of cattle tender are still common monitoring method in small farms and in developing countries. \cite{BRUNASSI2010} \\ 
 
 Therefore, the cattle tender must know his cattle well in order to receive satisfying results. The larger the cattle \\
 
@@ -400,12 +405,12 @@ They used pedometers. The data set consists of data gathered from 98 cows succes
 This research aims to provide a cheap sensor for estrus detection which is an alternative for current commercial products basesd on accelerometers and odometers. The provided sensor is a wireless intravaginal probe measuring temperature and conductivity. The benefit of this probe against accelerometers is that the cow is not required to move for estrus detection. In the study a video camera was used for detecting the action of the cow, since, moving, standing, eating and stress increases the body temperature. It is suggested that an accelerometer could be used instead of videocamera for automated motion detection. The conductivity measurements were not satisfying since, the contact between the animal and the tissue vere not constant and caused noisy measurments. Yet, some correlation were detected with the cow activity.  \cite{7370219}
 
 
-in the further study the probe measured vaginal temperature, acceleration and vaginal tissue resistance. They had two kinds of probes, a 160 mm probe and a 120 mm probe. The longer one caused bleeding during the trials. The shorter one worked out fine but started to rotate during the estrus and it even ejected. Therefore, no sufficient probe desing was found. The 3-axis accelerometer provided different spaces for datapoints when the cow was either standing up, resting wide or resting narrow. \cite{Andersson2016101}
+in the further study the probe measured vaginal temperature, acceleration and vaginal tissue resistance. They had two kinds of probes, a 160 mm \SI{160}{\milli \metre} probe and a 1 \SI{120}{\milli \metre} probe. The longer one caused bleeding during the trials. The shorter one worked out fine but started to rotate during the estrus and it even ejected. Therefore, no sufficient probe desing was found. The 3-axis accelerometer provided different spaces for datapoints when the cow was either standing up, resting wide or resting narrow. \cite{Andersson2016101}
 
 
 
 
-Four wireless accelerometers were used per cow, one on each limb. In the research the wavelets were analyzed and mismatch in symmetry of variances observed for lameness detection. Sampling frequency was 25 Hz.  \cite{Pastell2009545}
+Four wireless accelerometers were used per cow, one on each limb. In the research the wavelets were analyzed and mismatch in symmetry of variances observed for lameness detection. Sampling frequency was  \SI{25}{\hertz} 25 Hz.  \cite{Pastell2009545}
 
 
 
@@ -416,7 +421,8 @@ Four wireless accelerometers were used per cow, one on each limb. In the researc
 
 \section{Research} \label{researchsection}
 
-In previous section we discussed about the backgrounds of this study. The discussion included a financial point of view. Additionally, we discussed the life cycle of a dairy cow. Lastly, we discussed about technology in dairy farming. In this section, we concentrate in the research of this study. The research consists of three different phases, data recording, data processing and algorithm development. Each of these phases have their own subsection, where they are discussed in detail.
+In previous section \ref{backgroundsection}, the backgrounds of this study were in discussion. The discussions covered the dairy farming in general level and the dairy cow more in detail. Moreover, the section focused in milk yield related estrus and lactation cycles. Additionally, we discussed of current and future solutions for dairy cow health monitoring and estrus detection. In conclusion of the first section, there is a certain need for efficient and cost-effective solutions for dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently promising due their overall performance and availability. Respectively, in this section the target is to develop convenient estrus detection algorithm for a wearable wireless sensor device. Furthermore, the development initiates from a scratch. That is, no assumptions are made based on previous studies. 
+
 
 
 
