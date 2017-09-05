@@ -421,14 +421,20 @@ Four wireless accelerometers were used per cow, one on each limb. In the researc
 
 \section{Research} \label{researchsection}
 
-In previous section \ref{backgroundsection}, the backgrounds of this study were in discussion. The discussions covered the dairy farming in general level and the dairy cow more in detail. Moreover, the section focused in milk yield related estrus and lactation cycles. Additionally, we discussed of current and future solutions for dairy cow health monitoring and estrus detection. In conclusion of the first section, there is a certain need for efficient and cost-effective solutions for dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently promising due their overall performance and availability. Respectively, in this section the target is to develop convenient estrus detection algorithm for a wearable wireless sensor device. Furthermore, the development initiates from a scratch. That is, no assumptions are made based on previous studies. 
+In previous section \ref{backgroundsection}, the backgrounds of this study were in discussion. The discussions covered the dairy farming in general level and the dairy cow more in detail. Moreover, the section focused in milk yield related estrus and lactation cycles. Additionally, we discussed of current and future solutions for dairy cow health monitoring and estrus detection. In conclusion of the first section, there is a certain need for efficient and cost-effective solutions for dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently promising due their overall performance and availability. Respectively, in this section the target is to develop convenient estrus detection algorithm for a wearable wireless sensor device. Furthermore, the development initiates from a scratch. That is, no assumptions are made based on previous studies. \\
+
+In this study, the research section has been divided in three subsections. The first subsections \ref{datarecordingsection}  discusses of data recording. The discussion includes the description of the hardware as well as the software implementation. The hardware description covers the main hardware components in reasonable detail. Additionally, we discuss of the communication between the main components. Respectively, the software implementation description discusses of the work flow of the data recording software. In this study, there were two different software implementations. Thus, both are explained in detail. Moreover, we discuss of the backgrounds and the necessary decisions for both software implementations.\\
+
+The second subsection \ref{dataprocessingsection} introduces a set of methods applied on the recorded data. The set consists of basic statistics as well as various digital signal processing methods. The basic statistics contains only the most fundamental measures of statistical analysis. Nevertheless, they are discussed only briefly in this section. Conversely, the digital signal processing methods contains more advantageous calculus. Thus, they are discussed more in detail. \\
+
+Lastly in this section \ref{estrusdetectionalgorithmssection}, we develop three different algorithms for dairy cow estrus detection. All these algorithms have their basis in data processing methods introduced in previous subsection \ref{dataprocessingsection}. However, each of them have slightly different approach to detect the estrus. Nevertheless, all the algorithms detects rather the pro-estrus than the actual estrus \ref{estruscyclesection}. All these differences are covered in the discussions. Furthermore, we discuss of the background and describe the evolving of each algorithm in detail.
 
 
 
 
-\subsection{Sensor Data Recording} \label{sensordatarecordingsection}
+\subsection{Data Recording} \label{datarecordingsection}
 
-In this study, the data recording section consists three subsections. First, the hardware and components are discussed in detail. Next, two different software solutions for data recording are introduced. Lastly, we discuss about the arrangements for the data recording process.
+
 
 
 
@@ -602,7 +608,7 @@ and the following tasks:
 
 
 
-\subsubsection{First Data Set}
+\subsubsection*{First Data Set}
 
 All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording.
 
@@ -612,7 +618,7 @@ The primary objective for the first recorded data set was achieving an overview 
 
 The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis.
 
-\subsubsection{Second Data Set}
+\subsubsection*{Second Data Set}
 The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
 
 MAINITSE että lehmillä oli heatime!!!
@@ -623,7 +629,7 @@ MAINITSE että lehmillä oli heatime!!!
 \caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
 \end{figure}
 
-\subsection{Data Processing Basics} \label{dataprocessing}
+\subsection{Data Processing} \label{dataprocessingsection}
 
 This subsection discusses about the methods used in data analysis. The used methods consists of pure visual observations as well as statistical analysis and more advanced digital signal processing. However, the visual observations remain the primary tool before and after applying any statistical os signal processing method.
 
@@ -707,7 +713,7 @@ and filter with finite impulse respones (FIR):
 
 In this study, windowing is means analysis and calculus of data in segments instead of entire data set. The windowing method in this study is analogous to windowing in signal processing \cite{tan2007digital,miao2007signal} \dots
 
-\subsection{Etrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
+\subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
 
 This section introduces a fundamental concept for the detection of  a dairy cow. In general, the cow behavior changes along with the phases of estrus the cycle \ref{estruscycle}. That is, the activity level increases in proestrus 
 
