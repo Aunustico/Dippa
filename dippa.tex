@@ -445,20 +445,24 @@ Formerly, we described the research of this study in general whereas, the topic 
 As discussed previously, the hardware for the data recording was a prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of storage memory for storing the recorded data. Thus, the hardware was customized and a Secure Digital (SD) memory card slot was added. Otherwise, the hardware remained the same during the entire study. In despite of the customization, the hardware design is not in scope of this study. Therefore, the following is rather description of the hardware than comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss the communications between the components. In general, the main hardware components and their duties are as follows:
 
 \begin{itemize}
-\item \textit{Atmel ATmega32u4} \cite{atmega32u4datasheet} as the micro-controller unit is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever it is powered on. The software flow begins from the boot e.g., after switching the power on or resetting the controller. During the boot, it initializes itself as well as the connected sensors according to the software loaded on its in-system re-programmable flash program memory. After the boot, the micro-controller begins the execution of the software loop of various tasks and events. These tasks and events are discussed in detail in the software section \ref{softwaresection}.  
+\item \textit{Atmel ATmega32u4} is a high perforamance low power 8-bit micrto-controller. It is designed for optimizing power consumption versus processing speed. \cite{atmega32u4datasheet} 
 
 
-\item \textit{Bosch Sensortec BMA222E} triaxial accelerometer as the motion measuring component,
-\item \textit{Texas Instruments TMP112} temperature sensor for measuring the skin temperature of the cow,
-\item \textit{Secure Digital (SD)} memory card slot with a memory card for storing the recorded data.
+\item \textit{Bosch Sensortec BMA222E} is an accelerometer with on-chip motion triggered interrupt controller. Thus, it enables motion-based applications even without use of micro-controller. It is capable of measuring acceleration in three perpendicular axes. BMA222E is designed for various consumer products from game controllers to pedometers. It is small sized and low power consuming. Therefore, it is suitable for mobile solutions.  \cite{bma222datasheet} 
+
+\item \textit{Texas Instruments TMP112} is a high-accuracy, low-power, digital temperature sensor. It is designed for various applications from portable and battery-powered solutions to general temperature merasurements in industrial controls. \cite{tmp112datasheet} 
+
+\item \textit{Secure Digital (SD)} \cite{sdspecification} memory card is common consumer product for storing data, typically on portable devices. The advantage of 
 \end{itemize}
 
 Each of these hardware components are discussed in detail in this subsection. 
 
 
-\input{serialdiagram.tex}
+
 
 \subsubsection*{Micro-controller}
+
+as a micro-controller unit is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever it is powered on. The software flow begins from the boot e.g., after switching the power on or resetting the controller. During the boot, it initializes itself as well as the connected sensors according to the software loaded on its in-system re-programmable flash program memory. After the boot, the micro-controller begins the execution of the software loop of various tasks and events. These tasks and events are discussed in detail in the software section \ref{softwaresection}.  
 
 This subsection is an overview of the ATmega32u4 micro-controller. 
 
@@ -476,6 +480,8 @@ This subsection is an overview of the ATmega32u4 micro-controller.
 
 
 \subsubsection*{Accelerometer}
+
+is a triple-axial accelerometer used for measuring change in motion as well as position recognition. The axis of the accelerometer are in right angle to they each other. Thus, it can measure in all direction. Additionally, it contains several on-chip functions for prior and post filtering as well as detecting different conditions. The filters and the detectable conditions are configurable and they are discussed in detail later in this section.
 
 
 This subsection surveys through the most likely worthwhile features of the accelerometer used in this study. However, all of the features discussed features may not be used in this study but may become sensible in future studies. The overview of the hardware of this study was discussed previously. The specific configurations of the sensor are discussed in subsections \ref{firstdatasetconfigurations} and \ref{seconddatasetconfigurations}. The accelerometer used in this study is Bosch Sensortec BMA222e digital, triaxial acceleration sensor. Its key features are 
@@ -496,6 +502,8 @@ Limited capacities of power sources are significant issue with wireless devices.
 
 
 \subsubsection*{Temperature Sensor}
+
+is a high-accuracy temperature sensor for various applications from portable devices to industrial controls. In this study the temperature sensor is used for monitoring the skin temperature of the cow. The target of the monitoring is to find correlation between arisen skin temperature and ongoing estrus. Thus, in the case of positive correlation the temperature sensor can confirm the detected estrus. 
 
 The temperature sensor used in this study is Texas Instruments TMP112 high-accuracy, low-power, digital sensor. It is designed for replacing NTC/PTC thermistors in high accuracy applications. Its main features are 
 
@@ -520,7 +528,7 @@ The temperature sensor used in this study is Texas Instruments TMP112 high-accur
 
 This hardware configuration uses a secure digital (SD) memory card as a memory storage for data recording.
 
-
+\input{serialdiagram.tex}
 
 \subsubsection{Software} \label{softwaresection}
 
