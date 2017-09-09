@@ -423,34 +423,34 @@ Four wireless accelerometers were used per cow, one on each limb. In the researc
 
 In previous section \ref{backgroundsection}, the backgrounds of this study were in discussion. The discussions covered the dairy farming in general level and the dairy cow more in detail. Moreover, the section focused in milk yield related estrus and lactation cycles. Additionally, we discussed of current and future solutions for dairy cow health monitoring and estrus detection. In conclusion of the first section, there is a certain need for efficient and cost-effective solutions for dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently promising due their overall performance and availability. Respectively, in this section the target is to develop convenient estrus detection algorithm for a wearable wireless sensor device. Furthermore, the development initiates from a scratch. That is, no assumptions are made based on previous studies. \\
 
-In this study, the research section has been divided in three subsections. The first subsections \ref{datarecordingsection}  discusses of data recording. The discussion includes the description of the hardware as well as the software implementation. The hardware description covers the main hardware components in reasonable detail. Additionally, we discuss of the communication between the main components. Respectively, the software implementation description discusses of the work flow of the data recording software. In this study, there were two different software implementations. Thus, both are explained in detail. Moreover, we discuss of the backgrounds and the necessary decisions for both software implementations.\\
+In this study, the research section has been divided in three subsections. The first subsections \ref{datarecordingsection}  discusses of data recording. The discussion includes the description of the hardware as well as the software implementation. The hardware description covers the main hardware components in reasonable detail. Additionally, we discuss of the communication between the main components. Respectively, the software implementation description discusses of the work flow of the data recording software. \\
 
 The second subsection \ref{dataprocessingsection} introduces a set of methods applied on the recorded data. The set consists of basic statistics as well as various digital signal processing methods. The basic statistics contains only the most fundamental measures of statistical analysis. Nevertheless, they are discussed only briefly in this section. Conversely, the digital signal processing methods contains more advantageous calculus. Thus, they are discussed more in detail. \\
 
-Lastly in this section \ref{estrusdetectionalgorithmssection}, we develop three different algorithms for dairy cow estrus detection. All these algorithms have their basis in data processing methods introduced in previous subsection \ref{dataprocessingsection}. However, each of them have slightly different approach to detect the estrus. Nevertheless, all the algorithms detects rather the pro-estrus than the actual estrus \ref{estruscyclesection}. All these differences are covered in the discussions. Furthermore, we discuss of the background and describe the evolving of each algorithm in detail.
+Lastly in this section \ref{estrusdetectionalgorithmssection}, we develop three different algorithms for dairy cow estrus detection. All these algorithms have their basis in data processing methods introduced in previous subsection \ref{dataprocessingsection}. However, each of them have slightly different approach to detect the estrus. Nevertheless, all the algorithms detects rather the pro-estrus than the actual estrus \ref{estruscyclesection}. All these differences are covered in the discussions. Furthermore, we discuss of the background and describe the evolving of each algorithm in detail. \\
 
+
+Tähän ehkä jotain hypoteesia tutkimuksesta ja jotain mahdollisia ennakko-oletuksia?
 
 
 
 \subsection{Data Recording} \label{datarecordingsection}
 
-
+Formerly, we described the research of this study in general whereas, the topic of this subsection is in the data recording. Altogether, the data recording is divided in three more sections. The first describes the data recording hardware. The hardware was a prototype of a sensor device for dairy cow monitoring. Furthermore, the hardware was modified for data recording purposes. Nevertheless, any hardware design is not included in this study. Next, we discuss of two different software implementations for data recording hardware. The starting point for the first implementation is making of no assumptions whereas, the second implementation is based on the results of the results of first recorded set of data. Lastly in this subsection, we discuss of the data recording process itself.  \\
 
 
 
 \subsubsection{Hardware} \label{hardwaresection}
 
-This section discusses the hardware of the data recording device. 
-
-The data recording hardware remained the same during this study.
-
-The sensor device used for data recording consists of the following hardware:
+As discussed previously, the hardware for the data recording was a prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of storage memory for storing the recorded data. Thus, the hardware was customized and a Secure Digital (SD) memory card slot was added. Otherwise, the hardware remained the same during the entire study. In despite of the customization, the hardware design is not in scope of this study. Therefore, the following is rather description of the hardware than comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss the communications between the components. In general, the main hardware components and their duties are as follows:
 
 \begin{itemize}
-\item Atmel ATmega32u4 microcontroller
-\item Bosch Sensortec BMA222E triaxial accelerometer 
-\item Texas Instruments TMP112 temperature sensor
-\item Secure Digital (SD) memory card slot with a memory card
+\item \textit{Atmel ATmega32u4} \cite{atmega32u4datasheet} as the micro-controller unit is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever it is powered on. The software flow begins from the boot e.g., after switching the power on or resetting the controller. During the boot, it initializes itself as well as the connected sensors according to the software loaded on its in-system re-programmable flash program memory. After the boot, the micro-controller begins the execution of the software loop of various tasks and events. These tasks and events are discussed in detail in the software section \ref{softwaresection}.  
+
+
+\item \textit{Bosch Sensortec BMA222E} triaxial accelerometer as the motion measuring component,
+\item \textit{Texas Instruments TMP112} temperature sensor for measuring the skin temperature of the cow,
+\item \textit{Secure Digital (SD)} memory card slot with a memory card for storing the recorded data.
 \end{itemize}
 
 Each of these hardware components are discussed in detail in this subsection. 
