@@ -184,17 +184,24 @@ $\mathbf{A} \cdot \mathbf{B}$    & vektorien $\mathbf{A}$ ja $\mathbf{B}$ pistet
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-MCU & Micro-Controller Unit (or micro-controller)\\
+MCU & Micro-Controller Unit (or micro-controller) \\
 SD & Secure Digital \\
-SPI & Serial Peripheral Interface bus\\
-I$^2$C & Inter-Integrated Circuit bus (also IIC)\\
-EEPROM & Erasable Programmable Read-Only Memory\\
-SRAM & Static Random-Access Memory\\
-FIR & Finite Impulse Response\\
-IIR & Infinite Impulse Response\\
+SDHC & High Capacity Secure Digital \\
+SDXC & Extended Capacity Secure Digital \\
+SPI & Serial Peripheral Interface bus \\
+I$^2$C & Inter-Integrated Circuit bus (also IIC) \\
+EEPROM & Erasable Programmable Read-Only Memory \\
+SRAM & Static Random-Access Memory \\
+FIR & Finite Impulse Response \\
+IIR & Infinite Impulse Response \\
 FIFO & First In, First Out \\
 IDE & Integrated Development Environment \\
 FFT & Fast Fourier Transform \\
+RISC & Reduced Instruction Set Computer \\
+CISC & Complex Instruction Set Computer \\
+USB & Universal Serial Bus \\
+ISR & Interrupt Service Routine \\
+I/O & Input/Output
 \end{tabular}
 
 
@@ -442,46 +449,55 @@ Formerly, we described the research of this study in general whereas, the topic 
 
 \subsubsection{Hardware} \label{hardwaresection}
 
-As discussed previously, the hardware for the data recording was a prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of storage memory for storing the recorded data. Thus, the hardware was customized and a Secure Digital (SD) memory card slot was added. Otherwise, the hardware remained the same during the entire study. In despite of the customization, the hardware design is not in scope of this study. Therefore, the following is rather description of the hardware than comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss the communications between the components. In general, the main hardware components and their duties are as follows:
+As discussed previously, the hardware for the data recording was a prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of storage memory for storing the recorded data. Thus, the hardware was customized and a Secure Digital (SD) memory card slot was added. Otherwise, the hardware remained the same during the entire study. In despite of the customization, the hardware design is not in scope of this study. Therefore, the following is rather description of the hardware than comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss the communications between the components. In general, the main hardware components brief descriptions are as follows:
 
 \begin{itemize}
-\item \textit{Atmel ATmega32u4} is a high perforamance low power 8-bit micrto-controller. It is designed for optimizing power consumption versus processing speed. \cite{atmega32u4datasheet} 
+\item \textit{Atmel ATmega32u4} is a high perforamance low power 8-bit micrto-controller. It is designed for optimizing power consumption versus processing speed. It contains 135 powerful Reduced Instruction Set Computer (RISC) architecture instructions of which most executable in single clock cycle.  \cite{atmega32u4datasheet} 
 
 
 \item \textit{Bosch Sensortec BMA222E} is an accelerometer with on-chip motion triggered interrupt controller. Thus, it enables motion-based applications even without use of micro-controller. It is capable of measuring acceleration in three perpendicular axes. BMA222E is designed for various consumer products from game controllers to pedometers. It is small sized and low power consuming. Therefore, it is suitable for mobile solutions.  \cite{bma222datasheet} 
 
 \item \textit{Texas Instruments TMP112} is a high-accuracy, low-power, digital temperature sensor. It is designed for various applications from portable and battery-powered solutions to general temperature merasurements in industrial controls. \cite{tmp112datasheet} 
 
-\item \textit{Secure Digital (SD)} \cite{sdspecification} memory card is common consumer product for storing data, typically on portable devices. The advantage of 
-\end{itemize}
-
-Each of these hardware components are discussed in detail in this subsection. 
-
-
+\item \textit{Secure Digital (SD)} memory card is specially designed to meet the security, capacity and performance requirements in newly emerging consumer electronic devices. The standard capacity of SD memory card is up to \SI{2}{\giga\byte}. However, High Capacity SD (SDHC) extends the maximum capacity to \SI{32}{\giga\byte} and Extended Capacity SD (SDXC) up to \SI{2}{\tera\byte}. \cite{sdspecification}.
+\end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Their special assignments are discussed in detail in the following descriptive sections.
 
 
 \subsubsection*{Micro-controller}
 
-as a micro-controller unit is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever it is powered on. The software flow begins from the boot e.g., after switching the power on or resetting the controller. During the boot, it initializes itself as well as the connected sensors according to the software loaded on its in-system re-programmable flash program memory. After the boot, the micro-controller begins the execution of the software loop of various tasks and events. These tasks and events are discussed in detail in the software section \ref{softwaresection}.  
+The micro-controller unit (MCU) is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever the device is powered. The software flow starts from the boot, that is, after switching the power on or resetting the micro-controller. During the boot, it initializes itself as well as the connected sensors according to the prior set configurations in the software. After the boot, the micro-controller begins the execution of the repetitive software loop including various tasks and events. The initialization configurations and the tasks and events are discussed more the software section \ref{softwaresection}. \\
 
-This subsection is an overview of the ATmega32u4 micro-controller. 
+As stated earlier, the micro-controller unit of the sensor device in this study is Atmel ATmega32u4. The following describes the main features of the MCU considering this study.
 
 \begin{itemize}
-\item programmable watchdog timer (WDT)
-\item six power saving modes
-\item 26 programmable I/O lines
-\item external and internal interrupt sources
-\item SPI and I$^2$C serial interfaces
+\item \textit{\SI{32}{\kilo\byte} of In-System Self-Programmable Flash memory} is the memory space for the actual program storage. Furthermore, the memory space is divided into two sections, Boot Program Section and Application Program section. 
+
+\item \textit{USB 2.0 Full-Speed/Low-speed Device Module} provides interface to write on the In-System Self-Programmable Flash of the controller. Thus, it enables uploading the application software without external USB module. Additionally, Interface contributes serial communication between computer and the device.
+
+\item \textit{General I/O} consists of 26 programmable I/O lines. These lines can be set as input or output separately. Furthermore, 
+
+\item \textit{Interrupts} are occasions that usually sets an interrupt flag. The Interrupt Service Routines (ISR) corresponding the interrupt flags are executed with respect to their priority. There are internal and external interrupts. The interrupt can be enabled individually. Interrupts are beneficial in generating events into software flow instead of executing tasks periodically.
+
+\item \textit{On-chip Temperature sensor} of the controller provides accuracy of \SI{0.5}{\celsius}. The accuracy of the BMA222E is relatively low in comparison to the TMP112 temperature sensor. However, it can be used as reference or verification value with the temperature sensor.
+
+\item \textit{Watchdog Timer (WDT)} of ATmega32U4 counts time on separate on-chip \SI{128}{\kilo \hertz} oscillator. The WDT is capable of interrupting and/or resetting the system. Additionally, it is enabled in most of the power modes. 
+
+
+\item \textit{Power Management and Sleep Modes} allows the user to tailor the power consumption to the application's requirements. This es beneficial specially with battery-powered solutions where regular re-charging is not effortless.
+
+\item \textit{SPI and I$^2$C} serial bus interfaces are used for internal communication the micro-controller and the sensors as well as the SD memory card.
+
+
 \item 32 KB of in-system self programmable flash
 \item 2.5 KB internal SRAM
 \item 1 KB internal EEPROM
-\item 8-bit micro-controller
+
 \end{itemize}
 
 
 \subsubsection*{Accelerometer}
 
-is a triple-axial accelerometer used for measuring change in motion as well as position recognition. The axis of the accelerometer are in right angle to they each other. Thus, it can measure in all direction. Additionally, it contains several on-chip functions for prior and post filtering as well as detecting different conditions. The filters and the detectable conditions are configurable and they are discussed in detail later in this section.
+The BMA222E is a triple-axial accelerometer used for measuring change in motion as well as position recognition. The axis of the accelerometer are in right angle to they each other. Thus, it can measure in all direction. Additionally, it contains several on-chip functions for prior and post filtering as well as detecting different conditions. The filters and the detectable conditions are configurable and they are discussed in detail later in this section.
 
 
 This subsection surveys through the most likely worthwhile features of the accelerometer used in this study. However, all of the features discussed features may not be used in this study but may become sensible in future studies. The overview of the hardware of this study was discussed previously. The specific configurations of the sensor are discussed in subsections \ref{firstdatasetconfigurations} and \ref{seconddatasetconfigurations}. The accelerometer used in this study is Bosch Sensortec BMA222e digital, triaxial acceleration sensor. Its key features are 
