@@ -201,7 +201,9 @@ RISC & Reduced Instruction Set Computer \\
 CISC & Complex Instruction Set Computer \\
 USB & Universal Serial Bus \\
 ISR & Interrupt Service Routine \\
-I/O & Input/Output
+I/O & Input/Output \\
+LSB & Least Significant Bit \\
+MSB & Most Significant Bit \\
 \end{tabular}
 
 
@@ -460,6 +462,7 @@ As discussed previously, the hardware for the data recording was a prototype of 
 \item \textit{Texas Instruments TMP112} is a high-accuracy, low-power, digital temperature sensor. It is designed for various applications from portable and battery-powered solutions to general temperature merasurements in industrial controls. \cite{tmp112datasheet} 
 
 \item \textit{Secure Digital (SD)} memory card is specially designed to meet the security, capacity and performance requirements in newly emerging consumer electronic devices. The standard capacity of SD memory card is up to \SI{2}{\giga\byte}. However, High Capacity SD (SDHC) extends the maximum capacity to \SI{32}{\giga\byte} and Extended Capacity SD (SDXC) up to \SI{2}{\tera\byte}. \cite{sdspecification}.
+
 \end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Their special assignments are discussed in detail in the following descriptive sections.
 
 
@@ -474,7 +477,7 @@ As stated earlier, the micro-controller unit of the sensor device in this study 
 
 \item \textit{USB 2.0 Full-Speed/Low-speed Device Module} provides interface to write on the In-System Self-Programmable Flash of the controller. Thus, it enables uploading the application software without external USB module. Additionally, Interface contributes serial communication between computer and the device.
 
-\item \textit{General I/O} consists of 26 programmable I/O lines. These lines can be set as input or output separately. Furthermore, 
+\item \textit{General I/O} consists of 26 programmable I/O lines. These lines can be set as input or output separately. Furthermore, certain input pins can be configured as interrupt pins. These configurations and features are required for such finctionalities as serial communication, setting and getting statuses.
 
 \item \textit{Interrupts} are occasions that usually sets an interrupt flag. The Interrupt Service Routines (ISR) corresponding the interrupt flags are executed with respect to their priority. There are internal and external interrupts. The interrupt can be enabled individually. Interrupts are beneficial in generating events into software flow instead of executing tasks periodically.
 
@@ -487,11 +490,6 @@ As stated earlier, the micro-controller unit of the sensor device in this study 
 
 \item \textit{SPI and I$^2$C} serial bus interfaces are used for internal communication the micro-controller and the sensors as well as the SD memory card.
 
-
-\item 32 KB of in-system self programmable flash
-\item 2.5 KB internal SRAM
-\item 1 KB internal EEPROM
-
 \end{itemize}
 
 
@@ -501,17 +499,27 @@ The BMA222E is a triple-axial accelerometer used for measuring change in motion 
 
 
 This subsection surveys through the most likely worthwhile features of the accelerometer used in this study. However, all of the features discussed features may not be used in this study but may become sensible in future studies. The overview of the hardware of this study was discussed previously. The specific configurations of the sensor are discussed in subsections \ref{firstdatasetconfigurations} and \ref{seconddatasetconfigurations}. The accelerometer used in this study is Bosch Sensortec BMA222e digital, triaxial acceleration sensor. Its key features are 
+
 \begin{itemize}
-\item on-chip interrupt controller
-\item on-chip FIFO register
-\item acceleration ranges $\pm2$ g, $\pm4$ g, $\pm8$ g and $\pm16$ g
-\item high pass filter from $7.81$ Hz to $1000$ Hz
-\item offset compensation
-\item SPI and I$^2$C digital interfaces
-\item 8-bit resolution
-\item low power consumption
-\item temperature sensor. \cite{bma222datasheet}
-\end{itemize} These features are discussed more in detail in this subsection.
+\item \textit{On-Chip Interrupt Controller} is capable of generating various interrupt. It yields an opportunity to create device applications even without a micro-controller. Additionally, together with micro-controller there i s no need to continuous sampling by the controller.
+
+\item \textit{On-Chip FIFO Register} is capable of storing up to 32 frames. Depending on the configurations, one frames contains measurements from one or three axis. Additionally, a frame includes whether the data is new or already read.
+
+\item \textit{Range} for acceleration measurements is adjustable within four preset ranges,  $\pm$\SI{2}{\gram}, $\pm$\SI{4}{\gram}, $\pm$\SI{8}{\gram} and $\pm$\SI{16}{\gram}. However, increasing the range decreases the resolution linearly.
+
+\item \textit{8-bit Resolution} for both, acceleration and temperature measurements. The measurement range of acceleration is adjustable. Thus, the resolution depends on the range.  However, the temperature resolution is fixed to \SI{0.5}{\celsius} per least significant bit (LSB).
+
+\item \textit{Low Pass Filter} enables removing of high frequency distortions from the measured signals. Thus, no additional low pass filtering is needed.  The low pass filter is configurable with preset frequencies from $7.81$ Hz to $1000$ Hz.
+
+\item \textit{Offset Compensation} allows removing offsets from the measurements. At sea level, there is always approximately \SI{1}{\gram} offset present. Specially, in integrative calculations it might accumulate and yield misleading results.
+
+
+\item \textit{SPI and I$^2$C digital interfaces} are necessary interfaces for both, configuration and communication between the sensor and the micro-controller.
+
+\item \textit{Low Power Consumption} is beneficial in portable and battery-powered solutions such as the sensor device in this study.
+ 
+\item \textit{On-Chip Temperature Sensor}  \
+\end{itemize} These features are discussed more in detail in this subsection. \cite{bma222datasheet}
 
 Limited capacities of power sources are significant issue with wireless devices. Therefore, the low power consumption all together with other on-chip features of the accelerometer become useful. That is to say, it is reasonable to maximize the usage of the low power sensor and meanwhile minimize the use of more power consuming micro-controller. 
 
