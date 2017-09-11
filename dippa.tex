@@ -481,8 +481,6 @@ As stated earlier, the micro-controller unit of the sensor device in this study 
 
 \item \textit{Interrupts} are occasions that usually sets an interrupt flag. The Interrupt Service Routines (ISR) corresponding the interrupt flags are executed with respect to their priority. There are internal and external interrupts. The interrupt can be enabled individually. Interrupts are beneficial in generating events into software flow instead of executing tasks periodically.
 
-\item \textit{On-chip Temperature sensor} of the controller provides accuracy of \SI{0.5}{\celsius}. The accuracy of the BMA222E is relatively low in comparison to the TMP112 temperature sensor. However, it can be used as reference or verification value with the temperature sensor.
-
 \item \textit{Watchdog Timer (WDT)} of ATmega32U4 counts time on separate on-chip \SI{128}{\kilo \hertz} oscillator. The WDT is capable of interrupting and/or resetting the system. Additionally, it is enabled in most of the power modes. 
 
 
@@ -518,8 +516,9 @@ This subsection surveys through the most likely worthwhile features of the accel
 
 \item \textit{Low Power Consumption} is beneficial in portable and battery-powered solutions such as the sensor device in this study.
  
-\item \textit{On-Chip Temperature Sensor}  \
-\end{itemize} These features are discussed more in detail in this subsection. \cite{bma222datasheet}
+\item \textit{On-chip Temperature sensor} of the controller provides resolution of \SI{0.5}{\celsius}. The accuracy of the BMA222E is relatively low in comparison to the TMP112 temperature sensor. However, it can be used as reference or verification value with the temperature sensor. \cite{bma222datasheet}
+
+\end{itemize}
 
 Limited capacities of power sources are significant issue with wireless devices. Therefore, the low power consumption all together with other on-chip features of the accelerometer become useful. That is to say, it is reasonable to maximize the usage of the low power sensor and meanwhile minimize the use of more power consuming micro-controller. 
 
@@ -527,25 +526,27 @@ Limited capacities of power sources are significant issue with wireless devices.
 
 \subsubsection*{Temperature Sensor}
 
-is a high-accuracy temperature sensor for various applications from portable devices to industrial controls. In this study the temperature sensor is used for monitoring the skin temperature of the cow. The target of the monitoring is to find correlation between arisen skin temperature and ongoing estrus. Thus, in the case of positive correlation the temperature sensor can confirm the detected estrus. 
+Texas Instruments TMP112 is a high-accuracy temperature sensor for various applications from portable devices to industrial controls. In this study the temperature sensor is used for monitoring the skin temperature of the cow. The target of the monitoring is to find correlation between the change of skin temperature and ongoing estrus. Thus, in the case of positive correlation the temperature sensor can confirm the detected estrus. 
 
 The temperature sensor used in this study is Texas Instruments TMP112 high-accuracy, low-power, digital sensor. It is designed for replacing NTC/PTC thermistors in high accuracy applications. Its main features are 
 
 \begin{itemize}
-\item high accuracy without calibration
+\item \textit{High accuracy} without calibration. Furthermore, the data sheet provides instructions for calibrating the sensor. Without the calibration the accuracy is
 \begin{itemize}
 \item \SI{0.5}{\celsius} in range from \SI{0}{\celsius} to \SI{65}{\celsius}
 \item \SI{1.0}{\celsius} in range from \SI{-40}{\celsius} to \SI{125}{\celsius}
 \end{itemize} 
-\item resolution of \SI{0.0625}{\celsius} in 12-bit and 13-bit mode
-\item low power consumption
+\item \textit{High resolution} of \SI{0.0625}{\celsius} in both, 12-bit and 13-bit mode
+\item \textit{Low power consumption} and two different power modes:
 \begin{itemize}
 \item \SI{10}{\micro \ampere} in active mode
 \item \SI{1}{\micro \ampere} in shutdown mode
 \end{itemize}
 \item SMBus\textsuperscript{TM}, Tow-Wire and I$^2$C digital interfaces
 \item supply voltage range from \SI{1.4}{\volt} to \SI{3.6}{\volt}
-\end{itemize}
+\item \textit{Conversion rate} from \SI{0.5}{\hertz}  to \SI{8}{\hertz}
+\item \textit{12-bit resolution} from \SI{-55}{\celsius} to \SI{128}{\celsius}. The sensor has an 13-bit mode, when the measurement range is up to \SI{150}{\celsius}.
+\end{itemize} \cite{tmp112datasheet}
 
 
 \subsubsection*{Secure Digital Memory Card}
@@ -556,110 +557,14 @@ This hardware configuration uses a secure digital (SD) memory card as a memory s
 
 \subsubsection{Software} \label{softwaresection}
 
+Previously, we discussed of the hardware components of the dairy cow sensor device. Whereas, the hardware already existing prototype, the software was developed from scratch. 
+
 This subsection discusses of the data recording software. In contrast to the hardware, the software improved during this study. Thus, the first software implementation differs significantly from the latter. As a matter of fact, the first software implementation based on previous researches and intuition, whereas the latter based on the results received from the first recorded set of data. That is to say, the results of the first set of data formed a general view on typical behavior of a cow, while the purpose of the following data sets were used for the actual estrus detection. \textit{Tähän vielä jokin tarnsitiofraasi, ehkä?}
 
 The software were implemented in Arduino IDE (\textit{Integrated Development} Environment). The use of Arduino IDE offers effective environment for implementing embedded software without expert-level knowledge on micro-controllers. The Arduino provides extensive libraries\dots However, the driver interfaces for accelerometer and temperature sensors as well as the entire flow of the software were self-implemented.
 
 
-\subsubsection*{First Software Implementation}\label{firstdatasetconfigurations}
 
-The starting point for implementing the first software included only a cursory conception of the behavior of a diary cow. Therefore, the properties of the accelerometer described in section \ref{hardwaresection} are treated with care in order to avoid loss of relevant data. In conclusion, a high data rate was prioritized over other features. Furthermore, it was decided not to use offset compensation since, it could cause unawareness of the pose of the device. 
-
-The accelerometer sets a hard restriction of \SI{2000}{\hertz} for the maximum data rate. However, the usage of secure digital (SD) memory card as a data storage limits the data rate even more as discussed in section \ref{resultssection}. That is, the duration of the SD file operations exceeds the disposable time at high data rate and, thus, causes loss of data. In contrast, a low data rate could cause a loss of possibly relevant features on higher frequencies. Therefore, the selection of the data rate is more or less a trade of between data losses and data bandwidth.
-
-The flow of the software consists of tasks and conditions. Each task contains a single function or a sequence of functions the micro-controller must execute before proceeding to the next task or condition in the flow. In this flow, the conditions are used to decide whether a task is being executed or not. Alternatively, a condition may be followed by an entire branch of tasks instead a single task. The conditions of the software flow and their explanations are:
-
-\begin{itemize}
-\item \textit{Interrupt} is true if an interrupt flag is set by an interrupt from the accelerometer which in this case is a certain FIFO buffer level.
-\item \textit{Timer} condition is used for reading temperature data from both of the sensors periodically.
-
-\item \textit{Timeout}  is a backup feature if an interrupt is being missed and, therefore, no more interrupts received.
-
-\item \textit{Errors}  is true if any of the predefined errors have occurred during the execution of  the main loop.
-
-\item \textit{Buffer empty} condition checks the buffer level of the micro-controller. If the buffer level is non-zero the contents of the buffer will be written to the SD card.
-
-\item \textit{Save data}
-
-\end{itemize}
-and following tasks:
-
-\begin{itemize}
-
-\item \textit{Initialize} task (which is analogous for \textit{setup} function in Arduino IDE) is executed only once right after the device is powered up. This task initializes the desired configurations for the accelerometer and the temperature sensor. It
-
-\item \textit{Read acceleration data} task reads the data from the FIFO buffer of the accelerometer and stores the acceleration data into the FIFO buffer of the micro-controller.
-
-\item \textit{Save Data to SD-card} task saves the data written on the SD card. That is, the file where data is being written must be closed in order to ensure the written data is being saved. Once the file is closed for saving the data it has to be re-opened for continuing the writing process. Alternatively, if the size of the current file exceeds a preset limit, a new file is opened. Furthermore, the duration of the open and close file operations could exceed the time required to fill up the FIFO buffer of the accelerometer. Thus, the FIFO buffer is being read empty before and after closing the current file and once more after opening a file. 
-
-\item \textit{Read temperatures} task reads the temperature data of both sensors and stores the value to the memory of the micro-controller. No temperature data are buffered. Thus, only the latest values are written to log file on SD card.
-\item \textit{Set Interrupt flag} sets the interrupt flag without an interrupt if a timeout condition is met. Once the interrupt flag is set, the micro-controller will read the acceleration data from the FIFO buffer of the accelerometer.
-
-\item \textit{Handle errors} task handles predefined errors if one or more of them have occurred. In practice, this task writes the name of the occurred to the text file and resets the error flag.
-
-\item \textit{Write buffer to SD-card} writes a single line of acceleration data from the FIFO buffer of the micro-controller into a text-file on the SD card.
-\end{itemize}
-
-
-\input{softwareflow1.tex}
-
-
-\subsubsection*{Second Software Implementation}\label{seconddatasetconfigurations}
-
-The approach for recording the second data set differs significantly from the first one. The first software implementation attempted to maximize the data rate, whereas the second focused on power saving. 
-
-
-The work flow consists of the following conditions:
-\begin{itemize}
-\item \textit{FIFO-level > 0} condition is true if the FIFO buffer level of the accelerometer is non-zero.
-
-\item \textit{WDT flag} condition is true if the watchdog timer has set a watchdog timer (WDT) flag.
-\end{itemize}
-and the following tasks:
-
-
-\begin{itemize}
-\item \textit{Initialize}
-
-\item \textit{Read acceleration} task reads all the data from the FIFO buffer of the accelerometer and stores the data into a FIFO buffer of the micro-controller.
-
-\item \textit{Read temperature} task reads the temperature of both of the sensors, accelerometer and temperature sensor.
-
-\item \textit{Open file} task opens a file for writing the data. The task opens a new file if the size of the current file exceeds a preset limit for maximum file size.
-
-\item \textit{Write data to file} writes all the buffered acceleration data into the opened file on the SD card. In addition, the task writes the temperatures of both of the sensors, the number of occurred watchdog timer interrupts and the up-time of the micro-controller into the text file.
-
-\item \textit{Close file} task closes the opened file in order to ensure the written data is being saved. 
-
-\item \textit{Sleep} task puts the micro-controller in a power saving mode. That is, all the other functionalities but watchdog timer and interrupts are disabled in order to minimize the power consumption. The micro-controller remains in the sleep until the watchdog timer or an interrupt from the accelerometer wakes up the micro-controller. After waking up, the 
-
-\end{itemize}
-
-
-
-
-
-
-\subsubsection*{First Data Set}
-
-All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording.
-
-The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are 
-
-The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day.
-
-The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis.
-
-\subsubsection*{Second Data Set}
-The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
-
-MAINITSE että lehmillä oli heatime!!!
-
-\begin{figure}[thb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
-\caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
-\end{figure}
 
 \subsection{Data Processing} \label{dataprocessingsection}
 
@@ -907,9 +812,94 @@ This section surveys through the results of the data recording processes. As des
 
 This subsection discusses about rather general results whereas the scope of subsection \ref{estrusdetectionsection} is in the detection of estrus. In despite of the general nature of these results, they are advantageous considering research in future. Furthermore, some early stage results such as the frequency analysis discussed later in this section were used for improving the sensor device software. This subsection covers the frequency analysis of the first recorder data set as well as statistical analysis of the acceleration data and some interesting features of SD file operations.
 
+\subsubsection*{First Software Implementation}\label{firstdatasetconfigurations}
+
+The starting point for implementing the first software included only a cursory conception of the behavior of a diary cow. Therefore, the properties of the accelerometer described in section \ref{hardwaresection} are treated with care in order to avoid loss of relevant data. In conclusion, a high data rate was prioritized over other features. Furthermore, it was decided not to use offset compensation since, it could cause unawareness of the pose of the device. 
+
+The accelerometer sets a hard restriction of \SI{2000}{\hertz} for the maximum data rate. However, the usage of secure digital (SD) memory card as a data storage limits the data rate even more as discussed in section \ref{resultssection}. That is, the duration of the SD file operations exceeds the disposable time at high data rate and, thus, causes loss of data. In contrast, a low data rate could cause a loss of possibly relevant features on higher frequencies. Therefore, the selection of the data rate is more or less a trade of between data losses and data bandwidth.
+
+The flow of the software consists of tasks and conditions. Each task contains a single function or a sequence of functions the micro-controller must execute before proceeding to the next task or condition in the flow. In this flow, the conditions are used to decide whether a task is being executed or not. Alternatively, a condition may be followed by an entire branch of tasks instead a single task. The conditions of the software flow and their explanations are:
+
+\begin{itemize}
+\item \textit{Interrupt} is true if an interrupt flag is set by an interrupt from the accelerometer which in this case is a certain FIFO buffer level.
+\item \textit{Timer} condition is used for reading temperature data from both of the sensors periodically.
+
+\item \textit{Timeout}  is a backup feature if an interrupt is being missed and, therefore, no more interrupts received.
+
+\item \textit{Errors}  is true if any of the predefined errors have occurred during the execution of  the main loop.
+
+\item \textit{Buffer empty} condition checks the buffer level of the micro-controller. If the buffer level is non-zero the contents of the buffer will be written to the SD card.
+
+\item \textit{Save data}
+
+\end{itemize}
+and following tasks:
+
+\begin{itemize}
+
+\item \textit{Initialize} task (which is analogous for \textit{setup} function in Arduino IDE) is executed only once right after the device is powered up. This task initializes the desired configurations for the accelerometer and the temperature sensor. It
+
+\item \textit{Read acceleration data} task reads the data from the FIFO buffer of the accelerometer and stores the acceleration data into the FIFO buffer of the micro-controller.
+
+\item \textit{Save Data to SD-card} task saves the data written on the SD card. That is, the file where data is being written must be closed in order to ensure the written data is being saved. Once the file is closed for saving the data it has to be re-opened for continuing the writing process. Alternatively, if the size of the current file exceeds a preset limit, a new file is opened. Furthermore, the duration of the open and close file operations could exceed the time required to fill up the FIFO buffer of the accelerometer. Thus, the FIFO buffer is being read empty before and after closing the current file and once more after opening a file. 
+
+\item \textit{Read temperatures} task reads the temperature data of both sensors and stores the value to the memory of the micro-controller. No temperature data are buffered. Thus, only the latest values are written to log file on SD card.
+\item \textit{Set Interrupt flag} sets the interrupt flag without an interrupt if a timeout condition is met. Once the interrupt flag is set, the micro-controller will read the acceleration data from the FIFO buffer of the accelerometer.
+
+\item \textit{Handle errors} task handles predefined errors if one or more of them have occurred. In practice, this task writes the name of the occurred to the text file and resets the error flag.
+
+\item \textit{Write buffer to SD-card} writes a single line of acceleration data from the FIFO buffer of the micro-controller into a text-file on the SD card.
+\end{itemize}
+
+
+\input{softwareflow1.tex}
+
+
+\subsubsection*{Second Software Implementation}\label{seconddatasetconfigurations}
+
+The approach for recording the second data set differs significantly from the first one. The first software implementation attempted to maximize the data rate, whereas the second focused on power saving. 
+
+
+The work flow consists of the following conditions:
+\begin{itemize}
+\item \textit{FIFO-level > 0} condition is true if the FIFO buffer level of the accelerometer is non-zero.
+
+\item \textit{WDT flag} condition is true if the watchdog timer has set a watchdog timer (WDT) flag.
+\end{itemize}
+and the following tasks:
+
+
+\begin{itemize}
+\item \textit{Initialize}
+
+\item \textit{Read acceleration} task reads all the data from the FIFO buffer of the accelerometer and stores the data into a FIFO buffer of the micro-controller.
+
+\item \textit{Read temperature} task reads the temperature of both of the sensors, accelerometer and temperature sensor.
+
+\item \textit{Open file} task opens a file for writing the data. The task opens a new file if the size of the current file exceeds a preset limit for maximum file size.
+
+\item \textit{Write data to file} writes all the buffered acceleration data into the opened file on the SD card. In addition, the task writes the temperatures of both of the sensors, the number of occurred watchdog timer interrupts and the up-time of the micro-controller into the text file.
+
+\item \textit{Close file} task closes the opened file in order to ensure the written data is being saved. 
+
+\item \textit{Sleep} task puts the micro-controller in a power saving mode. That is, all the other functionalities but watchdog timer and interrupts are disabled in order to minimize the power consumption. The micro-controller remains in the sleep until the watchdog timer or an interrupt from the accelerometer wakes up the micro-controller. After waking up, the 
+
+\end{itemize}
+
+
+
+
+
 \subsubsection{First Data Set} \label{firstdatasetsection}
 
-Arvoidaan ensimmäisen datasetin tuloksia, mutta myös hardwarea ja software. Jotain johtopäätöksiä
+
+All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording.
+
+The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are 
+
+The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day.
+
+The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis.
 
 
 \subsubsection*{Frequency Spectrum}
@@ -950,6 +940,16 @@ Write line &  &  &  &  \\ \hline
 
 \subsubsection{Second Data Set} \label{seconddatasetsection}
 
+The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
+
+MAINITSE että lehmillä oli heatime!!!
+
+\begin{figure}[thb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
+\caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
+\end{figure}
+
 ARvioidaan toisen (ja kolmannen) datasetin tuloksia, mutta myös laitteistoa ja ohjelmistoa. Jotain johtopäätöksiä.
 
 
@@ -969,6 +969,8 @@ In this study, a total of six cows were used for long period data recording.
 
 
 \subsection{Algorithm Evaluation} \label{algorithmevaluationsection}
+
+In previous subsection, we discussed of the results in general. The results of the first recorded data set were used for improving the application software, whereas, the results of the second data set were used in algorithm development. An additional third set of data was used for validating and tuning the generated estrus detection algorithms. 
 
 \subsubsection{Activity Measurement} \label{activitymeasurementevaluation}
 
