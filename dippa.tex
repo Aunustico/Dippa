@@ -548,6 +548,7 @@ The temperature sensor used in this study is Texas Instruments TMP112 high-accur
 \item \textit{12-bit resolution} from \SI{-55}{\celsius} to \SI{128}{\celsius}. The sensor has an 13-bit mode, when the measurement range is up to \SI{150}{\celsius}.
 \end{itemize} \cite{tmp112datasheet}
 
+Temperature sensor is soldered on the circuit board, but the skin temperature is conducted from skin to chip via heat conducting aluminum tape.
 
 \subsubsection*{Secure Digital Memory Card}
 
@@ -557,18 +558,23 @@ This hardware configuration uses a secure digital (SD) memory card as a memory s
 
 \subsubsection{Software} \label{softwaresection}
 
-Previously, we discussed of the hardware components of the dairy cow sensor device. Whereas, the hardware already existing prototype, the software was developed from scratch. 
+Previously, we discussed of the sensor device hardware and it's primary components. In general, the sensor device is an accelerometer with temperature sensor and data storage. The sensor device is already existing prototype enhanced with a SD card slot and SD card. Conversely, the device was without any software. Thus, implementing a new software from a scratch is required. The objective of the device software is only to record the sensor data on the SD data storage.  
 
 This subsection discusses of the data recording software. In contrast to the hardware, the software improved during this study. Thus, the first software implementation differs significantly from the latter. As a matter of fact, the first software implementation based on previous researches and intuition, whereas the latter based on the results received from the first recorded set of data. That is to say, the results of the first set of data formed a general view on typical behavior of a cow, while the purpose of the following data sets were used for the actual estrus detection. \textit{Tähän vielä jokin tarnsitiofraasi, ehkä?}
 
-The software were implemented in Arduino IDE (\textit{Integrated Development} Environment). The use of Arduino IDE offers effective environment for implementing embedded software without expert-level knowledge on micro-controllers. The Arduino provides extensive libraries\dots However, the driver interfaces for accelerometer and temperature sensors as well as the entire flow of the software were self-implemented.
+The software were implemented in Arduino IDE (\textit{Integrated Development Environment}). The use of Arduino IDE offers effective environment for implementing embedded software without expert-level knowledge on micro-controllers. The Arduino provides extensive libraries\dots However, the driver interfaces for accelerometer and temperature sensors as well as the entire flow of the software were self-implemented.
 
+Data logs are recorded on a regular .txt-file on the SD card.
 
 
 
 \subsection{Data Processing} \label{dataprocessingsection}
 
-This subsection discusses about the methods used in data analysis. The used methods consists of pure visual observations as well as statistical analysis and more advanced digital signal processing. However, the visual observations remain the primary tool before and after applying any statistical os signal processing method.
+This subsection discusses about the methods used in data analysis. The used methods consists of pure visual observations as well as statistical analysis and more advanced digital signal processing. However, the visual observations remain the primary tool before and after applying any statistical or signal processing method.
+
+\subsubsection*{Parsing the data}
+
+The sensor data was recorded on .txt-files on the SD card. After recording the data long enough, the sensor was removed from the cow and the log files were copied on a computer. 
 
 \subsubsection{Statistics} \label{statisticssection}
 
@@ -853,6 +859,7 @@ and following tasks:
 
 
 \input{softwareflow1.tex}
+\input{softwareflow2.tex}
 
 
 \subsubsection*{Second Software Implementation}\label{seconddatasetconfigurations}
@@ -1030,7 +1037,7 @@ The estrus was detected using Heatime estrus detection system. The detected estr
 
 The activity could be measured in several ways. Pedometers measures the number of steps. However, sensor worn in neck could not probably be used for step counting and therefore, no steps were estimated. Human activity bracelets and other devices could measure steps but if total energy consumption is being estimated, the values of acceleration should be taken into account. A research have shown that the sum of absolute value of the axis, instead of a absolute value is the best simple estimate for energy consumption and therefore, a good activity measure.
 
-The cow activity was measured as a sum of absolute value acceleration vector. The activity was summed over a varying time window from 6 hours to 36 six hours. Since the resulting activity is always a sum of past activity, this method causes delay and widening of the activity peak. However, the size of the window does not affect the steepness of the rising or falling edges. Nevertheless, the size of the window widens the peaks if the window size is too high. In result, increasing the window might delay the oestrus detection, if the detection has dependencies in the falling edge. Based on the three found heat activity peaks of oestrus, an optimal window size is somewhere between 9 end 12 hours.
+The cow activity was measured as a sum of absolute value acceleration vector. The activity was summed over a varying time window from 6 hours to 36 six hours. Since the resulting activity is always a sum of past activity, this method causes delay and widening of the activity peak. However, the size of the window does not affect the steepness of the rising or falling edges. Nevertheless, the size of the window widens the peaks if the window size is too high. In result, increasing the window might delay the estrus detection, if the detection has dependencies in the falling edge. Based on the three found heat activity peaks of estrus, an optimal window size is somewhere between 9 end 12 hours.
 
 \begin{figure}[htb]
 \centering
@@ -1039,6 +1046,17 @@ The cow activity was measured as a sum of absolute value acceleration vector. Th
 \end{figure}
 
 \subsection{Conclusions} \label{conclusionssection}
+
+The dairy cow estrus is detectable with triaxial accelerometer only and no other sensors are required. The results were verified with one single commercial product. Thus, the results may not be completely reliable and valid.
+
+The estrus detection algorithms developed in this study are suitable for micro-controller environments. Therefore, algorithm computation with computers is not required. Consequently, there is no need to large data storage or transmitting raw sensor data wirelessly.
+
+The sensor device did not provide optimal performance for recording large amounts of data. Specially the SD file operations formed a bottle neck in sampling speed.
+
+The unpredictable resetting of the accelerometer was harmful for the results because total of two estruses were missed in the data recording.
+
+The setup for measuring skin temperature of the cow was total failure. The surrounding air temperature overruled the measurements. Nothing light algorithms was not able to verify the detected estrus as it was assumed.
+
 
 
 
