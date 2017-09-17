@@ -752,7 +752,11 @@ The integration period = window
 
 \subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
 
-This section introduces a fundamental concept for the detection of  a dairy cow. In general, the cow behavior changes along with the phases of estrus the cycle \ref{estruscycle}. That is, the activity level increases in proestrus 
+In previous subsection we surveyed through the micro-controller software implementation of the sensor device. Additionally, we discussed of recording the data to log files. Consequently, this subsection focuses on both, parsing of the log files and specially the estrus detection algorithms. In this study, there are three different algorithms for estrus detection. Nevertheless, they all attempt to detect rather the proestrus than the actual estrus. This differs from the traditional estrus detection by the cattle tender we discussed in section \ref{estruscyclesection}. Traditionally, a cow allowing of being mounted by other cows is reliably considered to be in estrus (standing heat). However, detection of being mounted with accelerometer based sensor is rather unreasonable approach. Fortunately, the activity level of the cow increases in proestrus. Thus, all the following estrus detection algorithms attempt to detect rather the proestrus than the actual estrus. In despite of this similarity, all the following algorithms have their own approach to the topic. The algorithms are discussed more in detail in the following subsections.  \\
+
+As discussed earlier, the sensor device software were implemented in Arduino IDE, an integrated development environment for micro-controller applications. 
+
+
 
 That is, the cow becomes exceptionally active in proestrus, whereas the activity normalizes in estrus. Therefore, 
 
