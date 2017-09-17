@@ -654,6 +654,40 @@ and the following tasks:
 
 \end{itemize}
 
+\subsubsection{Procedure}
+
+All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording. \\
+
+The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \\
+
+
+\subsubsection*{First Data Set} \label{firstdatasetsection}
+
+
+
+
+The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day. \\
+
+The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis. \\
+
+The trail camera as well as the sensor were without proper time stamp. Thus, they were out of synchronization. Consequently, making of conclusion between the recorded data and video was not reasonable. However, it seemed that there were recognizable patterns in the behavior of the cow e.g., eating of feed and walking. Because of these promising results, the same approach was attempted with the further data recordings. We shall discuss of it later in this study.
+\\
+
+
+\subsubsection*{Second Data Set} \label{seconddatasetsection}
+
+The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period. \\
+
+MAINITSE että lehmillä oli heatime!!!
+
+\begin{figure}[thb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
+\caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
+\end{figure}
+
+ARvioidaan toisen (ja kolmannen) datasetin tuloksia, mutta myös laitteistoa ja ohjelmistoa. Jotain johtopäätöksiä.
+
 
 
 \subsection{Data Processing} \label{dataprocessingsection}
@@ -750,27 +784,23 @@ In this study, windowing is means analysis and calculus of data in segments inst
 
 The integration period = window
 
-\subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
-
-In previous subsection we surveyed through the micro-controller software implementation of the sensor device. Additionally, we discussed of recording the data to log files. Consequently, this subsection focuses on both, parsing of the log files and specially the estrus detection algorithms. In this study, there are three different algorithms for estrus detection. Nevertheless, they all attempt to detect rather the proestrus than the actual estrus. This differs from the traditional estrus detection by the cattle tender we discussed in section \ref{estruscyclesection}. Traditionally, a cow allowing of being mounted by other cows is reliably considered to be in estrus (standing heat). However, detection of being mounted with accelerometer based sensor is rather unreasonable approach. Fortunately, the activity level of the cow increases in proestrus. Thus, all the following estrus detection algorithms attempt to detect rather the proestrus than the actual estrus. In despite of this similarity, all the following algorithms have their own approach to the topic. The algorithms are discussed more in detail in the following subsections.  \\
-
-As discussed earlier, the sensor device software were implemented in Arduino IDE, an integrated development environment for micro-controller applications. 
-
-
-
-That is, the cow becomes exceptionally active in proestrus, whereas the activity normalizes in estrus. Therefore, 
-
-This subsection discusses about plausible algorithms for dairy cow estrus detection. The algorithms consists of methods of data analysis described foregoing subsections. In fact, algorithms are sequences of methods that provide answer to the question whether the cow is in estrus or not. \\
-
-The principle idea of estrus detection is based on high pro-estrus activity of the cow. That is, the cow attends to move significantly more than usually. Furthermore, the time spent on rumination degrades meanwhile. Thus, it is considered to detect the pro-estrus instead of the actual estrus. Additionally, it is beneficial since, it provides wider time window for insemination. In conclusion, the basis of the algorithm is defining the amount of activity. \\
-
-Considering the activity measurement in wearable devices for people, the activity is typically measured as sum of absolute values of all the axis. In studies, it has been proved it to match to the real energy consumption better than the absolute value. \\
-
 Windowed mean value:
 
 \begin{equation}
 \bar{x}(k) = \frac{ \sum\limits^{k}_{i = k - n} x(i)}{n} \mathrm{,}
 \end{equation} where $n$ is the size of the window.
+
+
+\subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
+
+In previous subsection we surveyed through the micro-controller software implementation of the sensor device. Additionally, we discussed of recording the data to log files. Consequently, this subsection focuses on both, parsing of the log files and specially the estrus detection algorithms. In this study, there are three different algorithms for estrus detection. Nevertheless, they all attempt to detect rather the proestrus than the actual estrus. This differs from the traditional estrus detection by the cattle tender we discussed in section \ref{estruscyclesection}. Traditionally, a cow allowing of being mounted by other cows is reliably considered to be in estrus (standing heat). However, detection of being mounted with accelerometer based sensor is rather unreasonable approach. Fortunately, the activity level of the cow increases in proestrus. Thus, all the following estrus detection algorithms attempt to detect rather the proestrus than the actual estrus. In despite of this similarity, all the following algorithms have their own approach to the topic. The algorithms are discussed more in detail in the following subsections.  \\
+
+As stated earlier, the sensor device software were implemented in Arduino IDE, an integrated development environment for micro-controller applications. However, the scope of this study is not in developing the estrus detection algorithms for the device directly. Consequently, it eases of implementing the sensor software. Additionally, it enables to choose freely more applicable software tools for developing and testing algorithms with recorded data. Nevertheless, one goal of this study is to create algorithms suitable for micro-controller platforms. The software tool for algorihtm development in this study is \textit{MathWorks MATLAB} (later only Matlab) \cite{matlaboverview}. Matlab is a desktop environment created for various iterative analysis and design processes. It uses a programming language that expresses matrix and array mathematics directly. Furthermore, in contains numerous applications for various needs of engineers. In this study, the the interest is in data plotting and filter designing. Moreover, use of existing Matlab functions altogether with self-implemented functions and scripts provides advisable environment for algorithm development.  \\
+
+
+
+Considering the activity measurement in wearable devices for people, the activity is typically measured as sum of absolute values of all the axis. In studies, it has been proved it to match to the real energy consumption better than the absolute value. \\
+
 
 
 The main features of all the following algorithms are as follows:
@@ -919,19 +949,7 @@ This subsection discusses about rather general results whereas the scope of subs
 
 
 
-\subsubsection{First Data Set} \label{firstdatasetsection}
 
-
-All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording. \\
-
-The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \\
-
-The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day. \\
-
-The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis. \\
-
-The trail camera as well as the sensor were without proper time stamp. Thus, they were out of synchronization. Consequently, making of conclusion between the recorded data and video was not reasonable. However, it seemed that there were recognizable patterns in the behavior of the cow e.g., eating of feed and walking. Because of these promising results, the same approach was attempted with the further data recordings. We shall discuss of it later in this study.
-\\
 
 \subsubsection*{Frequency Spectrum}
 
@@ -969,19 +987,6 @@ Write line &  &  &  &  \\ \hline
 \end{tabular}
 \end{table}
 
-\subsubsection{Second Data Set} \label{seconddatasetsection}
-
-The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period. \\
-
-MAINITSE että lehmillä oli heatime!!!
-
-\begin{figure}[thb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
-\caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
-\end{figure}
-
-ARvioidaan toisen (ja kolmannen) datasetin tuloksia, mutta myös laitteistoa ja ohjelmistoa. Jotain johtopäätöksiä.
 
 
 
