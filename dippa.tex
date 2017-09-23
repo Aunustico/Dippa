@@ -465,6 +465,15 @@ As discussed previously, the hardware for the data recording was a prototype of 
 
 \end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Their special assignments are discussed in detail in the following descriptive sections.
 
+In addition to the hardware components, the hardware configurations consists of two serial interfaces as follows:
+
+\begin{itemize}
+\item \textit{Inter-Inegrated Circuit (I$^2$C) bus} or some times referred as \textit{Two-Wire Interface (TWI)} is a serial communication interface developed by Philips Semiconductor. The first I$^2$C was released in 1982. The design isn rather simple hence, it requires only only two bidirectional open-drain lines, Serial Data Line (SDA) and Serial Clock Line (SCL), pulled up with resistors \cite{i2cmanual}.
+
+
+\item \textit{Serial peripheral interface (SPI)} \cite{spimanual} kjlk l
+\end{itemize}
+
 
 \subsubsection*{Micro-controller}
 
@@ -558,15 +567,32 @@ This hardware configuration uses a secure digital (SD) memory card as a memory s
 
 \subsubsection{Software} \label{softwaresection}
 
-Previously, we discussed of the data recording hardware and the primary components of it. As stated earlier, the sensor device is a prototype of a dairy cow sensor device. Furthermore, it was customized for data recording by adding a SD card slot on its SPI bus. Otherwise, no additional modification was required. In contrast to the already existing hardware design, there was no initial software. Thus, this subsection introduces a sufficient ad-hoc software design for data recording. The design includes the general work flow of the software as well as the necessary parameters. In addition to the software design, implementing of the software application is required before data recording. In this study, the actual implementation is created in Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}. The software implementation includes the conduction of the driver interfaces of both, accelerometer and temperature sensor.  \\ 
+Previously, we discussed of the data recording hardware and the primary components of it. As stated earlier, the sensor device is a prototype of a dairy cow sensor device. Furthermore, it was customized for data recording by adding a SD card slot on its serial peripheral interface (SPI) bus. Otherwise, no additional modification was required. In contrast to the already existing hardware design, there software had to be implemented from a scratch. Therefore, in this section we discus of the software design as well as the actual software implementation. Additionally, we introduce the software tools form implementing the micro-controller application software for the sensor device. The software design required prior testing of the hardware capabilities as well as studying of the available software libraries. Conversely, the software implementation was more straight forward process based on the software design. \\
 
-The Arduino IDE provides an easy environment for implementing micro-controller applications without expert-level knowledge on micro-controllers. However, the most advantageous features of micro-controllers are not included in standard Arduino libraries. Thus, profound familiarization with the micro-controller data sheet is stipulated for achieving higher level of performance. 
+In this study, the software tool for sensor application implementation was Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}.  The Arduino IDE provides a fast and easy environment for implementing micro-controller applications without prior expert-level knowledge on micro-controllers. Additionally, Arduino and Arduino community provides comprehensive set of software libraries for various micro-controller applications. The following list describes the fundamental software libraries in this study:
 
-Additionally, Arduino community provides plenty of open-source software libraries for various applications. Furthermore, the Arduino programming language is merely a set of C/C++ functions. Thus, implementing 
+
+\begin{itemize}
+\item \textit{Wire} library provides functionality for Inter-Integrated Circuit (I2C) communication. "This library allows you to communicate with I2C / TWI devices. On the Arduino boards with the R3 layout (1.0 pinout), the SDA (data line) and SCL (clock line) are on the pin headers close to the AREF pin. The Arduino Due has two I2C / TWI interfaces SDA1 and SCL1 are near to the AREF pin and the additional one is on pins 20 and 21." \cite{arduinowire}
+
+\item \textit{SPI} "This library allows you to communicate with SPI devices, with the Arduino as the master device." \cite{arduinospi}
+
+\item \textit{SD} "The SD library allows for reading from and writing to SD cards, e.g. on the Arduino Ethernet Shield. It is built on sdfatlib by William Greiman. The library supports FAT16 and FAT32 file systems on standard SD cards and SDHC cards. It uses short 8.3 names for files. The file names passed to the SD library functions can include paths separated by forward-slashes, /, e.g. "directory/filename.txt". Because the working directory is always the root of the SD card, a name refers to the same file whether or not it includes a leading slash (e.g. "/file.txt" is equivalent to "file.txt"). As of version 1.0, the library supports opening multiple files." \cite{arduinosd}
+
+\item \textit{EnableInterrupt} "enableInterrupt- Enables interrupt on a selected Arduino pin. disableInterrupt - Disables interrupt on the selected Arduino pin." \cite{arduinoenableinterrupt}
+
+\item \textit{RingBuf} "This is a simple ring (FIFO) buffer library for the Arduino. It is written in vanilla C, and can easily be modified to work with other platforms. It can buffer any fixed size object (ints, floats, structs, etc...)." \cite{arduinoringbuf}
+\end{itemize}
+
+However, the some advantageous features of micro-controllers are not included in standard Arduino libraries. Thus, profound familiarization with the micro-controller data sheet is beneficial for achieving the highest level of performance. In addition to the standard libraries, Arduino community provides plenty of open-source software libraries for various applications. 
+
+Furthermore, the Arduino programming language is merely a set of C/C++ functions. Thus, implementing 
 
 Additionally, the driver interfaces provided by the sensor manufacturers were not fully compatible with the Arduino. Thus, both driver interfaces were included in the implementation of the device software. 
 
 Data logs are recorded on a regular .txt-file on the SD card.\\
+
+the actual implementation is created in Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}. The software implementation includes the conduction of the driver interfaces of both, accelerometer and temperature sensor.
 
 
 This subsection discusses of the data recording software. In contrast to the hardware, the software improved during this study. Thus, the first software implementation differs significantly from the latter. As a matter of fact, the first software implementation based on previous researches and intuition, whereas the latter based on the results received from the first recorded set of data. That is to say, the results of the first set of data formed a general view on typical behavior of a cow, while the purpose of the following data sets were used for the actual estrus detection. \textit{Tähän vielä jokin tarnsitiofraasi, ehkä?}
@@ -997,22 +1023,65 @@ In this study, a total of six cows were used for long period data recording.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75\textwidth]{figures/punainenkiima}
-\caption{The estrus of the cow marked with red and green color. This cow had two estruses during the data recording period.}
+\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_319}
+\caption{The activity data of Heatime system of the cow 319. The cow has had estruses approximately on October the 30\textsuperscript{th} and December the 20\textsuperscript{th}. The latter of the estruses should be detectable in this study, hence it is within our data recording period.}
+\label{punainenkiimaheattime}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_767}
+\caption{The activity data of Heatime system of the cow 767. The cow has had estruses approximately on January the 21\textsuperscript{st} and February the 13\textsuperscript{th}. The latter of the estruses should be detectable in this study, hence it is within our data recording period.}
+\label{punainenkiimaheattime}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_787}
+\caption{The activity data of Heatime system of the cow 787. The cow has had estruses approximately on January the 19\textsuperscript{th} and February the 10\textsuperscript{th}. The latter of the estruses should detectable in this study, hence it is within our data recording period.}
+\label{punainenkiimaheattime}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_9885}
+\caption{The activity data of Heatime system of the cow 9885. The cow has had estruses approximately on October the 24\textsuperscript{th}, December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. Two latter estruses should be detectable in this study, hence they both are within our dat recording period. }
 \label{punainenkiimaheattime}
 \end{figure}
 
 
 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/kiimadata_319.png}
+\caption{The raw acceleration data of each axis of the cow 319. The time frame of this picture is restricted around the estrus.}
+\label{keltainenkiimadata}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_1.png}
+\caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the first detectable estrus period. }
+\label{punainenkiimadata1}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_2.png}
+\caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the second detectable estrus period. }
+\label{punainenkiimadata2}
+\end{figure}
+
+
+
+
 \subsection{Algorithm Evaluation} \label{algorithmevaluationsection}
 
-In previous subsection, we discussed of the results in general. The results of the first recorded data set were used for improving the application software, whereas, the results of the second data set were used in algorithm development. An additional third set of data was used for validating and tuning the generated estrus detection algorithms. \\
+In previous subsection, we discussed of the results in general. The results of the first recorded data set were used for improving the sensor device application software as discussed in section \ref{softwaresection}. Conversely, the results of the second data set were used for developing and testing of the algorithms discussed in section \ref{estrusdetectionalgorithmssection}. An additional third set of data was further testing and tuning of the developed algorithms. In this section, we discuss of the results of the estrus detection algorithms. First we discuss of the results of estrus detection in general level. Additionally, we consider the affect of different parameters in estrus detection. Finally, we survey through each algorithm in separate subsections and discuss in detail of their pros and cons. \\
 
-Define: false positive, false negative, true positive, true negative etc.
+In order to validate the results of the algorithms, it is mandatory to define some measures of quality. Considering estrus detection, it is rather relevant to define if the cow is in estrus than how much it is in estrus. Therefore, simple categorization of the results such as positive and negative is a fair staring point. Additionally, the positive and negative results shall be divided into true and false results. In conclusion, we have four different measures for the results and they are defined as follows:
 
-Definitions of results
-
-In this study the if the estrus is being detected it is defined as a positive. Conversely, if the algorithm yields not in estrus, it is defined as negative. Additionally, the yielded results might be either true or false. Thus, the each result of the algorithms can be defined as follows:
 
 \begin{itemize}
 \item \textit{True positive} means a condition when the algorithm detects an ongoing estrus and the cow is in estrus.
@@ -1021,9 +1090,46 @@ In this study the if the estrus is being detected it is defined as a positive. C
 \item \textit{False negative} mean a condition when the estrus detection algorithm yields not in estrus but the cow is in estrus.
 \end{itemize}
 
+In addition to these measures, it is beneficial to be able to depict the differences between positive and negative periods. For example, comparison of the amplitudes. In the following subsections the results are normalized. That is, a median value is subtracted from all the data. Next the data is normalized so that, the extreme value is either $\pm1$. Therefore, we are able to compare the results within the algorithm as well as between the algorithms.
+
 \subsubsection{Activity Measurement} \label{activitymeasurementevaluation}
 
 Quite straight-forward algorithm without any advantageous data processing. That is, the algorithm integrated the activity in certain periods and represented the activity of the period in one number. Required continuous sampling. Nevertheless, it detected all the estruses easily and no false positives were found. \\
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow319}
+\caption{The plot of the results of the activity measurement algorithm of cow 319. A true positive estrus is detected and no false positive or false negative detection occurred. However, there is a lot of variation when not in estrus. Thus, the risk of false positive and false negative results is plausible.}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow767}
+\caption{The plot of the activity measurement results of the cow 767. A true positive estrus is detected and no occurrence of false positives of false negatives. Additionally, the difference between proestrus and rest of the period is obvious. The risk of false positive or false negative results is minor. }
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow787}
+\caption{The results of activity measurement of the cow 787. The difference between the estrus and rest of the period is most distinct within this algorithm. Thus, the risk of false positive and false negative results is least significant.}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow9885.png}
+\caption{The results of activity measurement of the cow 9885. Both of the estruses are detected. However, the difference between the estruses and the rest of the period is insignificant as it was with cow 319. Thus, the possibility of false positive and false negative results exists.}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/redcowactivity2.png}
+\caption{The activity plots of the second proestrus of the cow 9885. The figure illustrates the affect of varying the size of the integration window. Wider window increases the amplitude of the estrus and eases the detectability. However, simultaneously it delays the moment of detection. }
+\end{figure}
+
 
 
 \subsubsection{Variance Detection} \label{variancedetectionevaluation}
@@ -1032,7 +1138,61 @@ Promising algorithm based on sampling periods instead of continuous data recordi
 
 Nice idea but requires improvement.
 
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow319}
+\caption{The results of the variance detection algorithm of the cow 319. The estrus on December the 20\textsuperscript{th} is barely detectable. Additionally, algorithm yielded several false positive estruses. Furthermore, the amplitude of the false positives exceeds the true positive.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow767}
+\caption{The variance detection results of the cow 767. There are multiple false positive detections in the data period. In general, there is no obvious difference between the estrus and non-estrus periods. Nevertheless, a true positive estrus is detected on February the 13\textsuperscript{th}.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow787}
+\caption{The results of variance detection algorithm of the cow 787. The true positive estrus is detected on February the 10\textsuperscript{th}. However, a false positive detection occurred on February the 21\textsuperscript{st}. Otherwise, the amplitude  difference between estrus and non-estrus periods is obvious.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885.png}
+\caption{The results of variance detection algorithm of the cow 9885. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
+\end{figure}
+
 \subsubsection{Inactivity Detection} \label{inactivitydetectionevaluation}
+
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow319.png}
+\caption{The results of the inactivity detection algorithm of the cow 319. A true positive estrus is detected on December the 20\textsuperscript{th}. Furthermore, the amplitude of estrus and non-estrus is significant. }
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow767.png}
+\caption{The results of the inactivity detection algorithm of the cow 767. A true positive estrus is detected on February the 13\textsuperscript{th}. Additionally, the amplitude of the estrus differs from none-estrus significantly.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow787.png}
+\caption{The results of inactivity detection algorithm of the cow 787. A ture positive estrus is detected on February the 11\textsuperscript{th} and no false positives of false negatives occurred. Furthermore, the difference between estrus and other periods is significant.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow9885.png}
+\caption{The results of inactivity detection algorithm of the cow 9885. Both of the estruses are detected as true positive on December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. No false positive or false negative detection occurred. However, in comparison to other three cows, the amplitude difference between estrus and other periods is not that significant.}
+\end{figure}
+
+
 
 
 
@@ -1061,26 +1221,6 @@ The estrus was detected using Heatime estrus detection system. The detected estr
 
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/keltainenkiimadata.png}
-\caption{The estrus behaviour in recoreded data of the yellow cow.}
-\label{keltainenkiimadata}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/punainenkiimadata1.png}
-\caption{The first estrus activity period in the recorded data of the red cow.}
-\label{punainenkiimadata1}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/punainenkiimadata2.png}
-\caption{The second activity period of the red cow.}
-\label{punainenkiimadata2}
-\end{figure}
 
 
 
@@ -1088,11 +1228,7 @@ The activity could be measured in several ways. Pedometers measures the number o
 
 The cow activity was measured as a sum of absolute value acceleration vector. The activity was summed over a varying time window from 6 hours to 36 six hours. Since the resulting activity is always a sum of past activity, this method causes delay and widening of the activity peak. However, the size of the window does not affect the steepness of the rising or falling edges. Nevertheless, the size of the window widens the peaks if the window size is too high. In result, increasing the window might delay the estrus detection, if the detection has dependencies in the falling edge. Based on the three found heat activity peaks of estrus, an optimal window size is somewhere between 9 end 12 hours.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/redcowactivity2.png}
-\caption{The activity curves of a cow in estrus. The width of the window varies. The optimal window size is approximately between form 9 to 12 hours.}
-\end{figure}
+
 
 \subsection{Conclusions} \label{conclusionssection}
 
