@@ -1017,8 +1017,6 @@ Write line &  &  &  &  \\ \hline
 
 
 This subsection concentrates in the results of estrus detection. As discussed in section \ref{datarecordingprocess} six cows were used in data recording process. However, two out of six data recordings failed. Thus, that data had to be discarded. The estruses were confirmed by Heatime estrus detection system. \\
-
-
 In this study, a total of six cows were used for long period data recording.
 
 
@@ -1026,7 +1024,6 @@ In this study, a total of six cows were used for long period data recording.
 \subsection{Algorithm Evaluation} \label{algorithmevaluationsection}
 
 In previous subsection, we discussed of the results in general. The results of the first recorded data set were used for improving the sensor device application software as discussed in section \ref{softwaresection}. Conversely, the results of the second data set were used for developing and testing of the algorithms discussed in section \ref{estrusdetectionalgorithmssection}. An additional third set of data was further testing and tuning of the developed algorithms. In this section, we discuss of the results of the estrus detection algorithms. First we discuss of the results of estrus detection in general level. Additionally, we consider the affect of different parameters in estrus detection. Finally, we survey through each algorithm in separate subsections and discuss in detail of their pros and cons. \\
-
 In order to validate the results of the algorithms, it is mandatory to define some measures of quality. Considering estrus detection, it is rather relevant to define if the cow is in estrus than how much it is in estrus. Therefore, simple categorization of the results such as positive and negative is a fair staring point. Additionally, the positive and negative results shall be divided into true and false results. In conclusion, we have four different measures for the results and they are defined as follows:
 
 
@@ -1038,9 +1035,7 @@ In order to validate the results of the algorithms, it is mandatory to define so
 \end{itemize}
 
 In addition to these measures, it is beneficial to be able to depict the differences between positive and negative periods. For example, comparison of the amplitudes. In the following subsections the results are normalized. That is, a median value is subtracted from all the data. Next the data is normalized so that, the extreme value is either $\pm1$. Therefore, we are able to compare the results within the algorithm as well as between the algorithms. \\
-
 In this study, the detected estruses are verified with Heatime estrus detection and rumination monitoring system. Thus, each cow wearing the sensor device of this study additionally dons Heatime sensor. The Heatime id considered relatively reliable in estrus detection. Nevertheless, none of the detected estruses were not veterinarian verified. Thus the results of this study are at most as reliable as the results of the Heatime. Furthermore, all the possible false detection of Heatime that conflicts with our device will remain unsolved in this study. \\
-
 As discussed earlier, a total of six cows were used for the actual estrus data recording. The first three cows were 319, 659 and 9885 of which only two sets of data, 319 and 9885, were valid to use in the algorithm development. Both of the cows had two or more estruses in the data log of the Heatime as shown in pictures \ref{heatime_kiima_319} and \ref{heatime_kiima_9885}.The next three cows were 767, 787 and 812 of which only the data of 767 and 787 were valid to use in algorithm tuning and evaluation. Also both of these cows had detectable estruses in the log of Heatime. They are shown in pictures \ref{heatime_kiima_767} and \ref{heatime_kiima_787}. Nevertheless, the data recording period in this study lasted only approximately 30 days per instance. Thus, only one detectable estrus per cow were included in our recording period except the cow 9885 with two periods.
 
 
@@ -1076,7 +1071,11 @@ As discussed earlier, a total of six cows were used for the actual estrus data r
 \end{figure}
 
 
+<<<<<<< HEAD
 The proestrus period corresponding the detected estrus by Heatime is visually detectable in raw accelerometer data. The increased activity level of the cow appears in higher amplitude as well as in more frequent changes in the data. Furthermore, the change of activity is detectable in all axis of the accelerometer. THe raw
+=======
+The proestrus period corresponding the detected estrus by Heatime is visually detectable in raw accelerometer data. The increased activity level of the cow appears in exceptionally long period of high amplitude activity. Furthermore, the change of activity is detectable in all axis of the accelerometer. Figure \ref{kiimadata_319} represents the raw accelerometer data of the cow 319 around of the proestrus period. Similarly, figures \ref{kiimadata_9885_1} and \ref{kiimadata_9885_2} shows the raw accelerometer data around the both proestrus periods of the cow 9885. In conclusion, these highly active periods are easily detectable for human simply by visually inspecting these plots. Nevertheless, it is necessary to develop computational algorithms that yields either\textit{is in estrus} or \textit{not in estrus}. However, it is the proestrus rather than the actual estrus. Thus, in algorithm level it is more sensible to define whether the cow is in proestrus or is not in proestrus. Consequently, the end of proestrus indicates the beginning of the estrus and this state transition shall be indicated to the end user.
+>>>>>>> origin/master
 
 
 
@@ -1084,28 +1083,42 @@ The proestrus period corresponding the detected estrus by Heatime is visually de
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/kiimadata_319.png}
 \caption{The raw acceleration data of each axis of the cow 319. The time frame of this picture is restricted around the estrus.}
-\label{keltainenkiimadata}
+\label{kiimadata_319}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_1.png}
 \caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the first detectable estrus period. }
-\label{punainenkiimadata1}
+\label{kiimadata_9885_1}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_2.png}
 \caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the second detectable estrus period. }
-\label{punainenkiimadata2}
+\label{kiimadata_9885_2}
 \end{figure}
 
 
+The following subsections discuss of each estrus detection algorithm individually. First we start with the activity measurement algorithm, which is rather straight forwarding and does not require any advantageous computation. Second, we evaluate the variance detection algorithm which is based on variance of periodic short data samples. Lastly, we discuss of the inactivity detection algorithm, which detects rather lack of inactivity than activity directly. Additionally, we discuss of tuning of the algorithm parameters as well as the optimal results based on the recorder data. 
 
+The parameters are tuned with iterative methods. That is, testing various values and evaluating the results before applying new values. This iteration is continued until, iteration yields no more benefits.
 
 
 \subsubsection{Activity Measurement} \label{activitymeasurementevaluation}
+
+As stated earlier, data of four different cows were used in the algorithm development and data of two cows had to be discarded since it was not valid. Nevertheless, the data of four cows consists of five proestrus periods, and thus, slightly compensates the smaller amount of usable data.
+
+The first estrus detection algorithm was based on activity measurement. In is very straight forwarding and does not require any complex computation. However, the algorithm is sensitive to offset in the data. Thus, the offset shall be removed with appropriate filter before integrating the values together. Developing of such filter requires knowledge of \dots
+
+In despite of the complex algorithm development, the actual filtering requires simple floating point multiplications and summing depending of the order of the filter. Therefore, even with the offset compensating filter this algorithm is rather straight forward and mathematically simple. In contrast to its simplicity this algorithm requires continuous sampling and continuous computing of the samples. First, applying a high-pass filter as an offset compensation. Next, integrating the results. Additionally, there are only few tunable parameters that affect the estrus detection, width of the integration window and threshold. All the other parameters affect only to the computational load and visualization of the results.\\
+
+According to the duration of proestrus, the optimal integration window is approximately from 9 to 12 hours. Narrower window might trigger the begin on estrus too early. Additionally, it makes the algorithm more sensitive to detect to false positives because the amplitude difference between proestrus and other periods decrease. Therefore, a scared cow behaving restlessly might yield false positive.
+
+The results of the activity measurement algorithm are shown in figures \ref{algorithm1_cow319}, \ref{algorithm1_cow9885}, \ref{algorithm1_cow767} and \ref{algorithm1_cow787}. In these results, three different integration windows are included, 6 hour, 9 hours and 12 hours. In general, the performance of this algorithm is stable. No false positives of false negatives occurred. The difference between proestrus and other periods are obvious. However, the amplitude outside of proestrus is occasionally significant. In addition to the detected estruses, the affect of the width of the integration window is illustrated in picture \ref{integrationwindows}. It is seen that wider window delays the triggering of the end of the proestrus. Conversely, wider integration window enhances the amplitude of the proestrus phase. 
+
+
 
 Quite straight-forward algorithm without any advantageous data processing. That is, the algorithm integrated the activity in certain periods and represented the activity of the period in one number. Required continuous sampling. Nevertheless, it detected all the estruses easily and no false positives were found. \\
 
@@ -1113,12 +1126,14 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow319}
 \caption{The plot of the results of the activity measurement algorithm of cow 319. A true positive estrus is detected and no false positive or false negative detection occurred. However, there is a lot of variation when not in estrus. Thus, the risk of false positive and false negative results is plausible.}
+\label{algorithm1_cow319}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow9885.png}
 \caption{The results of activity measurement of the cow 9885. Both of the estruses are detected. However, the difference between the estruses and the rest of the period is insignificant as it was with cow 319. Thus, the possibility of false positive and false negative results exists.}
+\label{algorithm1_cow9885}
 \end{figure}
 
 
@@ -1126,6 +1141,7 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow767}
 \caption{The plot of the activity measurement results of the cow 767. A true positive estrus is detected and no occurrence of false positives of false negatives. Additionally, the difference between proestrus and rest of the period is obvious. The risk of false positive or false negative results is minor. }
+\label{algorithm1_cow767}
 \end{figure}
 
 
@@ -1133,6 +1149,7 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow787}
 \caption{The results of activity measurement of the cow 787. The difference between the estrus and rest of the period is most distinct within this algorithm. Thus, the risk of false positive and false negative results is least significant.}
+\label{algorithm1_cow787}
 \end{figure}
 
 
@@ -1143,11 +1160,16 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/redcowactivity2.png}
 \caption{The activity plots of the second proestrus of the cow 9885. The figure illustrates the affect of varying the size of the integration window. Wider window increases the amplitude of the estrus and eases the detectability. However, simultaneously it delays the moment of detection. }
+\label{integrationwindows}
 \end{figure}
 
 
 
 \subsubsection{Variance Detection} \label{variancedetectionevaluation}
+
+Previously we discussed of activity measurement which is the most simple estrus detection algorithm of this study. It was based on continuous filtering and data sampling. Computationally, it was relatively simple but it loads the processor continuously. In contrast, the second estrus detection algorithm, variance detection, is based on regular samples instead of continuous data streams. Furthermore, it is computationally slightly more complex than the former algorithm. Nevertheless, 
+
+
 
 Promising algorithm based on sampling periods instead of continuous data recording. Additionally, the data sampling periods were based on time instead of other events. In some cases the estrus were detected correctly. However, the algorithm was very sensitive to the parameters. Nevertheless, one extra estrus was detected as well as one almost missed. \\
 
