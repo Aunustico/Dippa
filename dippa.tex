@@ -1167,38 +1167,54 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 
 \subsubsection{Variance Detection} \label{variancedetectionevaluation}
 
-Previously we discussed of activity measurement which is the most simple estrus detection algorithm of this study. It was based on continuous filtering and data sampling. Computationally, it was relatively simple but it loads the processor continuously. In contrast, the second estrus detection algorithm, variance detection, is based on regular samples instead of continuous data streams. Furthermore, it is computationally slightly more complex than the former algorithm. Nevertheless, 
+Previously we discussed of activity measurement which is the most simple estrus detection algorithm of this study. It was based on continuous filtering and data sampling. Computationally, it was relatively simple but it loads the processor continuously. In contrast, the second estrus detection algorithm, variance detection, is based on samples with regular intervals instead of continuous data streams. Nevertheless, it is computationally slightly more complex than the former algorithm. However, it is still considered as suitable for micro-controller platforms. In addition to higher computational complexity of the algorithm, it comes with two additional tunable parameters, the size of the sample and sampling interval. In the optimized solution of this study, the sample size is 32 data frames and sampling interval is \SI{12}{\minute}. According to the configurations of the accelerometer, the 32 data frames responses to approximately 2 second period of data. 
 
+Figures \ref{algorithm2_cow319}, \ref{algorithm2_cow9885}, \ref{algorithm2_cow767} and \ref{algorithm2_cow787} represents the results with optimized parameters. The parameters for all algorithms are common. As seen, the algorithms occationally detects the proestrus. However, the results includes numerous false positives and even one false negative with the cow 9885. The reliability, seems to depend on the cow and individually tuned parameters. Nevertheless, no appropriate parameters were found for all f the cows during this study.
 
-
-Promising algorithm based on sampling periods instead of continuous data recording. Additionally, the data sampling periods were based on time instead of other events. In some cases the estrus were detected correctly. However, the algorithm was very sensitive to the parameters. Nevertheless, one extra estrus was detected as well as one almost missed. \\
-
-Nice idea but requires improvement.
-
+The data of the cow 9885 were analyzed with various parameters because the algorithm yielded one true positive and one false negative. Thus it was interested to tune the parameters and see if the algorithm could yield two true positives.
 
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow319}
 \caption{The results of the variance detection algorithm of the cow 319. The estrus on December the 20\textsuperscript{th} is barely detectable. Additionally, algorithm yielded several false positive estruses. Furthermore, the amplitude of the false positives exceeds the true positive.}
+\label{algorithm2_cow319}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885.png}
 \caption{The results of variance detection algorithm of the cow 9885. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
+\label{algorithm2_cow9885}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow767}
 \caption{The variance detection results of the cow 767. There are multiple false positive detections in the data period. In general, there is no obvious difference between the estrus and non-estrus periods. Nevertheless, a true positive estrus is detected on February the 13\textsuperscript{th}.}
+\label{algorithm2_cow767}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow787}
 \caption{The results of variance detection algorithm of the cow 787. The true positive estrus is detected on February the 10\textsuperscript{th}. However, a false positive detection occurred on February the 21\textsuperscript{st}. Otherwise, the amplitude  difference between estrus and non-estrus periods is obvious.}
+\label{algorithm2_cow787}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885_variable_window.png}
+\caption{The results of variance detection algorithm of the cow 9885. In this case, three different sample sizes, 8 data points, 32 data points and 128 data points have tested. In result, the first proestrus is detected but the second one is not. Even 8 data points five times per hour is enough to detect the proestrus in some sense. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
+\label{algorithm2_cow9885_variable_window}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885_variable_steps.png}
+\caption{The results of variance detection algorithm of the cow 9885. The sampling interval has been varied from \SI{1.2}{\minute}, to \SI{12}{\minute}. The 1.2 and twelve minute intervals detects the first proestrus. However, the six and 1.2 interval detects the latter proestrus.}
+\label{algorithm2_cow9885_variable_steps}
 \end{figure}
 
 
