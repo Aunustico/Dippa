@@ -871,7 +871,7 @@ Additionally, each change of the estrus state should trigger an alert.
 \end{enumerate}
 
 
-\subsubsection{Activity Measurement} \label{activitymeasurementsection}
+\subsubsection{Activity Monitoring} \label{activitymeasurementsection}
 
 The concept of the first estrus detection algorithm is analogous to an accelerometer based estimation of total energy consumption \cite{Kang2012}. However, finding of any correlation between the activity and the energy consumption is not a focus of this study. Nevertheless, this algorithm utilizes the same method for determination of the cow activity level. \\
 
@@ -1106,7 +1106,7 @@ The following subsections discuss of each estrus detection algorithm individuall
 The parameters are tuned with iterative methods. That is, testing various values and evaluating the results before applying new values. This iteration is continued until, iteration yields no more benefits.
 
 
-\subsubsection{Activity Measurement} \label{activitymeasurementevaluation}
+\subsubsection{Activity Monitoring} \label{activitymeasurementevaluation}
 
 As stated earlier, data of four different cows were used in the algorithm development and data of two cows had to be discarded since it was not valid. Nevertheless, the data of four cows consists of five proestrus periods, and thus, slightly compensates the smaller amount of usable data.
 
@@ -1124,32 +1124,32 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow319}
+\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow319.png}
 \caption{The plot of the results of the activity measurement algorithm of cow 319. A true positive estrus is detected and no false positive or false negative detection occurred. However, there is a lot of variation when not in estrus. Thus, the risk of false positive and false negative results is plausible.}
-\label{algorithm1_cow319}
+\label{ActivityMonitoringCow319}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow9885.png}
+\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow9885.png}
 \caption{The results of activity measurement of the cow 9885. Both of the estruses are detected. However, the difference between the estruses and the rest of the period is insignificant as it was with cow 319. Thus, the possibility of false positive and false negative results exists.}
-\label{algorithm1_cow9885}
+\label{ActivityMonitoringCow9885}
 \end{figure}
 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow767}
+\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow767.png}
 \caption{The plot of the activity measurement results of the cow 767. A true positive estrus is detected and no occurrence of false positives of false negatives. Additionally, the difference between proestrus and rest of the period is obvious. The risk of false positive or false negative results is minor. }
-\label{algorithm1_cow767}
+\label{ActivityMonitoringCow767}
 \end{figure}
 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm1_cow787}
+\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow787.png}
 \caption{The results of activity measurement of the cow 787. The difference between the estrus and rest of the period is most distinct within this algorithm. Thus, the risk of false positive and false negative results is least significant.}
-\label{algorithm1_cow787}
+\label{ActivityMonitoringCow787}
 \end{figure}
 
 
@@ -1176,89 +1176,150 @@ The data of the cow 9885 were analyzed with various parameters because the algor
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow319}
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319.png}
 \caption{The results of the variance detection algorithm of the cow 319. The estrus on December the 20\textsuperscript{th} is barely detectable. Additionally, algorithm yielded several false positive estruses. Furthermore, the amplitude of the false positives exceeds the true positive.}
-\label{algorithm2_cow319}
+\label{VarianceDetectionCow319}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885.png}
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow9885.png}
 \caption{The results of variance detection algorithm of the cow 9885. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
-\label{algorithm2_cow9885}
+\label{VarianceDetectionCow9885}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow767}
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767.png}
 \caption{The variance detection results of the cow 767. There are multiple false positive detections in the data period. In general, there is no obvious difference between the estrus and non-estrus periods. Nevertheless, a true positive estrus is detected on February the 13\textsuperscript{th}.}
-\label{algorithm2_cow767}
+\label{VarianceDetectionCow767}
 \end{figure}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow787}
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow787.png}
 \caption{The results of variance detection algorithm of the cow 787. The true positive estrus is detected on February the 10\textsuperscript{th}. However, a false positive detection occurred on February the 21\textsuperscript{st}. Otherwise, the amplitude  difference between estrus and non-estrus periods is obvious.}
-\label{algorithm2_cow787}
+\label{VarianceDetectionCow787}
 \end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885_variable_window.png}
-\caption{The results of variance detection algorithm of the cow 9885. In this case, three different sample sizes, 8 data points, 32 data points and 128 data points have tested. In result, the first proestrus is detected but the second one is not. Even 8 data points five times per hour is enough to detect the proestrus in some sense. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
-\label{algorithm2_cow9885_variable_window}
-\end{figure}
+Varying the sample size affect the results:
 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm2_cow9885_variable_steps.png}
-\caption{The results of variance detection algorithm of the cow 9885. The sampling interval has been varied from \SI{1.2}{\minute}, to \SI{12}{\minute}. The 1.2 and twelve minute intervals detects the first proestrus. However, the six and 1.2 interval detects the latter proestrus.}
-\label{algorithm2_cow9885_variable_steps}
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_16frames72seconds.png}
+\caption{Reducing the sample size to 16 frames per sample and keeping the sampling interval in 72 seconds yields false positive results with the cow 319}
+\label{}
 \end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_16frames72seconds.png}
+\caption{Reducing the sample size to 16 frames per sample and keeping the sampling interval in 72 seconds yields false positive results with the cow 767}
+\label{}
+\end{figure}
+
+%------------%
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_16frames24seconds.png}
+\caption{Reducing the sample size to 16 frames and increasing the sampling interval to 24 seconds improves the performance of the variance detection algorithm. Consequently, no false positive results occurs.}
+\label{}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_16frames24seconds.png}
+\caption{Reducing the sample size to 16 frames and increasing the sampling interval to 24 seconds improves the performance of the variance detection algorithm. Consequently, no false positive results occurs.}
+\label{}
+\end{figure}
+
+
+Varying the sampling interval affect the results:
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_32frames144seconds.png}
+\caption{More seldom sampling yield false positive results as seen in this picture.}
+\label{}
+\end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow9885_32frames2seconds.png}
+\caption{Decreasing the sampling interval does not directly improve the results as it is with the cow 9885. This sampling frequency corresponds approximately continuous sampling. Nevertheless, the results are worse than formerly.}
+\label{}
+\end{figure}
+
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_64frames144seconds.png}
+\caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_64frames144seconds.png}
+\caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_64frames240seconds.png}
+\caption{}
+\label{}
+\end{figure}
+
+
 
 
 
 \subsubsection{Inactivity Detection} \label{inactivitydetectionevaluation}
 
+Similarly to the variance detection algorithm, the inactivity detection algorithm has to more tunable parameters than the activity monitoring algorithms. Nevertheless, the parameters differ from the previous algorithms. In this algorithm, we can tune motion threshold and the delay the motion shall not exceed the threshold.
 
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow319.png}
-\caption{The results of the inactivity detection algorithm of the cow 319. A true positive estrus is detected on December the 20\textsuperscript{th}. Furthermore, the amplitude of estrus and non-estrus is significant. }
-\end{figure}
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow9885.png}
-\caption{The results of inactivity detection algorithm of the cow 9885. Both of the estruses are detected as true positive on December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. No false positive or false negative detection occurred. However, in comparison to other three cows, the amplitude difference between estrus and other periods is not that significant.}
-\end{figure}
-
+The algorithm is not very sensitive to the parameters. Any feasible values yields same results as the reference. However, some values provide more clear results.
 
 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow767.png}
-\caption{The results of the inactivity detection algorithm of the cow 767. A true positive estrus is detected on February the 13\textsuperscript{th}. Additionally, the amplitude of the estrus differs from none-estrus significantly.}
+\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow319.png}
+\caption{The results of the inactivity detection algorithm of the cow 319. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A true positive estrus is detected on December the 20\textsuperscript{th}. The amplitude of proestrus and non-estrus is significant. }
+\label{InactivityDetectionCow319}
 \end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow787.png}
-\caption{The results of inactivity detection algorithm of the cow 787. A ture positive estrus is detected on February the 11\textsuperscript{th} and no false positives of false negatives occurred. Furthermore, the difference between estrus and other periods is significant.}
-\end{figure}
-
 
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width = 0.75 \textwidth]{figures/algorithm3_cow9885_various_delays.png}
-\caption{}
-\label{algorithm3_cow9885_various_delays}
+\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow9885.png}
+\caption{The results of inactivity detection algorithm of the cow 9885. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. Both of the estruses are detected as true positive on December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. No false positive or false negative detection occurred. The amplitude difference between proestrus and non-estrus is obvious.}
+\label{InactivityDetectionCow9885}
 \end{figure}
+
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow767.png}
+\caption{The results of the inactivity detection algorithm of the cow 767. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A true positive estrus is detected on February the 13\textsuperscript{th}. Additionally, the amplitude of the proestrus differs from none-estrus significantly.}
+\label{InactivityDetectionCow767}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow787.png}
+\caption{The results of inactivity detection algorithm of the cow 787. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A ture positive estrus is detected on February the 11\textsuperscript{th} and no false positives of false negatives occurred. Furthermore, the difference between estrus and other periods is most significant.}
+\label{InactivityDetectionCow787}
+\end{figure}
+
+
 
 
 
@@ -1297,6 +1358,12 @@ The cow activity was measured as a sum of absolute value acceleration vector. Th
 
 
 \subsection{Conclusions} \label{conclusionssection}
+
+\subsubsection{Sensor Based Estrus Detection}
+
+This study introduced a sensor device for dairy cow estrus detection. The introduction included as well as the hardware configuration as well as the software implementation. Furthermore, we discussed of three different estrus detection algorithms suitable for the device. Practically, the algorithms were developed and tested with Matlab on computer after recording of real cow data. The algorithms were different in their approach to the topic. However, all of them were based on the accelerometer data only. In general, all of the algorithms performed the estrus detection well after tuning the algorithm specific parameters. Nevertheless, there were differences in the reliability as well as in the clearance of the results. The acitivity monitoring algorithm was straightforward integration of the accelerometer data. The only tunable parameter was the size of the integration time. In conclusion, the most suitable integration time is approximately the duration of the proestrus. Which is roughly from 9 to \SI{12}{\hour}. Hence this result was so obvious, the integration time was not tuned with other two algorithms at all.
+
+
 
 \subsubsection{Failures and considerations}
 
