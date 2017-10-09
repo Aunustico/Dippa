@@ -857,16 +857,17 @@ u(k) = \frac{x(k)}{\max  \left| x \right|}
 
 \item \textbf{Threshold} --- Finally, thresholds are used for indicating the beginning and the end of the proestrus. That is, exceeding the first threshold indicates the beginning of the proestrus and next, the going below indicates the end of the proestrus. The thresholds for deciding whether the cow is in estrus or not should be separate. The end of proestrus signals to the cattle tender to prepare for insemination. The principle of the proestrus detection is presented in the following pseudo code.  \\
 
-\Clanguage
-\begin{lstlisting}
-for (i = 0 ; i < length(x); i ++)
- if (x(i) > threshold1 && proestrus == false)	
-  proestrus = true;
- else if (x(i) < threshold && proestrus == true)
-  proestrus = false;	
-\end{lstlisting}
-Additionally, each change of the estrus state should trigger an alert.
+%\Clanguage
+%\begin{lstlisting}
+%for (i = 0 ; i < length(x); i ++)
+% if (x(i) > threshold1 && proestrus == false)	
+%  proestrus = true;
+% else if (x(i) < threshold && proestrus == true)
+%  proestrus = false;	
+%\end{lstlisting}
+%Additionally, each change of the estrus state should trigger an alert.
 
+\item \textbf{Plot data} --- Plotting of the resulting data visualizes the results. Nevertheless, it does not effect to the results directly. However, plotting makes the algorithm evaluation quicker and easier by brief visual inspections. Furthermore, plotting can reveal some features that might not be detected in pure numeral form.
 
 \end{enumerate}
 
@@ -881,7 +882,7 @@ The first algorithm is based on pure analysis of full the data set. The algorith
 
 
 \begin{enumerate}
-\item \textbf{Filter} --- Hence, the 
+\item \textbf{Filter} --- The data consists of an offset of approximately \SI{1}{\gram} which effects to results. Actually, cows are rather passive animals and existing offset overrules the actual motion data. Therefore, removing the offset improves the performance of the algorithm and it shall be the first step in the algorithm sequence.
 
 \begin{equation}
 y(k) = a_0 x(k) + a_1 x(k-1) + a_2 x(k-2) - b_1 y(k-1) - b_2 y(k-2)
@@ -890,6 +891,12 @@ y(k) = a_0 x(k) + a_1 x(k-1) + a_2 x(k-2) - b_1 y(k-1) - b_2 y(k-2)
 \item \textbf{Compute} --- The actual core of this algorithm is the length of the acceleration vector and it is defined as \begin{equation}
 u(i) = \sqrt{x^2(i) + y^2(i) + z^2(i)} 
 \end{equation}
+
+\item \textbf{Sum results}
+\item \textbf{Remove offset}
+\item \textbf{Normalize}
+\item \textbf{Threshold}
+\item \textbf{Plot data}
 
 \end{enumerate}
 
@@ -920,6 +927,12 @@ $m$ is the size of the data sample, $n$ is the distance between the samples and 
 \begin{equation}
 u_{tot} = u_x + u_y + u_z
 \end{equation}
+
+\item \textbf{Sum results}
+\item \textbf{Remove offset}
+\item \textbf{Normalize}
+\item \textbf{Threshold}
+\item \textbf{Plot data}
 
 \end{enumerate}
 
@@ -955,6 +968,14 @@ for (i = 0 ; i < length(x); i ++)
 
 In this study, the passivity array has the same length as the acceleration data array and it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Meanwhile, any occurred no-motion condition yields the value of one into the passivity array. In consequence, the resulting passivity array consists mostly of zeros and few of ones within. Furthermore, the indexes of the ones are directly related to the time of the occurrence. Thus, it enables concluding the level of inactivity in certain range of time. \\
 
+
+\item \textbf{Sum results}
+\item \textbf{Remove offset}
+\item \textbf{Normalize}
+\item \textbf{Threshold}
+\item \textbf{Plot data}
+
+
 \end{enumerate}
 
 Next, after these two specific phases of data processing phases the algorithm proceeds its normal sequence as discussed earlier in this section. \\
@@ -968,7 +989,7 @@ This section surveys through the results of the data recording processes. As des
 
 
 
-\subsection{General Review} \label{generalreviewsection}
+\subsection{General Results} \label{generalreviewsection}
 
 This subsection discusses about rather general results whereas the scope of subsection \ref{algorithmevaluationsection} is in the detection of estrus. In despite of the general nature of these results, they are advantageous considering research in future. Furthermore, some early stage results such as the frequency analysis discussed later in this section were used for improving the sensor device software. This subsection covers the frequency analysis of the first recorder data set as well as statistical analysis of the acceleration data and some interesting features of SD file operations. \\
 
@@ -977,7 +998,7 @@ This subsection discusses about rather general results whereas the scope of subs
 
 
 
-\subsubsection*{Frequency Spectrum}
+\subsubsection{Frequency Spectrum}
 
 The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{signalprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}. \\
 
@@ -996,7 +1017,9 @@ The frequency spectrum of the first recorded data was analyzed using Fast Fourie
 
 
 
-\subsubsection*{SD File Operations}
+
+
+\subsubsection{SD File Operations}
 
 In the first data recording process, it was desired to record the data in as high bandwidth as possible. The maximum bandwidth of the accelerometer were \SI{1000}{\hertz}. Consequently, the update time was \SI{0.5}{\milli \second}. However, the duration of SD file operations restricts the maximum recording bandwidth significantly. Finally, in the first data recording process the bandwidth was selected to be \SI{125}{\hertz}. Yet, the file operations exceeded the time ... \\
 
@@ -1013,13 +1036,23 @@ Write line &  &  &  &  \\ \hline
 \end{tabular}
 \end{table}
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/openclosetimes_vanha.png}
+\caption{} \label{}
+\end{figure}
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width = 0.75\textwidth]{figures/writetimes_vanharauta.png}
+\caption{} \label{}
+\end{figure}
 
 
 This subsection concentrates in the results of estrus detection. As discussed in section \ref{datarecordingprocess} six cows were used in data recording process. However, two out of six data recordings failed. Thus, that data had to be discarded. The estruses were confirmed by Heatime estrus detection system. \\
 In this study, a total of six cows were used for long period data recording.
 
-
+\subsubsection{Behaviour monitoring}
 
 \subsection{Algorithm Evaluation} \label{algorithmevaluationsection}
 
@@ -1039,66 +1072,24 @@ In this study, the detected estruses are verified with Heatime estrus detection 
 As discussed earlier, a total of six cows were used for the actual estrus data recording. The first three cows were 319, 659 and 9885 of which only two sets of data, 319 and 9885, were valid to use in the algorithm development. Both of the cows had two or more estruses in the data log of the Heatime as shown in pictures \ref{heatime_kiima_319} and \ref{heatime_kiima_9885}.The next three cows were 767, 787 and 812 of which only the data of 767 and 787 were valid to use in algorithm tuning and evaluation. Also both of these cows had detectable estruses in the log of Heatime. They are shown in pictures \ref{heatime_kiima_767} and \ref{heatime_kiima_787}. Nevertheless, the data recording period in this study lasted only approximately 30 days per instance. Thus, only one detectable estrus per cow were included in our recording period except the cow 9885 with two periods.
 
 
-\begin{figure}[htb]
+
+
+\begin{figure}[h]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_319}
 \caption{The activity data of Heatime system of the cow 319. The cow has had estruses approximately on October the 30\textsuperscript{th} and December the 20\textsuperscript{th}. The latter of the estruses should be detectable in this study, hence it is within our data recording period.}
 \label{heatime_kiima_319}
 \end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_9885}
-\caption{The activity data of Heatime system of the cow 9885. The cow has had estruses approximately on October the 24\textsuperscript{th}, December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. Two latter estruses should be detectable in this study, hence they both are within our dat recording period. }
-\label{heatime_kiima_9885}
-\end{figure}
-
-
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_767}
-\caption{The activity data of Heatime system of the cow 767. The cow has had estruses approximately on January the 21\textsuperscript{st} and February the 13\textsuperscript{th}. The latter of the estruses should be detectable in this study, hence it is within our data recording period.}
-\label{heatime_kiima_767}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/heatime_kiima_787}
-\caption{The activity data of Heatime system of the cow 787. The cow has had estruses approximately on January the 19\textsuperscript{th} and February the 10\textsuperscript{th}. The latter of the estruses should detectable in this study, hence it is within our data recording period.}
-\label{heatime_kiima_787}
-\end{figure}
-
-
-<<<<<<< HEAD
-The proestrus period corresponding the detected estrus by Heatime is visually detectable in raw accelerometer data. The increased activity level of the cow appears in higher amplitude as well as in more frequent changes in the data. Furthermore, the change of activity is detectable in all axis of the accelerometer. THe raw
-=======
-The proestrus period corresponding the detected estrus by Heatime is visually detectable in raw accelerometer data. The increased activity level of the cow appears in exceptionally long period of high amplitude activity. Furthermore, the change of activity is detectable in all axis of the accelerometer. Figure \ref{kiimadata_319} represents the raw accelerometer data of the cow 319 around of the proestrus period. Similarly, figures \ref{kiimadata_9885_1} and \ref{kiimadata_9885_2} shows the raw accelerometer data around the both proestrus periods of the cow 9885. In conclusion, these highly active periods are easily detectable for human simply by visually inspecting these plots. Nevertheless, it is necessary to develop computational algorithms that yields either\textit{is in estrus} or \textit{not in estrus}. However, it is the proestrus rather than the actual estrus. Thus, in algorithm level it is more sensible to define whether the cow is in proestrus or is not in proestrus. Consequently, the end of proestrus indicates the beginning of the estrus and this state transition shall be indicated to the end user.
->>>>>>> origin/master
-
-
-
-\begin{figure}[htb]
+\begin{figure}[h]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/kiimadata_319.png}
 \caption{The raw acceleration data of each axis of the cow 319. The time frame of this picture is restricted around the estrus.}
 \label{kiimadata_319}
 \end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_1.png}
-\caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the first detectable estrus period. }
-\label{kiimadata_9885_1}
-\end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/kiimadata_9885_2.png}
-\caption{The raw acceleration data of each axis of the cow 9885. The time frame is scaled around the second detectable estrus period. }
-\label{kiimadata_9885_2}
-\end{figure}
+The proestrus period corresponding the detected estrus by Heatime is visually detectable in raw accelerometer data. The increased activity level of the cow appears in exceptionally long period of high amplitude activity. Furthermore, the change of activity is detectable in all axis of the accelerometer. Figure \ref{kiimadata_319} represents the raw accelerometer data of the cow 319 around of the proestrus period. Similarly, figures \ref{kiimadata_9885_1} and \ref{kiimadata_9885_2} shows the raw accelerometer data around the both proestrus periods of the cow 9885. In conclusion, these highly active periods are easily detectable for human simply by visually inspecting these plots. Nevertheless, it is necessary to develop computational algorithms that yields either\textit{is in estrus} or \textit{not in estrus}. However, it is the proestrus rather than the actual estrus. Thus, in algorithm level it is more sensible to define whether the cow is in proestrus or is not in proestrus. Consequently, the end of proestrus indicates the beginning of the estrus and this state transition shall be indicated to the end user.
 
 
 The following subsections discuss of each estrus detection algorithm individually. First we start with the activity measurement algorithm, which is rather straight forwarding and does not require any advantageous computation. Second, we evaluate the variance detection algorithm which is based on variance of periodic short data samples. Lastly, we discuss of the inactivity detection algorithm, which detects rather lack of inactivity than activity directly. Additionally, we discuss of tuning of the algorithm parameters as well as the optimal results based on the recorder data. 
@@ -1108,6 +1099,11 @@ The parameters are tuned with iterative methods. That is, testing various values
 
 \subsubsection{Activity Monitoring} \label{activitymeasurementevaluation}
 
+
+
+
+
+
 As stated earlier, data of four different cows were used in the algorithm development and data of two cows had to be discarded since it was not valid. Nevertheless, the data of four cows consists of five proestrus periods, and thus, slightly compensates the smaller amount of usable data.
 
 The first estrus detection algorithm was based on activity measurement. In is very straight forwarding and does not require any complex computation. However, the algorithm is sensitive to offset in the data. Thus, the offset shall be removed with appropriate filter before integrating the values together. Developing of such filter requires knowledge of \dots
@@ -1116,56 +1112,15 @@ In despite of the complex algorithm development, the actual filtering requires s
 
 According to the duration of proestrus, the optimal integration window is approximately from 9 to 12 hours. Narrower window might trigger the begin on estrus too early. Additionally, it makes the algorithm more sensitive to detect to false positives because the amplitude difference between proestrus and other periods decrease. Therefore, a scared cow behaving restlessly might yield false positive.
 
-The results of the activity measurement algorithm are shown in figures \ref{algorithm1_cow319}, \ref{algorithm1_cow9885}, \ref{algorithm1_cow767} and \ref{algorithm1_cow787}. In these results, three different integration windows are included, 6 hour, 9 hours and 12 hours. In general, the performance of this algorithm is stable. No false positives of false negatives occurred. The difference between proestrus and other periods are obvious. However, the amplitude outside of proestrus is occasionally significant. In addition to the detected estruses, the affect of the width of the integration window is illustrated in picture \ref{integrationwindows}. It is seen that wider window delays the triggering of the end of the proestrus. Conversely, wider integration window enhances the amplitude of the proestrus phase. 
-
-
+The results of the activity measurement algorithm are shown in figures \ref{ActivityMonitoringCow319}, \ref{ActivityMonitoringCow9885}, \ref{ActivityMonitoringCow767} and \ref{ActivityMonitoringCow787}. In these results, three different integration windows are included, 6 hour, 9 hours and 12 hours. In general, the performance of this algorithm is stable. No false positives of false negatives occurred. The difference between proestrus and other periods are obvious. However, the amplitude outside of proestrus is occasionally significant. In addition to the detected estruses, the affect of the width of the integration window is illustrated in picture \ref{integrationwindows}. It is seen that wider window delays the triggering of the end of the proestrus. Conversely, wider integration window enhances the amplitude of the proestrus phase. 
 
 Quite straight-forward algorithm without any advantageous data processing. That is, the algorithm integrated the activity in certain periods and represented the activity of the period in one number. Required continuous sampling. Nevertheless, it detected all the estruses easily and no false positives were found. \\
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow319.png}
-\caption{The plot of the results of the activity measurement algorithm of cow 319. A true positive estrus is detected and no false positive or false negative detection occurred. However, there is a lot of variation when not in estrus. Thus, the risk of false positive and false negative results is plausible.}
-\label{ActivityMonitoringCow319}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow9885.png}
-\caption{The results of activity measurement of the cow 9885. Both of the estruses are detected. However, the difference between the estruses and the rest of the period is insignificant as it was with cow 319. Thus, the possibility of false positive and false negative results exists.}
-\label{ActivityMonitoringCow9885}
-\end{figure}
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow767.png}
-\caption{The plot of the activity measurement results of the cow 767. A true positive estrus is detected and no occurrence of false positives of false negatives. Additionally, the difference between proestrus and rest of the period is obvious. The risk of false positive or false negative results is minor. }
-\label{ActivityMonitoringCow767}
-\end{figure}
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/ActivityMonitoringCow787.png}
-\caption{The results of activity measurement of the cow 787. The difference between the estrus and rest of the period is most distinct within this algorithm. Thus, the risk of false positive and false negative results is least significant.}
-\label{ActivityMonitoringCow787}
-\end{figure}
-
-
-
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/redcowactivity2.png}
-\caption{The activity plots of the second proestrus of the cow 9885. The figure illustrates the affect of varying the size of the integration window. Wider window increases the amplitude of the estrus and eases the detectability. However, simultaneously it delays the moment of detection. }
-\label{integrationwindows}
-\end{figure}
-
-
 
 \subsubsection{Variance Detection} \label{variancedetectionevaluation}
+
+
+
 
 Previously we discussed of activity measurement which is the most simple estrus detection algorithm of this study. It was based on continuous filtering and data sampling. Computationally, it was relatively simple but it loads the processor continuously. In contrast, the second estrus detection algorithm, variance detection, is based on samples with regular intervals instead of continuous data streams. Nevertheless, it is computationally slightly more complex than the former algorithm. However, it is still considered as suitable for micro-controller platforms. In addition to higher computational complexity of the algorithm, it comes with two additional tunable parameters, the size of the sample and sampling interval. In the optimized solution of this study, the sample size is 32 data frames and sampling interval is \SI{12}{\minute}. According to the configurations of the accelerometer, the 32 data frames responses to approximately 2 second period of data. 
 
@@ -1174,108 +1129,9 @@ Figures \ref{algorithm2_cow319}, \ref{algorithm2_cow9885}, \ref{algorithm2_cow76
 The data of the cow 9885 were analyzed with various parameters because the algorithm yielded one true positive and one false negative. Thus it was interested to tune the parameters and see if the algorithm could yield two true positives.
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319.png}
-\caption{The results of the variance detection algorithm of the cow 319. The estrus on December the 20\textsuperscript{th} is barely detectable. Additionally, algorithm yielded several false positive estruses. Furthermore, the amplitude of the false positives exceeds the true positive.}
-\label{VarianceDetectionCow319}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow9885.png}
-\caption{The results of variance detection algorithm of the cow 9885. The true positive estrus is detected on December the 22\textsuperscript{st}. Furthermore, the amplitude difference between the detected estrus and other period is significant. However, the algorithm yield a false negative on January the 4\textsuperscript{th}.}
-\label{VarianceDetectionCow9885}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767.png}
-\caption{The variance detection results of the cow 767. There are multiple false positive detections in the data period. In general, there is no obvious difference between the estrus and non-estrus periods. Nevertheless, a true positive estrus is detected on February the 13\textsuperscript{th}.}
-\label{VarianceDetectionCow767}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow787.png}
-\caption{The results of variance detection algorithm of the cow 787. The true positive estrus is detected on February the 10\textsuperscript{th}. However, a false positive detection occurred on February the 21\textsuperscript{st}. Otherwise, the amplitude  difference between estrus and non-estrus periods is obvious.}
-\label{VarianceDetectionCow787}
-\end{figure}
-
 Varying the sample size affect the results:
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_16frames72seconds.png}
-\caption{Reducing the sample size to 16 frames per sample and keeping the sampling interval in 72 seconds yields false positive results with the cow 319}
-\label{}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_16frames72seconds.png}
-\caption{Reducing the sample size to 16 frames per sample and keeping the sampling interval in 72 seconds yields false positive results with the cow 767}
-\label{}
-\end{figure}
-
-%------------%
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_16frames24seconds.png}
-\caption{Reducing the sample size to 16 frames and increasing the sampling interval to 24 seconds improves the performance of the variance detection algorithm. Consequently, no false positive results occurs.}
-\label{}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_16frames24seconds.png}
-\caption{Reducing the sample size to 16 frames and increasing the sampling interval to 24 seconds improves the performance of the variance detection algorithm. Consequently, no false positive results occurs.}
-\label{}
-\end{figure}
-
-
-Varying the sampling interval affect the results:
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_32frames144seconds.png}
-\caption{More seldom sampling yield false positive results as seen in this picture.}
-\label{}
-\end{figure}
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow9885_32frames2seconds.png}
-\caption{Decreasing the sampling interval does not directly improve the results as it is with the cow 9885. This sampling frequency corresponds approximately continuous sampling. Nevertheless, the results are worse than formerly.}
-\label{}
-\end{figure}
-
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_64frames144seconds.png}
-\caption{}
-\label{}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow319_64frames144seconds.png}
-\caption{}
-\label{}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/VarianceDetectionCow767_64frames240seconds.png}
-\caption{}
-\label{}
-\end{figure}
 
 
 
@@ -1283,41 +1139,11 @@ Varying the sampling interval affect the results:
 
 \subsubsection{Inactivity Detection} \label{inactivitydetectionevaluation}
 
-Similarly to the variance detection algorithm, the inactivity detection algorithm has to more tunable parameters than the activity monitoring algorithms. Nevertheless, the parameters differ from the previous algorithms. In this algorithm, we can tune motion threshold and the delay the motion shall not exceed the threshold.
-
-The algorithm is not very sensitive to the parameters. Any feasible values yields same results as the reference. However, some values provide more clear results.
+Similarly to the variance detection algorithm, the inactivity detection algorithm has to more tunable parameters than the activity monitoring algorithm. Nevertheless, the parameters differ from the previous algorithms. That is, the tunable parameters are the motion threshold and the delay the motion shall not exceed the threshold. Otherwise, the algorithms follows similar integration time as the activity monitoring algorithm. Additionally, testing showed that this algorithm is not very sensitive to the parameters. Consequently, proestruses were detected as true positives with any feasible parameters. Furthermore, the algorithm did not yield any false positives or false negatives during this study.
 
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow319.png}
-\caption{The results of the inactivity detection algorithm of the cow 319. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A true positive estrus is detected on December the 20\textsuperscript{th}. The amplitude of proestrus and non-estrus is significant. }
-\label{InactivityDetectionCow319}
-\end{figure}
 
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow9885.png}
-\caption{The results of inactivity detection algorithm of the cow 9885. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. Both of the estruses are detected as true positive on December the 22\textsuperscript{nd} and January the 4\textsuperscript{th}. No false positive or false negative detection occurred. The amplitude difference between proestrus and non-estrus is obvious.}
-\label{InactivityDetectionCow9885}
-\end{figure}
-
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow767.png}
-\caption{The results of the inactivity detection algorithm of the cow 767. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A true positive estrus is detected on February the 13\textsuperscript{th}. Additionally, the amplitude of the proestrus differs from none-estrus significantly.}
-\label{InactivityDetectionCow767}
-\end{figure}
-
-\begin{figure}[htb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/InactivityDetectionCow787.png}
-\caption{The results of inactivity detection algorithm of the cow 787. The parameters are 336 second delay and \SI{2}{\gram} motion threshold. A ture positive estrus is detected on February the 11\textsuperscript{th} and no false positives of false negatives occurred. Furthermore, the difference between estrus and other periods is most significant.}
-\label{InactivityDetectionCow787}
-\end{figure}
 
 
 
@@ -1333,20 +1159,6 @@ Based on pure visual analysis of the acceleration data, the red cow has two high
 
 The estrus was detected using Heatime estrus detection system. The detected estruses are represented in figures...
 
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[width = 0.75\textwidth]{figures/sininenkiima.png}
-%\caption{The estrus of the cow marked with blue color. However, the data recording stopped before proestrus activity, end therefore, estrus could not be detected using the recorded data.} \label{sininenkiimaheattime}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[width = 0.75\textwidth]{figures/keltainenkiima.png}
-%\caption{The estrus of the cow marked with yellow color. The latter estrus of this figure was timed during the data recording and, therefore, it could be detected by the data. The red line represents the cow activity and the green line represents the ruminating time.}
-%\label{keltainenkiimaheattime}
-%\end{figure}
-
-
 
 
 
@@ -1359,9 +1171,19 @@ The cow activity was measured as a sum of absolute value acceleration vector. Th
 
 \subsection{Conclusions} \label{conclusionssection}
 
+Previously in this section we discussed of the results of the research of this study. First, we discussed the results in general level. Next we focused on presenting the results of the estrus detection algorithms. Consequently, in this subsection we will draw conclusions based on the presented results. First, we will evaluate sensor based estrus detection as a concept. The evaluation will take into account former studies as well as the results gained in this study. Second, We will focus on failures of this study and propose actions to correct the failures and mistakes. Third, the scope is in suggestions for the future studies as continuation for this study.
+
 \subsubsection{Sensor Based Estrus Detection}
 
-This study introduced a sensor device for dairy cow estrus detection. The introduction included as well as the hardware configuration as well as the software implementation. Furthermore, we discussed of three different estrus detection algorithms suitable for the device. Practically, the algorithms were developed and tested with Matlab on computer after recording of real cow data. The algorithms were different in their approach to the topic. However, all of them were based on the accelerometer data only. In general, all of the algorithms performed the estrus detection well after tuning the algorithm specific parameters. Nevertheless, there were differences in the reliability as well as in the clearance of the results. The acitivity monitoring algorithm was straightforward integration of the accelerometer data. The only tunable parameter was the size of the integration time. In conclusion, the most suitable integration time is approximately the duration of the proestrus. Which is roughly from 9 to \SI{12}{\hour}. Hence this result was so obvious, the integration time was not tuned with other two algorithms at all.
+This study introduced a sensor device for dairy cow estrus detection. The introduction included as well as the hardware configuration as well as the software implementation. Furthermore, we discussed of three different estrus detection algorithms suitable for the device. Practically, the algorithms were developed and tested with Matlab on computer after recording of real cow data. The algorithms were different in their approach to the topic. However, all of them were based on the accelerometer data only. In general, all of the algorithms performed the estrus detection well after tuning of the algorithm specific parameters. Nevertheless, there were differences in the reliability as well as in the clearance of the results. The conclusions of the algorithms are discussed in following.
+
+The activity monitoring algorithm was a straightforward integration of the accelerometer data. The only tunable parameter was the size of the integration time. The most suitable integration time corresponds approximately the duration of the proestrus phase of the estrus cycle, that is roughly from 9 to \SI{12}{\hour}. Extending of the integration time only delayed the triggering of the begin of estrus. Thus, it was not beneficial. Conversely, integration time less than \SI{6}{\hour} yielded a risk of triggering estrus too early in the middle of the proestrus phase. These results were so obvious, hence, it was decided to use \SI{9}{\hour} window with the rest of the algorithms without further tuning of it. Furthermore, the algorithm was quite robust. That is, the results were clear and there were no high risk of yielding false results within the suggested integration time. However, the algorithm is sensitive to data offset and it shall be removed before any other computation. Nevertheless, offset did not prevent from detecting the estrus in this study. Actually, it only reduced the amplitude difference between the proestrus and other periods.
+
+In contrast to the activity monitoring algorithm, the variance detection algorithm was sensitive to the parameters. That is, too short sample or too long sampling interval effected to the results significantly. However, 
+
+Similarly to the variance detection, the inactivity detection algorithm had two additional tunable parameters. However, inactivity detection did not seem to be sensitive to the tuning of the parameters. In this study, any reasonable parameter values yielded true positive and true negative results. Furthermore, no false results occurred. Nevertheless,  the most radical parameter values begun to affect to the amplitude difference between proestrus and other phases of the estrus cycle. In conclusion, the performance and reliability of this algorithm seemed most promising in this study. Furthermore, this algorithm is the most suitable for the micro-controller based solutions. That is, most of the computations are performed in the accelerometer and the micro-controller only summarizes seldom interrupt the accelerometer generates. Additionally, it enables efficient use of power saving modes of the micro-controller which is critical with battery powered solutions. 
+
+
 
 
 
