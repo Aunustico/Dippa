@@ -985,7 +985,7 @@ Next, after these two specific phases of data processing phases the algorithm pr
 
 \section{Results} \label{resultssection}
  
-This section surveys through the results of the data recording processes. As described in section \ref{datarecordingprocess}, the data was recorder on two separate occasions
+In this section we will represent the results of this study. The results are achieved following the instructions of the section \ref{researchsection}. First, we will discuss of the results in general. The discussion covers several topics and phenomena arisen during this study. The second subsection focuses on revealing the results of the estrus detection. Lastly in this section, we will discuss of conclusions based on the results. The conclusions includes a summary of algorithm evaluation, discussion of failures during this study and suggestions for future studies.
 
 
 
@@ -1189,19 +1189,28 @@ Similarly to the variance detection, the inactivity detection algorithm had two 
 
 \subsubsection{Failures and considerations}
 
+Previously, we discussed of sensor based dairy cow estrus detection based on the results of this study. The conclusion was that the estrus of a dairy cow is detectable with an accelerometer base wearable sensor. Furthermore, it seemed the estrus is rather detectable with various algorithms. However, there were differences in the performance and reliability of different algorithms. Whereas the previous subsection focused on the successful part of this study, in this subsection the scope is in failures and suggestions for improvements.\\
+
+Firstly, the body temperature measurement was a total failure. That is, the heat conducting system did not conduct the heat enough. Conversely, the results of the temperature measurements seemed to follow the temperature of the surrounding air. It was also seen from the temperature curve of the accelerometer \ref{cowtemperature}, hence, both of the temperatures seemed synchronous. Additionally, it was tested to filter the results and calculate the differential of the two temperatures sensors. Nevertheless, no correlation with a ongoing estrus or proestrus were found in this study. In contrast to the sensor setup of this study, the temperature sensor should be placed into more direct skin contact. Thereby, the sensor would more likely measure the body temperature rather than the surrounding air. Nevertheless, this discussion is only hypothetical. Furthermore, the body temperature was assumed to rise only up to two degrees during the estrus. Therefore, detecting of such minor alterations with micro-controller suitable algorithms may not be reliable at all.\\
+
+Secondly, total of three attempts to record cow data were ruined because of an error state of the sensor device. Unfortunately, there was no method to define the cause of the error directly. However, it seemed that the device continued working even in the error state but the data was invalid. However, further analysis of the error data provided an assumption that the accelerometer had reset meanwhile the micro-controller had not. Consequently, the micro-controller stopped receiving any interrupts from the accelerometer. Furthermore, the range of the accelerometer was set to default of \SI{2}{\gram}. Meanwhile, the micro-controller applications continued of executing of its software loop. Nevertheless, without fetching data normally. Therefore in both software implementations, the watchdog timer triggered an event for reading single data frame from the FIFO memory of the accelerometer. Considering the number of the invalid samples and the period of watchdog timer matched with the time cow was wearing the sensor. In order to avoid such failures in the future, the software should include a method for detecting erroneous state of the accelerometer. Additionally, the hardware might be causing blackouts to the accelerometer. This possibility should be inspected and the hardware design improved according the discoveries.
+
+
+
+
+
 The dairy cow estrus is detectable with triaxial accelerometer only and no other sensors are required. The results were verified with one single commercial product. Thus, the results may not be completely reliable and valid. Furthermore, none of the detected estruses were verified by a vet.
 
 The estrus detection algorithms developed in this study are suitable for micro-controller environments. Therefore, algorithm computation with computers is not required. Consequently, there is no need to large data storage or transmitting raw sensor data wirelessly.
 
 The sensor device did not provide optimal performance for recording large amounts of data. Specially the SD file operations formed a bottle neck in sampling speed.
 
-The unpredictable resetting of the accelerometer was harmful for the results because total of two estruses were missed in the data recording.
-
-The setup for measuring skin temperature of the cow was total failure. The surrounding air temperature overruled the measurements. Nothing light algorithms was not able to verify the detected estrus as it was assumed.
 
 Oh wow!
 
 \subsubsection{Suggestions for Future Studies}
+
+
 
 More data should be recorded to validate the algorithms. The algorithms should be tunable e.g., the estrus threshold should be individual and controllable.
 
@@ -1212,6 +1221,8 @@ The estrus detection should be tested in real-time on a farm
 The algorithms should be tested on other breeds as well as cows in tie-stall cowshed but also on pasture.
 
 By successful continuous video recording or monitoring with proper time synchronization it would be possible to detect the activities of a cow. 
+
+Behavior detection... rumination lameness...
 
 
 \clearpage
