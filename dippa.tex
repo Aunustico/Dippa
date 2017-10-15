@@ -296,14 +296,9 @@ Tänne vähän lisää tietoa lehmien terveysongelmista, kuten ontumisesta, sork
 
 
 
-\subsubsection{Lactation Cycle} \label{lactationcyclesection}
+\subsubsection{Lactation and Estrus Cycles} \label{lactationandestruscyclessection}
 
-Previously, we discussed of the dairy farming and the history of animal husbandry in general. In order to proceed the actual topic of this study, it is necessary to discuss of lactation cycle as a root cause for the need of proper estrus detection.  \\ 
-
-
-Lehmien tuotos kasvaa jokaisella poikimiskerralla \cite{lehmientuotoskasvaa}.
-
-Laktaatio kierrosta, perusasiat, kesto, merkitys maidontuotannolle yms.
+In previous subsections, we discussed of dairy farming and dairy cow in general. Consequently in this section, we will proceed the discussion to lactation cycle. The lactation cycle is emphatically related to the milk yield and thus, the profitability of the farm. The lactation cycle means the period between two calves. Thus, it is also called as calving period. After the calving a cow begins to lactate, which is the the actual purpose of a dairy cow \cite{lehmahavaintoja}. However, the calves are more or less a secondary products in dairy farming and they are not in scope of this study. Nevertheless, the milk yield if a cow increases in the first weeks after the calving. However, after the first weeks the milk yield begins to decrease as illustrated in picture \ref{lactationapproximation}. Consequently, it is not cost-efficient to keep on milking the cow infinitely. Therefore, cyclic calving is preferred in order to maintain the profitability. However, the cow will stop milking before calving which causes a dry period. This causes a dilemma. That is, too short as well as too long calving interval reduces the total milk yield and cuts the profitability. Is general, it is recommended to keep the calving interval roughly in 360 days. Moreover, the milk yield increases after each calving. Thus, it supports the idea of regular calving \cite{lehmientuotoskasvaa}.
 
  \begin{figure}
  %[thb]
@@ -313,9 +308,9 @@ Laktaatio kierrosta, perusasiat, kesto, merkitys maidontuotannolle yms.
         xlabel=weeks from calving,
         ylabel=milk yield (kg)]
     \addplot[smooth, blue] plot coordinates {
-        (0,0)
-        (1, 20)
-        (2, 34)
+    	(0,15)
+        (1, 30)
+        (2, 38)
         (4, 40)
         (6,	39)
         (8,	38)
@@ -328,26 +323,18 @@ Laktaatio kierrosta, perusasiat, kesto, merkitys maidontuotannolle yms.
         (32, 22)
         (36, 21)
         (40, 20)
-        (44, 19)
-        (48, 18)
-        (52, 17)
     };
     \end{axis}
     \end{tikzpicture}
-    \caption{the lactation curve \cite{lactationcurve}}
+    \caption{An illustrative lactation curve of a dairy cow representing the realtion between the weeks in milk and the milk yield. After the beginning of the lactation, the milk yield reduces in the function of time \cite{lactationcurve}.} \label{lactationapproximation}
  \end{figure}
 
+In recent years, the calving interval has been increasing globally. Alone in Finland, the average calving interval has been extended up to 400 days and it has affected to the milk yield. There has been discussions of the root causes for the extended calving interval. In general, whereas the farm sizes have been increasing the cattle tenders have more work and less time for observing the cows. Thus, it has been more difficult for them to detect any estrus behavior and take actions for insemination. Consequently, this trend has forced the farmers to seek technological aids for punctual estrus detection. Thus, the main scope of this study is in developing of estrus detection algorithms for wearable sensor device. The hardware and software designs are intoruced in section \ref{researchsection} and the results are discussed in \ref{resultssection}. Additionally, we will survey through of currently available solutions in section \ref{currentsolutionssection}.
 
-\subsubsection{Estrus Cycle} \label{estruscyclesection}
-
-Kiimakierrosta, kesto, vaiheet, mikä merkitys jne. \\
-
-Estrus is a cyclic event 
-
-The estrus period is considered to begin from ovulation. The duration of an estrus period is approximately 21$\pm$3 days. Typically, the actual estrus lasts from 12 to 16 hours. A bull may detect estrus 2 days before the main estrus.   \cite{julkaisuja52} \\
+However, before proceeding to the research of this study, it is necessary to discuss of the estrus cycle of dairy cow. The estrus cycle is the period between ovulations. Actually, the estrus cycle is considered to begin from the ovulation. The normal duration of a cow estrus cycle is approximately 21$\pm$3 days. A bull may detect an estrus already 2 days in advance. The estrus lasts from 12 to 16 hours \cite{julkaisuja52}. The estrus is the time frame when the cow is ready to mate or being inseminated. The estrus is also called as standing heat, hence, the cow allows to being mounted by other cows. Traditionally, being mounted by others has been considered as certain sign of ongoing estrus. Before the estrus, cow has a proestrus period. During the proestrus, cow behaves restlessly and usually it attempts to mount other cows. Normally, cows who are not in estrus do not allow to be mounted. Therefore, these are only attempts and are not considered as a sign of estrus. Typically, the duration of proestrus is from 9 to 18 hours \cite{lehmahavaintoja}.
 
 
-Estrus a.k.a standing heat. \\
+
 
 
 \subsection{Health Monitoring and Estrus Detection} \label{healthmonitoringandestrusdetectionsection}
@@ -768,13 +755,22 @@ s = \sqrt{\frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}}
 
 \subsubsection{Fourier Transform} \label{fouriertransformsection}
 
+Fourier transform is linear mapping from time domain to frequency domain.
+
+
+
 Discrete Fourier transform (DFT) is linear mapping of a signal from time domain to frequency domain \cite{rao2012fast}. That is, a time variant sample can be transformed into frequency domain for providing the frequency spectrum of the data. In this study, the frequency spectrum of cow behavior is valuable information in deciding the the bandwidth of the accelerometer.\\
 
 More text here definitely!
 
+Frequency analysis is important in designing of sampling rate as well as filters. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least double the highest frequency component. We will discuss of filters in the following subsection.
+
 
 \subsubsection{Digital Filters} \label{digitalfilterssection}
 
+In general, there are four different kinds of filters, high-pass, low-pass, band-pass and band-stop filters. The purpose of the filters is to remove distortions and undesired features from the signal. Usually, filters are applied at least in the beginning of the data processing sequence. However, filters may be applied in several phases depending on the applications.  Low-pass filters are good in removing high-frequency noises and components above the research frequencies. Conversely, high-pass filters are used e.g., removing static off-set components in signal. We will discuss of the use cases of both of these components later in this study. Moreover, filters can be classified as analogous and digital filter. Typically, analog filters are configured in hardware and they are a combination of such analog electrical components as resistors, capacitors and inductors. The type and bandwidth of the filter depends on the design. 
+
+Digital filters require digital technology, which means discrete time signals and discrete time behavior of the circuit.
 
 The Bosch Sensortec BMA222e accelerometer provides two on chip filters: one 2nd order low-pass filter and another 1st order high-pass filter for offset compensation \cite{bma222datasheet}. Digital filters can be divided into two categories, filters with finite impulse response (FIR) and filters with infinite impulse response (IIR). The main difference between these filters is that the output of a FIR filter is dependent only on the input, whereas, the output of an IIR filter is dependent also on the previous outputs of the filter. Therefore, \cite{digitalfilters} \cite{khan2005digital}.
 
