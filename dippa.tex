@@ -298,7 +298,7 @@ Tänne vähän lisää tietoa lehmien terveysongelmista, kuten ontumisesta, sork
 
 \subsubsection{Lactation Cycle} \label{lactationcyclesection}
 
-In previous section we discussed of dairy farming and dairy cow in very general level. Conversely, this section is in the core of the scope of this study. That is, lactation cycle is strictly related to the milk yield and, thus to profitability. Furthermore,  \\ 
+Previously, we discussed of the dairy farming and the history of animal husbandry in general. In order to proceed the actual topic of this study, it is necessary to discuss of lactation cycle as a root cause for the need of proper estrus detection.  \\ 
 
 
 Lehmien tuotos kasvaa jokaisella poikimiskerralla \cite{lehmientuotoskasvaa}.
@@ -342,7 +342,9 @@ Laktaatio kierrosta, perusasiat, kesto, merkitys maidontuotannolle yms.
 
 Kiimakierrosta, kesto, vaiheet, mikä merkitys jne. \\
 
-The estrus period is approximately 21 days and the estrus lasts from 12 to 16 hours. A bull may detect estrus 2 days before the main estrus.   \cite{julkaisuja52} \\
+Estrus is a cyclic event 
+
+The estrus period is considered to begin from ovulation. The duration of an estrus period is approximately 21$\pm$3 days. Typically, the actual estrus lasts from 12 to 16 hours. A bull may detect estrus 2 days before the main estrus.   \cite{julkaisuja52} \\
 
 
 Estrus a.k.a standing heat. \\
@@ -978,7 +980,7 @@ In this study, the passivity array has the same length as the acceleration data 
 
 \end{enumerate}
 
-Next, after these two specific phases of data processing phases the algorithm proceeds its normal sequence as discussed earlier in this section. \\
+Next, after these two specific phases of data processing phases the algorithm proceeds its normal sequence as discussed earlier in this section.
 
 
 \clearpage
@@ -989,9 +991,9 @@ In this section we will represent the results of this study. The results are ach
 
 
 
-\subsection{General Results} \label{generalreviewsection}
+\subsection{General Results} \label{generalresultssection}
 
-This subsection discusses about rather general results whereas the scope of subsection \ref{algorithmevaluationsection} is in the detection of estrus. In despite of the general nature of these results, they are advantageous considering research in future. Furthermore, some early stage results such as the frequency analysis discussed later in this section were used for improving the sensor device software. This subsection covers the frequency analysis of the first recorder data set as well as statistical analysis of the acceleration data and some interesting features of SD file operations. \\
+This subsection discusses about rather general results whereas the scope of subsection \ref{algorithmevaluationsection} is in the detection of estrus. In despite of the general nature of these results, they are advantageous considering research in future. Furthermore, some early stage results such as the frequency analysis discussed later in this section were used for improving the sensor device software. This subsection covers the frequency analysis of the first recorder data set as well as statistical analysis of the acceleration data and some interesting features of SD file operations.
 
 
 
@@ -1000,7 +1002,7 @@ This subsection discusses about rather general results whereas the scope of subs
 
 \subsubsection{Frequency Spectrum}
 
-The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{signalprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}. \\
+The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{signalprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}.
 
 \begin{figure}[htb]
 \centering
@@ -1137,14 +1139,9 @@ Varying the sample size affect the results:
 
 
 
-\subsubsection{Inactivity Detection} \label{inactivitydetectionevaluation}
+\subsubsection{Inactivity Detection}\label{inactivitydetectionevaluation}
 
 Similarly to the variance detection algorithm, the inactivity detection algorithm has to more tunable parameters than the activity monitoring algorithm. Nevertheless, the parameters differ from the previous algorithms. That is, the tunable parameters are the motion threshold and the delay the motion shall not exceed the threshold. Otherwise, the algorithms follows similar integration time as the activity monitoring algorithm. Additionally, testing showed that this algorithm is not very sensitive to the parameters. Consequently, proestruses were detected as true positives with any feasible parameters. Furthermore, the algorithm did not yield any false positives or false negatives during this study.
-
-
-
-
-
 
 
 
@@ -1152,14 +1149,11 @@ Similarly to the variance detection algorithm, the inactivity detection algorith
 The first set of data provided relatively wide frequency spectrum of data.
 
 
-
 The sampling period provided a total of three probable estruses. One of the sensors failed during the sampling period, and therefore, no estrus could be estimated. However, one of the cows had two estruses during the sampling period and thus, compensated the failed sensor.
 
 Based on pure visual analysis of the acceleration data, the red cow has two highly active proestrus periods. First begins December the 22nd at 9 pm end ends December the 23rd at 9 am. The second period begins January the 4th at 2 am and ends 6 pm. Proper insemination is from 6 to 24 hours after proestrus period.
 
 The estrus was detected using Heatime estrus detection system. The detected estruses are represented in figures...
-
-
 
 
 
@@ -1179,50 +1173,37 @@ This study introduced a sensor device for dairy cow estrus detection. The introd
 
 The activity monitoring algorithm was a straightforward integration of the accelerometer data. The only tunable parameter was the size of the integration time. The most suitable integration time corresponds approximately the duration of the proestrus phase of the estrus cycle, that is roughly from 9 to \SI{12}{\hour}. Extending of the integration time only delayed the triggering of the begin of estrus. Thus, it was not beneficial. Conversely, integration time less than \SI{6}{\hour} yielded a risk of triggering estrus too early in the middle of the proestrus phase. These results were so obvious, hence, it was decided to use \SI{9}{\hour} window with the rest of the algorithms without further tuning of it. Furthermore, the algorithm was quite robust. That is, the results were clear and there were no high risk of yielding false results within the suggested integration time. However, the algorithm is sensitive to data offset and it shall be removed before any other computation. Nevertheless, offset did not prevent from detecting the estrus in this study. Actually, it only reduced the amplitude difference between the proestrus and other periods.
 
-In contrast to the activity monitoring algorithm, the variance detection algorithm was sensitive to the parameters. That is, too short sample or too long sampling interval effected to the results significantly. However, 
+In contrast to the activity monitoring algorithm, the variance detection algorithm was sensitive to the parameters. That is, too short sample or too long sampling interval effected to the results significantly. However, \dots
 
 Similarly to the variance detection, the inactivity detection algorithm had two additional tunable parameters. However, inactivity detection did not seem to be sensitive to the tuning of the parameters. In this study, any reasonable parameter values yielded true positive and true negative results. Furthermore, no false results occurred. Nevertheless,  the most radical parameter values begun to affect to the amplitude difference between proestrus and other phases of the estrus cycle. In conclusion, the performance and reliability of this algorithm seemed most promising in this study. Furthermore, this algorithm is the most suitable for the micro-controller based solutions. That is, most of the computations are performed in the accelerometer and the micro-controller only summarizes seldom interrupt the accelerometer generates. Additionally, it enables efficient use of power saving modes of the micro-controller which is critical with battery powered solutions. 
-
-
-
-
-
-\subsubsection{Failures and considerations}
-
-Previously, we discussed of sensor based dairy cow estrus detection based on the results of this study. The conclusion was that the estrus of a dairy cow is detectable with an accelerometer base wearable sensor. Furthermore, it seemed the estrus is rather detectable with various algorithms. However, there were differences in the performance and reliability of different algorithms. Whereas the previous subsection focused on the successful part of this study, in this subsection the scope is in failures and suggestions for improvements.\\
-
-Firstly, the body temperature measurement was a total failure. That is, the heat conducting system did not conduct the heat enough. Conversely, the results of the temperature measurements seemed to follow the temperature of the surrounding air. It was also seen from the temperature curve of the accelerometer \ref{cowtemperature}, hence, both of the temperatures seemed synchronous. Additionally, it was tested to filter the results and calculate the differential of the two temperatures sensors. Nevertheless, no correlation with a ongoing estrus or proestrus were found in this study. In contrast to the sensor setup of this study, the temperature sensor should be placed into more direct skin contact. Thereby, the sensor would more likely measure the body temperature rather than the surrounding air. Nevertheless, this discussion is only hypothetical. Furthermore, the body temperature was assumed to rise only up to two degrees during the estrus. Therefore, detecting of such minor alterations with micro-controller suitable algorithms may not be reliable at all.\\
-
-Secondly, total of three attempts to record cow data were ruined because of an error state of the sensor device. Unfortunately, there was no method to define the cause of the error directly. However, it seemed that the device continued working even in the error state but the data was invalid. However, further analysis of the error data provided an assumption that the accelerometer had reset meanwhile the micro-controller had not. Consequently, the micro-controller stopped receiving any interrupts from the accelerometer. Furthermore, the range of the accelerometer was set to default of \SI{2}{\gram}. Meanwhile, the micro-controller applications continued of executing of its software loop. Nevertheless, without fetching data normally. Therefore in both software implementations, the watchdog timer triggered an event for reading single data frame from the FIFO memory of the accelerometer. Considering the number of the invalid samples and the period of watchdog timer matched with the time cow was wearing the sensor. In order to avoid such failures in the future, the software should include a method for detecting erroneous state of the accelerometer. Additionally, the hardware might be causing blackouts to the accelerometer. This possibility should be inspected and the hardware design improved according the discoveries.
-
-
-
 
 
 The dairy cow estrus is detectable with triaxial accelerometer only and no other sensors are required. The results were verified with one single commercial product. Thus, the results may not be completely reliable and valid. Furthermore, none of the detected estruses were verified by a vet.
 
 The estrus detection algorithms developed in this study are suitable for micro-controller environments. Therefore, algorithm computation with computers is not required. Consequently, there is no need to large data storage or transmitting raw sensor data wirelessly.
 
-The sensor device did not provide optimal performance for recording large amounts of data. Specially the SD file operations formed a bottle neck in sampling speed.
+
+\subsubsection{Failures and considerations}
+
+Previously, we discussed of sensor based dairy cow estrus detection based on the results of this study. The conclusion was that the estrus of a dairy cow is detectable with an accelerometer base wearable sensor. Furthermore, it seemed the estrus is rather detectable with various algorithms. However, there were differences in the performance and reliability of different algorithms. Whereas the previous subsection focused on the successful part of this study, in this subsection the scope is in failures and suggestions for improvements.
+
+Firstly, the body temperature measurement was a total failure. That is, the heat conducting system did not conduct the heat enough. Conversely, the results of the temperature measurements seemed to follow the temperature of the surrounding air. It was also seen from the temperature curve of the accelerometer \ref{cowtemperature}, hence, both of the temperatures seemed synchronous. Additionally, it was tested to filter the results and calculate the differential of the two temperatures sensors. Nevertheless, no correlation with a ongoing estrus or proestrus were found in this study. In contrast to the sensor setup of this study, the temperature sensor should be placed into more direct skin contact. Thereby, the sensor would more likely measure the body temperature rather than the surrounding air. Nevertheless, this discussion is only hypothetical. Furthermore, the body temperature was assumed to rise only up to two degrees during the estrus. Therefore, detecting of such minor alterations with micro-controller suitable algorithms may not be reliable at all.
+
+Secondly, total of three attempts to record cow data were ruined because of an error state of the sensor device. Unfortunately, there was no method to define the cause of the error directly. However, it seemed that the device continued working even in the error state but the data was invalid. However, further analysis of the error data provided an assumption that the accelerometer had reset meanwhile the micro-controller had not. Consequently, the micro-controller stopped receiving any interrupts from the accelerometer. Furthermore, the range of the accelerometer was set to default of \SI{2}{\gram}. Meanwhile, the micro-controller applications continued of executing of its software loop. Nevertheless, without fetching data normally. Therefore in both software implementations, the watchdog timer triggered an event for reading single data frame from the FIFO memory of the accelerometer. Considering the number of the invalid samples and the period of watchdog timer matched with the time cow was wearing the sensor. In order to avoid such failures in the future, the software should include a method for detecting erroneous state of the accelerometer. Additionally, the hardware might be causing blackouts to the accelerometer. This possibility should be inspected and the hardware design improved according the discoveries.
+
+Lastly, the hardware design did not provide optimal performance for high sampling rate as seen in section \ref{generalresultssection}. Therefore, the first recorded set of data was partially corrupted because of frequent buffer overflows. Furthermore, high sampling rate fulfilled the SD memory card relatively fast. Thus high sampling rate together with SD memory card would not be preferred solution in long term data recording. 
 
 
-Oh wow!
 
 \subsubsection{Suggestions for Future Studies}
 
+This study has introduced three different sensor based algorithms for dairy cow estrus detection. Furthermore, we have evaluated the algorithms and concluded that the estrus id detectable with accelerometer based wearable sensor. Additionally, we have discussed of secondary products and other observations during this study. Lastly in this study, we will discuss of suggestions for potential future studies based on the introduced results and conclusions.\\
 
+Firstly, the detected estruses in this study were not confirmed at any point. The results were verified only with another sensor device as a reference. Thus, the results of this study are not completely reliable. Therefore, the algorithms developed in this study shall be implemented directly for micro-controller. Furthermore, they shall be tested with dairy cattle in real-time instead of posterior data processing sessions. In order to fully validate the algorithms, the results shall be verified by a veterinary. That is, each cow shall be inseminated once an estrus has been detected. Consequently, the detection is considered as true positive if the insemination is successful and the cow becomes pregnant.  Nevertheless, the normal success rate of insemination as well as the estrus cycle shall be taken into account.
 
-More data should be recorded to validate the algorithms. The algorithms should be tunable e.g., the estrus threshold should be individual and controllable.
+Secondly, the amount of data used for algorithm development was quite small. That is, only four months of cow data was valid to use in algorithm development. Luckily, the data consisted total of five estruses. Nevertheless, statistically sampling is minor considering the head count world wide. Furthermore, it is assumed there are significant differences in cow activity levels, hence, it varied already in this study. Additionally, a complementary study should cover various breeds in various environments e.g., tie-stall and pasture. Furthermore, we did no discuss of  algorithm tuning thoughtfully. Actually, the methods of this study tuned the algorithms for each cow individually after analyzing all of the data. Thus, the parameters suitable for one cow might not be suitable for another. However, more of recorded data would enable the developing of algorithms with self-adjustable parameters. Consequently, it would improve the real-time performance of the estrus detection algorithms discussed in this study.
 
-The results should be verifies by a vet.
-
-The estrus detection should be tested in real-time on a farm
-
-The algorithms should be tested on other breeds as well as cows in tie-stall cowshed but also on pasture.
-
-By successful continuous video recording or monitoring with proper time synchronization it would be possible to detect the activities of a cow. 
-
-Behavior detection... rumination lameness...
+Thirdly, behavior monitoring was considered as on optional topic in this study. A successful behavior monitoring would provide prominent information for the farmer about the state of the cattle. Furthermore, exceptions in behavior could indicate concerns in the cows health and treatment could be started before issues escalate. In this study, we recorded in-cowshed video for studying of behavior recognition. However, the the video quality was insufficient and there were no valid time synchronization between the video and motion data. Thus, this option was discarded in early phase of this study. However, based on the brief preliminary study, this option seemed promising. Therefore, study of valid motion and video data with proper time synchronization would provide algorithms for such topics as rumination and lameness detection.
 
 
 \clearpage
