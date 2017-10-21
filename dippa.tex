@@ -339,80 +339,53 @@ However, before proceeding to the research of this study, it is necessary to dis
 
 \subsection{Health Monitoring and Estrus Detection} \label{healthmonitoringandestrusdetectionsection}
 
-The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study of dairy cow included basic knowledge of the cow and its environments. Moreover, we discussed of lactation and estrus cycles and their affect on the milk yield and profitability. Additionally, we briefly surveyed through the most common health issues with dairy cow. In continuation to previous discussions, this subsection discusses of different methods for detecting estrus and health issues. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchanddevelopmentsection} discusses of studies of existing technology as well as recent development projects for future solutions.   \\
+The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study of dairy cow included basic knowledge of the cow and its environments. Moreover, we discussed of lactation and estrus cycles and their affect on the milk yield and profitability. Additionally, we briefly surveyed through the most common health issues with dairy cow. In continuation to previous discussions, this subsection discusses of different methods for live-stock monitoring. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchanddevelopmentsection} discusses of studies of existing technology as well as recent development projects for future solutions.  
 
 
 \subsubsection{Current Solutions} \label{currentsolutionssection}
 
-In this subsection we will discuss of currently used methods for observing the cattle. The discussion starts from conventional and non-technical methods and ends to current commercial technical products.
+Traditionally, live-stock monitoring has been sight-wise task assigned to the cattle tender \cite{lehmahavaintoja}. However, this method is not considered to be efficient. In the USA alone, the rate of successfully detected estruses has been estimated below \SI{50}{\percent} in large farms. Additionally, this inefficiency leads to annual loss of 800 million dollars for the milk industry \cite{BRUNASSI2010}. Naturally, the reliability of the observations depends on several such factors as the experience of the cattle tender, availability of time and the amount of cattle. Additionally, even experienced cattle tender might be erroneous with non-familiar cattle. Furthermore, the head count of farms tend to be increasing whereas the number of cattle tenders remaining the same. Consequently, the tenders have less and less time for purely observing the cattle. Therefore, detection of estrus of health issues has become even more difficult. In despite of the challenges, sight-wise observations by the cattle tender are still common monitoring method in small farms and in developing countries \cite{BRUNASSI2010}. 
 
-Traditionally, health monitoring and estrus detection have been based on purely visual observations. However, this method is not considered efficient. In the USA, the rate of successfully detected estruses has been estimated below \SI{50}{\percent} in large farms. Additionally, this inefficiency leads to annual loss of 800 million dollars for the milk industry. \cite{BRUNASSI2010}
-
-
-Moreover, the only method for monitoring and detection has been observing the cows sight-wise \cite{lehmahavaintoja}. Naturally, the reliability of the observations depends on several such factors as the experience of the cattle tender, availability of time and the amount of cattle. That is, the larger the cattle, the more work and, thus, the less time available. Consequently, the available time per cow decreases exponentially when the amount of cattle increases. In addition to the experience level of the tender, it is fundamental to know the cattle. \\
-
-In despite of the challenges, observations of cattle tender are still common monitoring method in small farms and in developing countries. \cite{BRUNASSI2010} \\ 
-
-Therefore, the cattle tender must know his cattle well in order to receive satisfying results. The larger the cattle \\
+Nowadays, there are several commercial poruducts available for dairy cow monitoring. Most typically, these products are sensor devices attached with a strap to leg \cite{iceroboticproductbrochure,geacowscout} or to collar \cite{heatime,geacowscout,moocall} sensor devices are collar or leg devices mounted with straps. \cite{heatime, iceroboticproductbrochure}. However, there are even tail-attached sensor \cite{moocall} and in rumen \cite{wellcowbolus} sensors available. In addition to various attachments, the devices have various applications. Some sensors are specialized in calving detection \cite{moocall} or digesting monitoring \cite{wellcowbolus} only whereas leg and collar sensors provide more wide range of functionalities. Typically, they monitor the cow motion and activity \cite{iceroboticproductbrochure, heatime, geacowscout, moocall}. Moreover, leg sensors can count steps and detect the pose of the cow (standing, lying and walking). Furthermore, the leg and collar sensors are used in estrus detection. Additionally, some devices are capable of monitoring rumination \cite{heatime} and eating \cite{geacowscout}. Most of the devices are planned for wireless data transmission between the sensor device and a computer of farm server \cite{heatime, geacowscout, iceroboticproductbrochure, wellcowbolus}. However, some devices require wired USB data transmission \cite{iceroboticproductbrochure}. In despite of the technology or the feature being monitored, all the solutions aim to a healthier cow and, thus, improvements in profitability. Others may alert of possible health issues in advance \cite{heatime, geacowscout, iceroboticproductbrochure} whereas others are guiding to optimize the feeding and digestion \cite{wellcowbolus}. Furthermore, numerous current solutions provide mobile phone interfaces ans most significant alerts are given in SMS messages or in email.
 
 
 \subsubsection{Research and Development} \label{researchanddevelopmentsection}
 
-Former subsection discussed of currently used farming technologies. In contrast, this subsection reveals technologies under research and development and discusses future options.
- 
- This subsection reviews the wearable sensor devices used in dairy farming. The review includes currently used technologies as well as technologies that have been under research but have no been commercialized yet. 
+In former subsection we discussed of currently available technological aids for dairy cow monitoring. Different products provide different functionalities from rumination and digestion monitoring to motion tracking and estrus detection. Similarly in this section, we survey various researches and studies for dairy cow monitoring. In contrast to the previous section, the solutions discussed here are not yet commercially available products. Nevertheless, some studies have been using commercially available devices in their research. In this subsection, our scope will be specially in solutions that are not available in current product range such as behavior monitoring. However, studies of the estrus detection are in our interest as it is the main topic of this study as well. 
 
- 
- 
- 
- 
-\subsubsection*{behavior pattern recognition using three-dimensional accelerometer and support vector machines}
+In behavior based cow monitoring, the sensor devise attempts to recognize on or more of the following acts:
+
+\begin{itemize}
+\item \textit{Standing} is a state where the cow stand on all of its legs and stays still.
+\item \textit{Lying} is state when the cow lies down on it side. Cows spend half of their day lying down.
+\item \textit{Ruminating} is an act where the cow chews the feed from its rumen in order to digest fibers etc.
+\item \textit{Feeding} means the act when the cow is eating feed.
+\item \textit{Normal walking} when the cow is in health and walks normally.
+\item \textit{Lame walking} when the cow has health issues in its legs or claw and its walking is cautions on asymmetrical.
+\item \textit{Lying down} means when the cow is standig but changes its state into lying.
+\item \textit{Standing up} is when the cow was lying but stands up.
+\end{itemize}. The behavior monitoring provides beneficial information for the farmer about the health status as well as the mix of the feed.
 
 Used three-axis accelerometer and support vector machines for detecting the following behavior of cows:
 
-\begin{itemize}
-\item Standing
-\item Lying
-\item Ruminating
-\item Feeding
-\item Normal walking
-\item Lame walking
-\item Lying down
-\item Standing up
-\end{itemize}
-
-The sampling frequency was \SI{10}{\hertz} and the data was sent to a PC computer via \SI{2.45}{\giga\hertz} radio band. Measurement range of $\pm$ 3 g. The sensor was ADXL330, Analog Devices Inc., USA and it was attached to the neck. They used 30 Ayrshire and Holstein-Friesian cows. The cows were loose-housed and the barn used automatic milking system. Most of the days the cows had a free access to a pasture. The data was recorded during 30 days. The video, stopwatches and accelerometers were synchronized manually. Cows had different gait scores \dots Used multi-class support vector machines. \SI{70}{\percent} of the data was used as training set and \SI{30}{\percent} was used as a test data set. Lying head erect does not differ much from standing posture considering the accelerometer data. This causes misclasifications. The interest war predicting the behaviour that occurred instead of the behaviour that did not occur. Fixed parameters (e.g. time window) are not suitable for all different behaviours. \cite{Martiskainen200932} \\
+The sampling frequency was \SI{10}{\hertz} and the data was sent to a PC computer via \SI{2.45}{\giga\hertz} radio band. Measurement range of $\pm$ 3 g. The sensor was ADXL330, Analog Devices Inc., USA and it was attached to the collar. They used 30 Ayrshire and Holstein-Friesian cows. The cows were loose-housed and the barn used automatic milking system. Most of the days the cows had a free access to a pasture. The data was recorded during 30 days. The video, stopwatches and accelerometers were synchronized manually. Cows had different gait scores \dots Used multi-class support vector machines. \SI{70}{\percent} of the data was used as training set and \SI{30}{\percent} was used as a test data set. Lying head erect does not differ much from standing posture considering the accelerometer data. This causes misclasifications. The interest war predicting the behaviour that occurred instead of the behaviour that did not occur. Fixed parameters (e.g. time window) are not suitable for all different behaviours. \cite{Martiskainen200932} \\
 
 
 Six dairy cows monitored continuously for 36 h. They used a decision-tree algorithm for detecting if the cow was either standing, feeding or lying. The algorithm matches the performance of computationally more intensive algorithms such as hidden Markov model and support vector machines. It is suggested that the decision-tree algorithm could be a part of a real-time behavioural monitoring system. The performance of the algorithm varies in function of the time window which was from 1 to 10 minutes. In the algorithm comparison table the decision-tree algorithm was better in 1 minute window than in 10 minute window. The support vector machine, however, was equally good or even better algorithm. Holstein dairy cattle located in Essex, UK. The cows were loose-housed in a cubicle shed. The herd was milked three times a day. The cows selected for the study did not show signs of lameness or other deseases. Drinking, brushing and walking activities were excluded in this study. \cite{VazquezDiosdado2015}
 
 
-
-
 Combines step count and leg tilt data. Data was extracted from 44 dairy cows over an 8 month period. The results show sensitivity \SI{88.9}{\percent} and error rate \SI{5.9}{\percent}. The sensor was IceTag3D \circledR which is a three-axis accelerometer. The sample period was chosen to be 1 minute and is the time resolution through the study. The sensor provides four variables: the percentage spent in three of the stages and step count. The stages are lying, standing and motion. The lying and standing are detected by the tilt of the sensor. The variables lying and standing gives the percentage of the sampling period spent in each of the two states; the motion index is a measure of how much the cow has moved in the sampling period and step count is the number of steps in each sampling period. The measurements were available for a total of 88 cows over varying periods. The data transfer from the IceTag was done manually holding a reader close to the IceTag device. Data sequence for estrus detection were selected around 18 and 23 days between two estruses. 62 cows did not get pregnant, 18 cows were inseminated wearing an IceTag and 44 were not inseminated at all wearing an IceTag. Total of 26 cows became pregnant. The conclusion says, this method could only improve other estrus detecting methods but not alone reliably detect estruses.
 \cite{Jonsson20116}
 
-
-
 They used pedometers. The data set consists of data gathered from 98 cows successfully inseminated by visual estrus detection. The pregnancy was considered as a confirmation for the detection. In the data gathering period of six months a total of 335 estrus cases occurred. 237 cases were discarded since the cows either did not become pregnant or did not wear pedometers. They could improve the visual estrus detection up to 84.2 \% accuracy. 
 \cite{BRUNASSI2010}
-
-
-
 
 This research aims to provide a cheap sensor for estrus detection which is an alternative for current commercial products basesd on accelerometers and odometers. The provided sensor is a wireless intravaginal probe measuring temperature and conductivity. The benefit of this probe against accelerometers is that the cow is not required to move for estrus detection. In the study a video camera was used for detecting the action of the cow, since, moving, standing, eating and stress increases the body temperature. It is suggested that an accelerometer could be used instead of videocamera for automated motion detection. The conductivity measurements were not satisfying since, the contact between the animal and the tissue vere not constant and caused noisy measurments. Yet, some correlation were detected with the cow activity.  \cite{7370219}
 
 
 in the further study the probe measured vaginal temperature, acceleration and vaginal tissue resistance. They had two kinds of probes, a 160 mm \SI{160}{\milli \metre} probe and a 1 \SI{120}{\milli \metre} probe. The longer one caused bleeding during the trials. The shorter one worked out fine but started to rotate during the estrus and it even ejected. Therefore, no sufficient probe desing was found. The 3-axis accelerometer provided different spaces for datapoints when the cow was either standing up, resting wide or resting narrow. \cite{Andersson2016101}
 
-
-
-
 Four wireless accelerometers were used per cow, one on each limb. In the research the wavelets were analyzed and mismatch in symmetry of variances observed for lameness detection. Sampling frequency was  \SI{25}{\hertz} 25 Hz.  \cite{Pastell2009545}
-
-
-
-
 
 
 \clearpage
@@ -757,14 +730,22 @@ s = \sqrt{\frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}}
 
 Fourier transform is linear mapping from time domain to frequency domain.
 
+\begin{equation}
+\hat{f}(\omega) =  \int_{- \infty} ^{\infty} f(x) ^{-i\omega x} \mathrm{d}x
+\end{equation} \label{fouriertransformequation}
 
+\begin{equation}
+F_n =  \sum \limits^{N-1}_{k=0} f_k e^{-i(2\pi k / N) n} \mathrm{\hspace{1em} , n = 0, \dots , N -1} 
+\end{equation}\label{fftequation}
 
 Discrete Fourier transform (DFT) is linear mapping of a signal from time domain to frequency domain \cite{rao2012fast}. That is, a time variant sample can be transformed into frequency domain for providing the frequency spectrum of the data. In this study, the frequency spectrum of cow behavior is valuable information in deciding the the bandwidth of the accelerometer.\\
 
-More text here definitely!
 
 Frequency analysis is important in designing of sampling rate as well as filters. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least double the highest frequency component. We will discuss of filters in the following subsection.
 
+Normally, DFT would require approximately $\mathbf{N}^2$ iterations for mapping the time domain to the frequency domain. With large samples this becomes mathematically demanding and time consuming process. Therefore, there are several approximation approaches called Fast Fourier Transforms (FFT). They require less computing and time. However, the results are not as exact as it is with DFT. In this study we will use the FFT functions included in the standard libraries of Matlab software. The theory behind FFT is quite deep and, therefore, it is not discussed in detail in this study. Nevertheless, we will introduce the use of the fft function of Maltab as follows. For the fft, it is required to define the length of the sample as well as the sampling frequency. $\mathbf{O}( \mathbf{N} \log \mathbf{N})$
+
+Next we will create a vector with frequencies from zero to half of the sampling frequency. Actually, the fft of the Matlab does not straight consider the true frequencies. Therefore, the user himself need to set the frequencies correctly. The fft function results the frequency data in complex numbers. Therefore, it is required to get the absolute value of the results. Yet, the the results are two sided data. Thus, we need to exclude the other half of it. Lastly, we correct the amplitude and plot the resulting vector with the frequency vector we created earlier.
 
 \subsubsection{Digital Filters} \label{digitalfilterssection}
 
@@ -776,6 +757,8 @@ The Bosch Sensortec BMA222e accelerometer provides two on chip filters: one 2nd 
 
 The digital signal processing methods consists of applying filter and other mathematical methods. In these methods, any features of the sensors could be simulated afterwards instead of using the features of the sensor. E.g., offset compensation using the low pass filter causes the loss in information of orientation of the device.
 
+Basically, the factors of the filter could be chosen freely. However, commonly the target total gain of the filter is 1.
+
 Filters with infinite impulse response (IIR):
 
 
@@ -783,7 +766,7 @@ Filters with infinite impulse response (IIR):
 
 \begin{equation}
 y[k] = b_0 x[k] + b_1 x[k-1] + b_2 x[k-2] + \dots + b_{n-1} x[k+1-n] + b_n x[k-n]
-\end{equation}
+\end{equation}\label{firequation}
 
 
 
@@ -792,7 +775,7 @@ y[k] = b_0 x[k] + b_1 x[k-1] + b_2 x[k-2] + \dots + b_{n-1} x[k+1-n] + b_n x[k-n
 y[k] = b_0 x[k] + b_1 x[k-1] + b_2 x[k-2] + \dots + b_n x[k-n] \\
 -a_1 y[n-1] - a_2 y[n-2] - \dots - a_m y[k-m]
 \end{aligned}
-\end{equation}
+\end{equation}\label{iirequation}
 
 
 and filter with finite impulse respones (FIR):
@@ -890,11 +873,15 @@ y(k) = a_0 x(k) + a_1 x(k-1) + a_2 x(k-2) - b_1 y(k-1) - b_2 y(k-2)
 u(i) = \sqrt{x^2(i) + y^2(i) + z^2(i)} 
 \end{equation}
 
-\item \textbf{Sum results}
-\item \textbf{Remove offset}
-\item \textbf{Normalize}
-\item \textbf{Threshold}
-\item \textbf{Plot data}
+\item \textbf{Sum results} --- With this algorithm there is no need for summing, hence, the algorithm uses the length of the total acceleration vector instead of calculating vectors separately.
+
+\item \textbf{Remove offset} --- The median value of the resulting array is considered as the mean offset. The offset is deducted from all the data points.
+
+\item \textbf{Normalize} --- After removing offset, remaining data is divided by the maximum of the absolute value of the data. In result, all the data points are between $\pm 1$.
+
+\item \textbf{Threshold} --- Next, exceeding of preset threshold is considered as the beginning of the proestrus. Conversely, falling below second threshold indicates the end of proestrus and the beginning of estrus.
+
+\item \textbf{Plot data} --- Finally, the data is presented in plot. The plot shows the algorithm results against time. In addition to the data, also the beginning and the end of proestrus are shown in the plot.
 
 \end{enumerate}
 
@@ -913,24 +900,29 @@ Originally, the concept of a variance based algorithm arose among the analysis o
 
 \begin{enumerate}
 
-\item \textbf{Get a sample} --- In this algorithm, the data is processed in samples instead of data stream. 
+\item \textbf{Get a sample} --- In this algorithm, the data is processed in samples instead of data stream. The length of a sample is variable. Furthermore, there are no restrictions for overlapping. However, the purpose of this algorithm is to reduce the amount of required data frames.
 
-\item \textbf{Compute Variance} --- Compute the variance of the sample
+\item \textbf{Compute Variance} --- A sample consists of predefined amount of data frames. Computing of variance means calculating the variance of single data sample. However, in this study we have all the data available. Thus, the sampling and computing the variance are combined in the following equation:
 
 \begin{equation} \label{samplevariance}
-u_x(k) = \frac{\sum \limits_{i=nk-m}^{nk} (x(i) - \bar{x})^2}{m} \mathrm{\hspace{1em}, where}
+u_x(k) = \frac{\sum \limits_{i=nk-m}^{nk} (x(i) - \bar{x})^2}{m} \mathrm{\hspace{1em},}
 \end{equation}
-$m$ is the size of the data sample, $n$ is the distance between the samples and $k$ is the index of the output data. 
+where $m$ is the size of the data sample, $n$ is the distance between the samples and $k$ is the index of the output data. The product $nk$ shall not exceed the index of the maximum samples.
+
+\item \textbf{Sum results} --- The variance of each axis are calculated separately. However, in this study we will not compare the algorithms for each axis separately. Thus, the resulting variances are summed index by index as follows:
 
 \begin{equation}
 u_{tot} = u_x + u_y + u_z
 \end{equation}
 
-\item \textbf{Sum results}
-\item \textbf{Remove offset}
-\item \textbf{Normalize}
-\item \textbf{Threshold}
-\item \textbf{Plot data}
+\item \textbf{Remove offset} --- Similarly as before, the median value of the resulting data is considered as the offset and it will be deducted from all of the data points.
+
+
+\item \textbf{Normalize} --- After removing the offset, the resulting data set is divided by the maximum of the absolute extreme value. In result, all the data points are between values $\pm 1$.
+
+\item \textbf{Threshold} --- Next, exceeding of preset threshold is considered as the beginning of the proestrus. Conversely, falling below second threshold indicates the end of proestrus and the beginning of estrus.
+
+\item \textbf{Plot data} --- Finally, the data is presented in plot. The plot shows the algorithm results against time. In addition to the data, also the beginning and the end of proestrus are shown in the plot.
 
 \end{enumerate}
 
@@ -967,11 +959,15 @@ for (i = 0 ; i < length(x); i ++)
 In this study, the passivity array has the same length as the acceleration data array and it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Meanwhile, any occurred no-motion condition yields the value of one into the passivity array. In consequence, the resulting passivity array consists mostly of zeros and few of ones within. Furthermore, the indexes of the ones are directly related to the time of the occurrence. Thus, it enables concluding the level of inactivity in certain range of time. \\
 
 
-\item \textbf{Sum results}
-\item \textbf{Remove offset}
-\item \textbf{Normalize}
-\item \textbf{Threshold}
-\item \textbf{Plot data}
+\item \textbf{Sum results} --- sdf
+
+\item \textbf{Remove offset} --- The median value of the resulting array is considered as the mean offset. The offset is deducted from all the data points.
+
+\item \textbf{Normalize} --- After removing offset, remaining data is divided by the maximum of the absolute value of the data. In result, all the data points are between $\pm 1$.
+
+\item \textbf{Threshold} --- Next, exceeding of preset threshold is considered as the beginning of the proestrus. Conversely, falling below second threshold indicates the end of proestrus and the beginning of estrus.
+
+\item \textbf{Plot data} --- Finally, the data is presented in plot. The plot shows the algorithm results against time. In addition to the data, also the beginning and the end of proestrus are shown in the plot.
 
 
 \end{enumerate}
