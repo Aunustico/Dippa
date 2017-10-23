@@ -1,0 +1,1 @@
+pdftotext  -layout dippa.pdf
