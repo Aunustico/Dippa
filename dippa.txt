@@ -18,7 +18,7 @@ SÄHKÖTEKNIIKAN KORKEAKOULU
 
 Työn nimi: Sensor Based Dairy Cow Estrus Detection
 
-Päivämäärä: 16.1.2015       Kieli: Englanti         Sivumäärä: 7+66
+Päivämäärä: 16.1.2015       Kieli: Englanti         Sivumäärä: 7+65
 
 Department of Automations and Systems Technology
 
@@ -46,7 +46,7 @@ SCHOOL OF ELECTRICAL ENGINEERING
 
 Title: Thesis template
 
-Date: 16.1.2015         Language: English   Number of pages: 7+66
+Date: 16.1.2015         Language: English   Number of pages: 7+65
 
 Department of Radio Science and Technology
 
@@ -111,21 +111,21 @@ Symbols and Abbreviations                                                       
 
 3.2 Data Processing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
 
-          3.2.1 Statistics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+          3.2.1 Statistics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
 
-          3.2.2 Fourier Transform . . . . . . . . . . . . . . . . . . . . . . . . . 26
+          3.2.2 Fourier Transform . . . . . . . . . . . . . . . . . . . . . . . . . 25
 
           3.2.3 Digital Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
 
-          3.2.4 Sliding Window . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+          3.2.4 Sliding Window . . . . . . . . . . . . . . . . . . . . . . . . . . 27
 
-3.3 Estrus Detection Algorithms . . . . . . . . . . . . . . . . . . . . . . . . 29
+3.3 Estrus Detection Algorithms . . . . . . . . . . . . . . . . . . . . . . . . 28
 
           3.3.1 Activity Monitoring . . . . . . . . . . . . . . . . . . . . . . . . 30
 
           3.3.2 Variance Detection . . . . . . . . . . . . . . . . . . . . . . . . . 31
 
-          3.3.3 Inactivity Detection . . . . . . . . . . . . . . . . . . . . . . . . . 33
+          3.3.3 Inactivity Detection . . . . . . . . . . . . . . . . . . . . . . . . . 32
 
 4 Results                                                                               35
 
@@ -141,29 +141,29 @@ Symbols and Abbreviations                                                       
 
           4.2.1 Activity Monitoring . . . . . . . . . . . . . . . . . . . . . . . . 40
 
-          4.2.2 Variance Detection . . . . . . . . . . . . . . . . . . . . . . . . . 42
+          4.2.2 Variance Detection . . . . . . . . . . . . . . . . . . . . . . . . . 41
 
           4.2.3 Inactivity Detection . . . . . . . . . . . . . . . . . . . . . . . . . 42
                                      vi
 
-4.3 Conclusions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
-      4.3.1 Sensor Based Estrus Detection . . . . . . . . . . . . . . . . . . . 44
-      4.3.2 Failures and considerations . . . . . . . . . . . . . . . . . . . . . 45
+4.3 Conclusions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+      4.3.1 Sensor Based Estrus Detection . . . . . . . . . . . . . . . . . . . 43
+      4.3.2 Failures and considerations . . . . . . . . . . . . . . . . . . . . . 44
       4.3.3 Suggestions for Future Studies . . . . . . . . . . . . . . . . . . . 45
 
-5 Summary                            47
+5 Summary                            46
 
-References                           48
+References                           47
 
-A Heatime Data Plots                 52
+A Heatime Data Plots                 51
 
-B Raw Accelerometric Data            54
+B Raw Accelerometric Data            53
 
-C Activity Monitoring Full Results   56
+C Activity Monitoring Full Results   55
 
-D Variance Detection Full Results    59
+D Variance Detection Full Results    58
 
-E Inactivity Detection Full Results  66
+E Inactivity Detection Full Results  65
                                                         vii
 
 Symbols and Abbreviations
@@ -220,7 +220,7 @@ People have been using milk as a source of nutrition since the beginning of anim
 bandry. The research show that the drinking of milk started 8000 years ago in the present
 Turkey area. Ever since the dairy farming has spread all over the world. Meanwhile, the
 spectrum of the available dairy products and fabrication techniques have been increasing.
-Initially, the headcount of a cattle was small and it served only a family or a local com-
+Initially, the headcount of a cattle was small, and it served only a family or a local com-
 munity. However, since industrialization the farm sizes increased whereas, the number
 of farms begun to decrease. Same trend has been going on thereafter. Nowadays, strict
 competition in local and global markets has driven the farming financial in challenges.
@@ -239,12 +239,12 @@ lameness.
 
     Currently, there are numerous technological solutions available as an alternative to
 human labor. However, they are relatively expensive investments and their actual payback
-time is difficult to define. Therefore, specially many smaller farms has postponed the
+time is difficult to define. Therefore, specially many smaller farms have postponed the
 use of modern technological aids in cattle monitoring. Additionally, even large farms in
 developing countries are in the same stage and still rely on human labor and traditional
 methods. In addition to the high cost and long payback time, the functionalities and the
-performance level of the solutions can vary significantly. Thus achieving of complementary
-solutions are rather challenging. Typically, these commercial solutions offers aids for estrus
+performance level of the solutions can vary significantly. Thus, achieving of complementary
+solutions are rather challenging. Typically, these commercial solutions offer aids for estrus
 detection and general health tracking. In fact, they tend to trigger alarms for cattle tender
 to start inspections instead of providing accurate health status.
 
@@ -272,10 +272,10 @@ question the detection.
 
     The focus of the evaluation is in reliability and punctuality. Therefore, the algorithm
 shall not trigger false estrus or miss a true estrus either. Additionally, the timing shall
-remain within reasonable tolerance. Thus, the resulting algorithms shall be able to detected
+remain within reasonable tolerance. Thus, the resulting algorithms shall be able to detect
 estrus in real-time. In addition to these requirements, the algorithm shall be stand-alone
 solutions suitable for low-cost micro-controller devices. Therefore, in this study we use
-common low cost components in the sensor device hardware configurations. Additionally,
+common low-cost components in the sensor device hardware configurations. Additionally,
 the hardware design is rather simple in order to keep the costs low. However, in wearable
 battery-based solutions the high capacity batteries expensive and their cost may exceed the
 price of the other hardware. Thus, low energy consumption is considered in the discussions
@@ -284,8 +284,8 @@ behavior monitoring as well. However, the behavior monitoring is a minor topic o
 study. Therefore, the results related to behavior monitoring only are discussed only briefly
 in this study.
 
-    Efficient data analysis, algorithm development and testing is an absurd approach. Spe-
-cially, when the estrus cycle of a cow lasts approximately 21 days and the phases of
+    Efficient data analysis, algorithm development and testing are an absurd approach.
+Specially, when the estrus cycle of a cow lasts approximately 21 days and the phases of
 proestrus and estrus several hours. Therefore, it is essential to use recorded sensor data in
 algorithm development and in testing as well. Consequently, implementation of suitable
 data recording software is one of the core topics in this study. Furthermore, properly
@@ -323,8 +323,8 @@ Thereafter, people have been domesticating other species e.g. cows, sheep and pi
 food, milk and other animal products. In addition to the number of species, the head count
 has been growing with human population (lähde?). Furthermore, the industrial revolution
 has started a trend of increasing farm sizes and a loss of small farms. Considering only
-cow farming, alone in the United States of America, there were nierly 90 million cows and
-calves in 2014 [2]. Respectively, the head count world wide has been estimated almost
+cow farming, alone in the United States of America, there were nearly 90 million cows
+and calves in 2014 [2]. Respectively, the head count worldwide has been estimated almost
 up to 1,000 million heads in 2016 [3]. Nowadays, the cattle rearing is divided into two
 trends of beef and dairy farming. Moreover, the breeds for beef cattle and dairy cattle are
 different. The scope of beef breeding is in rapid brawn growth, whereas it is high milk
@@ -332,19 +332,19 @@ yield with dairy breeding. In despite of the scope of this study in dairy farmin
 the results of this study could be adoptable and beneficial also in beef farming. Eventually,
 it is very likely for both of the breeds to end up in food or animal feed.
 
-    According to the title, the scope of this study is in dairy farming and specially in estrus
-detection. Thus, it is mandatory to explain the principles of dairy farming and study dairy
-cow in general. Furthermore, it is necessary to be acquainted with milk yield related
-lactation end estrus cycles. Otherwise, the comprehension of the reason for the estrus
-detection will not be unambiguous. Therefore, we start with the basics present-day of dairy
-farming. Even today the technological progress in dairy farming is dispersed. Thus, we
-need to discuss of both, conventional and modern dairy farming. Next, we take a look
-on a generalized dairy cow. Moreover, we discuss of its natural and farm environments.
+    According to the title, the scope of this study is in dairy farming and specially in
+estrus detection. Thus, it is mandatory to explain the principles of dairy farming and
+study dairy cow in general. Furthermore, it is necessary to be acquainted with milk yield
+related lactation end estrus cycles. Otherwise, the comprehension of the reason for the
+estrus detection will not be unambiguous. Therefore, we start with the basics present-day
+of dairy farming. Even today the technological progress in dairy farming is dispersed.
+Thus, we need to discuss of both, conventional and modern dairy farming. Next, we will
+focus on a general dairy cow. Moreover, we discuss of its natural and farm environments.
 Furthermore, we discuss in detail of the lactation and the estrus cycles and how they
-affects on milk yield. Milk yield affects directly to farm profitability. Consequently, it is
+effect on milk yield. Milk yield affects directly to farm profitability. Consequently, it is
 the fundamental motive for this study. Second lastly, we study currently utilized health
 monitoring and estrus detection methods and technical aids. Furthermore, we discuss of
-their assets and disadvantages. Lastly in this section, we discuss of most resent research
+their assets and disadvantages. Lastly in this section, we discuss of most recent research
 and development on health monitoring and estrus detection devices.
 
 2.1 Dairy Farming
@@ -360,28 +360,29 @@ essential part in human nutrition. Milk and dairy products are produced more tha
 
 before. The farm sizes have been increasing meanwhile the number of farms has started to
 decrease. In 2015 in Finland there were total of 909,000 cows of which 282,000 milking
-cows[22]. In comparison in 2014 in the Unites States of America, there were more than
-89 million cows and calves of which more than 9 million were milking cows[2]. In the
+cows [22]. In comparison in 2014 in the Unites States of America, there were more than
+89 million cows and calves of which more than 9 million were milking cows [2]. In the
 end of the year 2015 in Finland, 7890 farms delivered milk to milk processing plants. The
 average yield of the farms was 279 thousand liters and the average yield of a cow was 8300
 liters. In summary the total yield in Finland was 2365 million liters. [22] In the USA the
 total farm income in cash in the year 2014 was over 49,349 million dollars [2].
 
-    Originally, cows were wild pasture animals domesticated by humans. Moreover, people
-were migrating nomads. Thus, in the beginning of animal husbandry the cattle traveled with
-people. Finally, people started to settle in constant regions with the animals. First, animals
-were held in yards but people started to build structures for keeping and protecting the ani-
-mals. Next, people started to keep cows in buildings. In linear pottery culture, people and
-animals lived together inside longhouses. Finally, people started to build separate building
-called cowshed for keeping cattle. Currently, the cowsheds are divided in two types of tie-
-stall and loose-house cowsheds [18]. In general, tie-stall cowsheds are smaller and tighter
-than loose-housed cowsheds. Furthermore, cows are not allowed to move freely in tie-stall.
-Conversely, In loose-housed cowshed cows are allowed to move freely. Additionally, they
-may have free access to pasture. Recently, the tie-stall cowsheds have been under critique.
-That is, the cows are not able to behave as social animals. Moreover, monitoring and keep-
-ing health is more difficult in tie-stalls. Therefore, new-builds are rather loose-housed than
-tie-stall cowsheds. In addition, it is easier to monitor the health and estrus behavior of freely
-moving animals. Thus, cows living in a loose-housed cowshed are in the scope of this study.
+    Originally, cows were wild pasture animals domesticated by humans. Moreover, the
+people was migrating nomads. Thus, in the beginning of animal husbandry the cattle
+traveled with people. Finally, people started to settle in constant regions with the animals.
+First, animals were held in yards but people started to build structures for keeping and
+protecting the animals. Next, people started to keep cows in buildings. In linear pottery
+culture, people and animals lived together inside longhouses. Finally, people started to
+build separate building called cowshed for keeping cattle. Currently, the cowsheds are
+divided in two types of tie-stall and loose-house cowsheds [18]. In general, tie-stall cow-
+sheds are smaller and tighter than loose-housed cowsheds. Furthermore, cows are not
+allowed to move freely in tie-stall. Conversely, In loose-housed cowshed cows are allowed
+to move freely. Additionally, they may have free access to pasture. Recently, the tie-stall
+cowsheds have been under critique. That is, the cows are not able to behave as social
+animals. Moreover, monitoring and keeping health is more difficult in tie-stalls. Therefore,
+new-builds are rather loose-housed than tie-stall cowsheds. In addition, it is easier to
+monitor the health and estrus behavior of freely moving animals. Thus, cows living in a
+loose-housed cowshed are in the scope of this study.
 
 2.1.1 Dairy Cow
 
@@ -401,7 +402,6 @@ do their daily activities such as eat and rest together [13] [18].
 they stand up and change their pose several times [43]. Additionally, they may move
 their location between haunts and watering places. Thus, in loose-housed cowshed a cow
 may walk from 400 m to 800 m per day [31]. On pasture, their daily walking range may
-extend to several kilometers [31] [13]. However, cows are very cautious animals. Thus,
                                                                                                           5
 
 Figure 1: Cows in a tie-stall-cowshed [15]. Cows are tied in stall and they are not able to
@@ -411,10 +411,11 @@ Figure 2: Cows in a loose-housed-cowshed [32]. Cows are able to move freely and 
 social animals.
                                                                                                           6
 
+extend to several kilometers [31] [13]. However, cows are very cautious animals. Thus,
 insecure circumstances such as slippery ground or high steps can reduce their daily range.
-Furthermore, cows can be easily injured in challenging places. Naturally, injuries affects
-to their health and consequently to profitability [18]. Nevertheless, Walking enforces their
-health, increases hormonal activity and metabolism [31].
+Furthermore, cows can be easily injured in challenging places. Naturally, injuries effects
+to their health and consequently to profitability [18]. Nevertheless, Walking enforces the
+health of them, increases hormonal activity and metabolism [31].
 
     In addition to their normal activity, cows may have exceptional states. Typically, these
 states become apparent in their behavior. That is, sicknesses and injuries reduces their activ-
@@ -435,8 +436,8 @@ In previous subsections, we discussed of dairy farming and dairy cow in general.
 quently in this section, we will proceed the discussion to lactation cycle. The lactation
 cycle is emphatically related to the milk yield and thus, the profitability of the farm. The
 lactation cycle means the period between two calves. Thus, it is also called as calving
-period. After the calving a cow begins to lactate, which is the the actual purpose of a dairy
-cow [18]. However, the calves are more or less a secondary products in dairy farming
+period. After the calving a cow begins to lactate, which is the the actual purpose of a
+dairy cow [18]. However, the calves are more or less a secondary product in dairy farming
 and they are not in scope of this study. Nevertheless, the milk yield if a cow increases
 in the first weeks after the calving. However, after the first weeks the milk yield begins
 to decrease as illustrated in picture 3. Consequently, it is not cost-efficient to keep on
@@ -457,8 +458,6 @@ the farmers to seek technological aids for punctual estrus detection. Thus, the 
 of this study is in developing of estrus detection algorithms for wearable sensor device.
 The hardware and software designs are intoruced in section 3 and the results are discussed
 in 4. Additionally, we will survey through of currently available solutions in section 2.2.1.
-
-    However, before proceeding to the research of this study, it is necessary to discuss of
 milk yield (kg)                                                                                           7
 
                               40
@@ -473,6 +472,7 @@ the weeks in milk and the milk yield. After the beginning of the lactation, the 
 reduces in the function of time [23].
                                                                                                           8
 
+    However, before proceeding to the research of this study, it is necessary to discuss of
 the estrus cycle of dairy cow. The estrus cycle is the period between ovulations. Actually,
 the estrus cycle is considered to begin from the ovulation. The normal duration of a cow
 estrus cycle is approximately 21±3 days. A bull may detect an estrus already 2 days in
@@ -518,9 +518,9 @@ collar [17, 16, 25] sensor devices are collar or leg devices mounted with straps
 However, there are even tail-attached sensor [25] and in rumen [26] sensors available. In
 addition to various attachments, the devices have various applications. Some sensors are
 specialized in calving detection [25] or digesting monitoring [26] only whereas leg and
-collar sensors provide more wide range of functionalities. Typically, they monitor the cow
                                                                                                           9
 
+collar sensors provide more wide range of functionalities. Typically, they monitor the cow
 motion and activity [24, 17, 16, 25]. Moreover, leg sensors can count steps and detect the
 pose of the cow (standing, lying and walking). Furthermore, the leg and collar sensors are
 used in estrus detection. Additionally, some devices are capable of monitoring rumination
@@ -567,9 +567,9 @@ methods and the reliability is not high enough for standalone solution. Yet anot
 used pedometers for a step-count based estrus detection [12]. In this method they were
 able to improve the visual estrus detection rate up to 84.2 %. Also in this study, the estrus
 detection was verified by the success of insemination. Either this solution was standalone,
-hence the purpose was use it together with the sight-wise estrus detection. In addition to
                                                                                                         10
 
+hence the purpose was use it together with the sight-wise estrus detection. In addition to
 these accelerometer-based behavior and estrus detection, one research studied lameness
 detection as attaching one accelerometer to each limb [30]. Their ground idea was sample
 the accelerometer data from each limb at 25 Hz and use wavelet analysis in order to detect
@@ -1700,7 +1700,7 @@ nearby. These components could have been reduced using such offset compensation 
 high-pass filter discussed in section 3.1.1. However, applying offset compensation to the
 data does not provide any additional information in frequency domain. Thus, awareness of
 the offset component is enough considering the usage of the results. The results of the FFT
-are represented in figure 11.
+are represented in figure 10.
 
 4.1.2 SD File Operations
 
@@ -1807,7 +1807,7 @@ picture is restricted around the estrus.
 
 in raw accelerometer data. The increased activity level of the cow appears in exceptionally
 long period of high amplitude activity. Furthermore, the change of activity is detectable
-in all axis of the accelerometer. Figure 16 represents the raw accelerometer data of the
+in all axis of the accelerometer. Figure 15 represents the raw accelerometer data of the
 cow 319 around of the proestrus period. Similarly, figures B1 and B2 shows the raw
 accelerometer data around the both proestrus periods of the cow 9885. In conclusion, these
 highly active periods are easily detectable for human simply by visually inspecting these
@@ -2063,7 +2063,7 @@ this study, in this subsection the scope is in failures and suggestions for impr
     Firstly, the body temperature measurement was a total failure. That is, the heat con-
 ducting system did not conduct the heat enough. Conversely, the results of the temperature
 measurements seemed to follow the temperature of the surrounding air. It was also seen
-from the temperature curve of the accelerometer 12, hence, both of the temperatures
+from the temperature curve of the accelerometer 11, hence, both of the temperatures
 seemed synchronous. Additionally, it was tested to filter the results and calculate the
 differential of the two temperatures sensors. Nevertheless, no correlation with a ongoing
 estrus or proestrus were found in this study. In contrast to the sensor setup of this study,
