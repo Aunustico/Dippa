@@ -412,7 +412,7 @@ As stated previously, the data recording hardware in this study is an already ex
 
 \item \textit{Texas Instruments TMP112} is a high-accuracy, low-power, digital temperature sensor. It is designed for various applications from portable and battery-powered solutions to general temperature merasurements in industrial controls. \cite{tmp112datasheet} 
 
-\item \textit{Secure Digital (SD)} memory card is specially designed to meet the security, capacity and performance requirements in newly emerging consumer electronic devices. The standard capacity of SD memory card is up to \SI{2}{\giga\byte}. However, High Capacity SD (SDHC) extends the maximum capacity to \SI{32}{\giga\byte} and Extended Capacity SD (SDXC) up to \SI{2}{\tera\byte}. \cite{sdspecification}.
+\item \textit{Secure Digital (SD)} memory card is specially designed to meet the security, capacity and performance requirements in newly emerging consumer electronic devices. The standard capacity of SD memory card is up to \SI{2}{\giga\byte}. However, High Capacity SD (SDHC) extends the maximum capacity to \SI{32}{\giga\byte} and Extended Capacity SD (SDXC) up to \SI{2}{\tera\byte}. \cite{sdspecification}. In this study, the maximum capacity of SDHC card shall be considered as the maximum available memory capacity. This restriction shall be taken into considerations while designing the sensor software. Moreover, the memory card shall be capable of recording one estrus cycle at minimum (approximately 21 days).
 
 \end{itemize} In addition to the hardware components, the hardware configurations utilizes two serial interfaces, \textit{inter-inegrated circuit (I$^2$C) bus} and \textit{serial peripheral interface (SPI)}. They are explained briefly in the following.
 
@@ -421,7 +421,9 @@ As stated previously, the data recording hardware in this study is an already ex
 
 
 \item \textit{Serial peripheral interface (SPI)} \cite{spimanual} is a more complex serial interface than the (I$^2$C) bus. It requires at minimum of three parallel wires in three-wire mode \cite{bma222datasheet} \textit{signal select} ($\bar{SS}$), \textit{serial clock} (SCK) and \textit{serial data input/output} (SDI). However, in normal four-wire mode the data input and output are in separate lines, \textit{master out, slave in} (MOSI) and \textit{master in, slave out} (MISO).
-\end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Therefore, their special assignments are discussed in detail in the following descriptive topics.
+\end{itemize}  As we have now introduced the main components of the sensor device, the communication principles of the device are represented in figure \ref{serialdiagram}. As shown in the picture, SD memory card utilizes SPI serial interface whereas temperature sensor and accelerometer are connected into same I$^2$C bus. Naturally, all of these hardware components are assigned to their specific tasks with respect to their functional description. Therefore, their essential functionalities are discussed in the following topics.
+
+\input{serialdiagram.tex}
 
 
 \subsubsection*{Micro-controller ok}
@@ -450,7 +452,7 @@ As discussed earlier, Atmel ATmega32u4 \cite{atmega32u4datasheet} is the micro-c
 \end{itemize}
 
 
-\subsubsection*{Accelerometer}
+\subsubsection*{Accelerometer ok}
 
 As discussed previously, a micro-controller is the core component of the hardware design of the sensor device. Similarly, an accelerometer is the essential sensors providing data for data recording as well as algorithm development. In this study, the utilized accelerometer is the Bosch Sensortech BMA222E \cite{bma222datasheet}. It is a triple-axial accelerometer used for measuring the change in the motion. Additionally, it can be employed in position recognition in constant situations. The axises of the accelerometer are perpendicular. Therefore, it is capable of measuring in all direction. Additionally, it contains several advantageous on-chip functions. It is capable of prior and post filtering acceleration measurements. Additionally, it can detect various conditions and trigger interrupts in result. Moreover, the filters as well as the detectable conditions are highly configurable. These configurations are discussed in the following description. Nevertheless, the accelerometer contains several functionalities without use-cases in this study. Consequently, those features are not covered in the discussions. However, some of the features have no direct use case in this study but are applicable in the future studies that are considered in section \ref{conclusionssection}. Additionally, the sensor configurations varies between two software implementations in this study and they are discussed in the sectin \ref{softwaresection}. The kay features of the BMA222E accelerometer are as follows.
 
@@ -479,37 +481,45 @@ As discussed previously, a micro-controller is the core component of the hardwar
 
 
 
-\subsubsection*{Temperature Sensor}
+\subsubsection*{Temperature Sensor ok}
 
-Texas Instruments TMP112 is a high-accuracy temperature sensor for various applications from portable devices to industrial controls. In this study the temperature sensor is used for monitoring the skin temperature of the cow. The target of the monitoring is to find correlation between the change of skin temperature and ongoing estrus. Thus, in the case of positive correlation the temperature sensor can confirm the detected estrus. 
+Whereas the accelerometer is the main sensor of the sensor device, a temperature sensor is considered as a supportive sensor. Furthermore, the accelerometer contains a built-in temperature sensor. However, its resolution is relatively low. In contrast, Texas Instruments TMP112 is a high-accuracy temperature sensor for various applications from portable devices to industrial controls.  It is specially designed for replacing \textit{negative temperature coefficient (NTC)} and \textit{positive temperature coefficient (PTC)} thermistors in high accuracy applications. In this study, the temperature sensor is used for monitoring the skin temperature of the cow. The target of the monitoring is to find correlation between the change of skin temperature and ongoing estrus or pro-estrus. Therefore, in the case of positive correlation the temperature sensor can confirm the detected estrus. In contrast, a negative correlation can confuse the results and yield a need for further studies. The properties of the TMP112 temperature sensor are described in the following.
 
-The temperature sensor used in this study is Texas Instruments TMP112 high-accuracy, low-power, digital sensor. It is designed for replacing NTC/PTC thermistors in high accuracy applications. Its main features are 
 
 \begin{itemize}
-\item \textit{High accuracy} without calibration. Furthermore, the data sheet provides instructions for calibrating the sensor. Without the calibration the accuracy is
+\item \textit{High accuracy} of 
+
 \begin{itemize}
 \item \SI{0.5}{\celsius} in range from \SI{0}{\celsius} to \SI{65}{\celsius}
+
 \item \SI{1.0}{\celsius} in range from \SI{-40}{\celsius} to \SI{125}{\celsius}
 \end{itemize} 
-\item \textit{High resolution} of \SI{0.0625}{\celsius} in both, 12-bit and 13-bit mode
-\item \textit{Low power consumption} and two different power modes:
+
+without calibration. Furthermore, instructions for the calibration of the sensor are provided in the data sheet. 
+
+\item \textit{High resolution} of \SI{0.0625}{\celsius} in both, 12-bit and 13-bit modes
+
+\item \textit{Low power consumption} in two different power modes:
 \begin{itemize}
 \item \SI{10}{\micro \ampere} in active mode
 \item \SI{1}{\micro \ampere} in shutdown mode
 \end{itemize}
+
 \item SMBus\textsuperscript{TM}, Tow-Wire and I$^2$C digital interfaces
+
 \item supply voltage range from \SI{1.4}{\volt} to \SI{3.6}{\volt}
+
 \item \textit{Conversion rate} from \SI{0.5}{\hertz}  to \SI{8}{\hertz}
-\item \textit{12-bit resolution} from \SI{-55}{\celsius} to \SI{128}{\celsius}. The sensor has an 13-bit mode, when the measurement range is up to \SI{150}{\celsius}.
-\end{itemize} \cite{tmp112datasheet}
 
-Temperature sensor is soldered on the circuit board, but the skin temperature is conducted from skin to chip via heat conducting aluminum tape.
+\item \textit{12-bit resolution} from \SI{-55}{\celsius} to \SI{128}{\celsius}. The sensor has an 13-bit mode, when the measu
+rement range is up to \SI{150}{\celsius}. \cite{tmp112datasheet}
+\end{itemize} In this study, the temperature sensor is soldered directly on the circuit board. In result, the sensor is not in direct skin contact with the cow. Therefore, the skin temperature is conducted from skin to the sensor via heat conducting aluminum tape.
 
-\subsubsection*{Secure Digital Memory Card}
+%\subsubsection*{Secure Digital Memory Card}
 
-This hardware configuration uses a secure digital (SD) memory card as a memory storage for data recording.
+%As discussed above, suitable data storage was not initially included in the data recording hardware. Therefore, the original design was enhanced with a secure digital memory card slot for replaceable memory card. The purpose of the SD card is functioning as a long term data storage. Naturally, it is supposed to be capable of record data for more than one estrus cycle (approximately 22 days). The final requirements for appropriate card size depends on the sampling interval as well as the format the data is recorded on the card. Therefore, it is reasonable to estimate the required memory size after the device application software is implemented. Nevertheless, the maximum capacity the high capacity secure digital memory cards of \SI{32}{\giga\byte} shall be considered as the maximum. Thus, the software implementation shall adopt to this maximum memory limit.
 
-\input{serialdiagram.tex}
+
 
 \subsubsection{Software} \label{softwaresection}
 
