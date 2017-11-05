@@ -68,6 +68,7 @@
   pdftitle={Default Title, Modify},pdfauthor={Your Name},
   pdfkeywords={Modify keywords}}
 
+%\usepackage{textcomp}
 
 \usepackage[backend=biber,
 style = numeric]{biblatex}
@@ -135,7 +136,7 @@ style = numeric]{biblatex}
 %% Esipuhe 
 %%
 \mysection{Prologue}
-I would like to thank you everyone. \cite{tmp112datasheet} \cite{bma222datasheet} \\
+I would like to thank you everyone. \cite{tmp112datasheet} \cite{bma222datasheet}
 
 \vspace{5cm}
 Otaniemi, 16.1.2017
@@ -286,15 +287,15 @@ Originally, cows were wild pasture animals and, afterwards,  domesticated by hum
 
 \subsubsection{Dairy Cow} \label{dairycowsection}
 
-Tähän alkuun vielä jotakin lehmän perustietoja, kuten arvio rotujen määristä. Lehmän keskimääräinen paino, koskeus, pituus jne. Ehkä myös maininta siitä, kuinka paljon lehmä tarvitsee tilaa mm. laskeutumiseen ja ylösnousuun. \\
+Tähän alkuun vielä jotakin lehmän perustietoja, kuten arvio rotujen määristä. Lehmän keskimääräinen paino, koskeus, pituus jne. Ehkä myös maininta siitä, kuinka paljon lehmä tarvitsee tilaa mm. laskeutumiseen ja ylösnousuun. 
 
-Previously, we surveyed through the history of animal husbandry and discussed of the beginning milk producing. Additionally, we introduced such cowsheds as tie-stall and loose-housed cowsheds. Correspondingly, this subsection will debate on the dairy cow itself in general level. Whereas, the subsequent subsections will focus on such milk yield related cycles as estrus and lactation cycles. Inherently, cows are plain and herd animals. Moreover, they live in hierarchy \cite{julkaisuja52}. In large herds they form smaller groups where they do their daily activities such as eat and rest together \cite{julkaisuja52} \cite{lehmahavaintoja}. \\
+Previously, we surveyed through the history of animal husbandry and discussed of the beginning milk producing. Additionally, we introduced such cowsheds as tie-stall and loose-housed cowsheds. Correspondingly, this subsection will debate on the dairy cow itself in general level. Whereas, the subsequent subsections will focus on such milk yield related cycles as estrus and lactation cycles. Inherently, cows are plain and herd animals. Moreover, they live in hierarchy \cite{julkaisuja52}. In large herds they form smaller groups where they do their daily activities such as eat and rest together \cite{julkaisuja52} \cite{lehmahavaintoja}. 
 
 Typically, cows lay down approximately from \SI{11}{\hour} to \SI{12}{\hour} every day. Meanwhile, they stand up and change their pose several times \cite{luomunaudanruokinta}. Additionally, they may move their location between haunts and watering places. Thus, in loose-housed cowshed a cow may walk from  \SI{400}{\metre} to \SI{800}{\metre} per day \cite{luomuopas}. On pasture, their daily walking range may extend to several kilometers \cite{luomuopas} \cite{julkaisuja52}. However,  cows are very cautious animals. Thus, insecure circumstances such as slippery ground or high steps can reduce their daily range. Furthermore, cows can be easily injured in challenging places. Naturally, injuries effects to their health and consequently to profitability \cite{lehmahavaintoja}. Nevertheless, Walking enforces the health of them, increases hormonal activity and metabolism \cite{luomuopas}. \\
 
-In addition to their normal activity, cows may have exceptional states. Typically, these states become apparent in their behavior. That is, sicknesses and injuries reduces their activity level, whereas, proestrus increases it. Phases of estrus are covered in detail in section \ref{estrussection}. \\
+In addition to their normal activity, cows may have exceptional states. Typically, these states become apparent in their behavior. That is, sicknesses and injuries reduces their activity level, whereas, proestrus increases it. Phases of estrus are covered in detail in section \ref{lactationandestruscyclessection}.
 
-Tänne vähän lisää tietoa lehmien terveysongelmista, kuten ontumisesta, sorkkahommista ja ruoansulatusvaivoista. \\
+Tänne vähän lisää tietoa lehmien terveysongelmista, kuten ontumisesta, sorkkahommista ja ruoansulatusvaivoista. 
 
  
 
@@ -347,7 +348,7 @@ However, before proceeding to the research of this study, it is necessary to dis
 
 \subsection{Health Monitoring and Estrus Detection} \label{healthmonitoringandestrusdetectionsection}
 
-The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study of dairy cow included basic knowledge of the cow and its environments. Moreover, we discussed of lactation and estrus cycles and their affect on the milk yield and profitability. Additionally, we briefly surveyed through the most common health issues with dairy cow. In continuation to previous discussions, this subsection discusses of different methods for live-stock monitoring. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchanddevelopmentsection} discusses of studies of existing technology as well as recent development projects for future solutions.  
+The previous subsection \ref{dairyfarmingsection} discussed of the fundamentals of dairy farming. The discussion started form the history of animal husbandry and ended to study of dairy cow itself. The study of dairy cow included basic knowledge of the cow and its environments. Moreover, we discussed of lactation and estrus cycles and their affect on the milk yield and profitability. Additionally, we briefly surveyed through the most common health issues with dairy cow. In continuation to previous discussions, this subsection discusses of different methods for live-stock monitoring. First of the following subsection \ref{currentsolutionssection} surveys through currently used methods and technologies. Correspondingly, the second subsection \ref{researchandstudiessection} discusses of studies of existing technology as well as recent development projects for future solutions.  
 
 
 \subsubsection{Current Solutions} \label{currentsolutionssection}
@@ -366,7 +367,7 @@ Most typically in these researches, the sensor devices are based on various acce
 Another study used a commercially available leg sensor for estrus detection \cite{Jonsson20116}. From the leg they were able to detect whether the cow was lying, standing or moving. The overall sensitivity in estrus detection was \SI{88.9}{\percent} adn error rate \SI{5.9}{\percent}. Also they used 1 minute sample periods. In this study, the detected estruses were controlled by success of insemination. In their conclusions, they suggested this method could only support existing methods and the reliability is not high enough for standalone solution. Yet another research used pedometers for a step-count based estrus detection \cite{BRUNASSI2010}. In this method they were able to improve the visual estrus detection rate up to \SI{84.2}{\percent}. Also in this study, the estrus detection was verified by the success of insemination. Either this solution was standalone, hence the purpose was use it together with the sight-wise estrus detection. In addition to these accelerometer-based behavior and estrus detection, one research studied lameness detection as attaching one accelerometer to each limb \cite{Pastell2009545}. Their ground idea was sample the accelerometer data from each limb at \SI{25}{\hertz} and use wavelet analysis in order to detect asymmetry, which could be considered as lameness.
 
 
-In contrast to these more traditional accelerometer-based solution,  another researche studied the use of intravaginal probe for estrus detection \cite{Andersson2016101} \cite{7370219}. The probe was designed to be insterted inter vagina and transmit the temperature and conductivity data wirelessly. The idea for this study was to use non-motion based sensors. Therefore, this solution could be used  also in tie-stall cowshed. The research showed some promising results but lacked of reliability. In their sequel study they used two sizes of the intravaginal probes, \SI{160}{\milli \metre} and \SI{120}{\milli \metre} probes. However, neither of these were successful. The larger probe caused bleeding during the research, whereas the smaller started to rotate and even ejected the vagina. Nevertheless, they were able to found some correlation between the intravaginal tepmerature as well as the electrical conductivity and estrus.
+In contrast to these more traditional accelerometer-based solution,  another researche studied the use of intravaginal probe for estrus detection \cite{Andersson2016101} \cite{7370219}. The probe was designed to be inserted inter vagina and transmit the temperature and conductivity data wirelessly. The idea for this study was to use non-motion based sensors. Therefore, this solution could be used  also in tie-stall cowshed. The research showed some promising results but lacked of reliability. In their sequel study they used two sizes of the intravaginal probes, \SI{160}{\milli \metre} and \SI{120}{\milli \metre} probes. However, neither of these were successful. The larger probe caused bleeding during the research, whereas the smaller started to rotate and even ejected the vagina. Nevertheless, they were able to found some correlation between the intravaginal temperature as well as the electrical conductivity and estrus.
 
 
 
@@ -381,130 +382,100 @@ In behavior based cow monitoring, the sensor devise attempts to recognize on or 
 \item \textit{Feeding} means the act when the cow is eating feed.
 \item \textit{Normal walking} when the cow is in health and walks normally.
 \item \textit{Lame walking} when the cow has health issues in its legs or claw and its walking is cautions on asymmetrical.
-\item \textit{Lying down} means when the cow is standig but changes its state into lying.
+\item \textit{Lying down} means when the cow is standing but changes its state into lying.
 \item \textit{Standing up} is when the cow was lying but stands up.
 \end{itemize}. The behavior monitoring provides beneficial information for the farmer about the health status as well as the mix of the feed.
 
 
-%The sampling frequency was \SI{10}{\hertz} and the data was sent to a PC computer via \SI{2.45}{\giga\hertz} radio band. Measurement range of $\pm$ 3 g. The sensor was ADXL330, Analog Devices Inc., USA and it was attached to the collar. They used 30 Ayrshire and Holstein-Friesian cows. The cows were loose-housed and the barn used automatic milking system. Most of the days the cows had a free access to a pasture. The data was recorded during 30 days. The video, stopwatches and accelerometers were synchronized manually. Cows had different gait scores \dots Used multi-class support vector machines. \SI{70}{\percent} of the data was used as training set and \SI{30}{\percent} was used as a test data set. Lying head erect does not differ much from standing posture considering the accelerometer data. This causes misclasifications. The interest war predicting the behaviour that occurred instead of the behaviour that did not occur. Fixed parameters (e.g. time window) are not suitable for all different behaviours. \cite{Martiskainen200932} \\
-%
-%Six dairy cows monitored continuously for 36 h. They used a decision-tree algorithm for detecting if the cow was either standing, feeding or lying. The algorithm matches the performance of computationally more intensive algorithms such as hidden Markov model and support vector machines. It is suggested that the decision-tree algorithm could be a part of a real-time behavioural monitoring system. The performance of the algorithm varies in function of the time window which was from 1 to 10 minutes. In the algorithm comparison table the decision-tree algorithm was better in 1 minute window than in 10 minute window. The support vector machine, however, was equally good or even better algorithm. Holstein dairy cattle located in Essex, UK. The cows were loose-housed in a cubicle shed. The herd was milked three times a day. The cows selected for the study did not show signs of lameness or other deseases. Drinking, brushing and walking activities were excluded in this study. \cite{VazquezDiosdado2015}
-%
-%Combines step count and leg tilt data. Data was extracted from 44 dairy cows over an 8 month period. The results show sensitivity \SI{88.9}{\percent} and error rate \SI{5.9}{\percent}. The sensor was IceTag3D \circledR which is a three-axis accelerometer. The sample period was chosen to be 1 minute and is the time resolution through the study. The sensor provides four variables: the percentage spent in three of the stages and step count. The stages are lying, standing and motion. The lying and standing are detected by the tilt of the sensor. The variables lying and standing gives the percentage of the sampling period spent in each of the two states; the motion index is a measure of how much the cow has moved in the sampling period and step count is the number of steps in each sampling period. The measurements were available for a total of 88 cows over varying periods. The data transfer from the IceTag was done manually holding a reader close to the IceTag device. Data sequence for estrus detection were selected around 18 and 23 days between two estruses. 62 cows did not get pregnant, 18 cows were inseminated wearing an IceTag and 44 were not inseminated at all wearing an IceTag. Total of 26 cows became pregnant. The conclusion says, this method could only improve other estrus detecting methods but not alone reliably detect estruses.
-%\cite{Jonsson20116}
-%
-%They used pedometers. The data set consists of data gathered from 98 cows successfully inseminated by visual estrus detection. The pregnancy was considered as a confirmation for the detection. In the data gathering period of six months a total of 335 estrus cases occurred. 237 cases were discarded since the cows either did not become pregnant or did not wear pedometers. They could improve the visual estrus detection up to 84.2 \%
-%
-%This research aims to provide a cheap sensor for estrus detection which is an alternative for current commercial products basesd on accelerometers and odometers. The provided sensor is a wireless intravaginal probe measuring temperature and conductivity. The benefit of this probe against accelerometers is that the cow is not required to move for estrus detection. In the study a video camera was used for detecting the action of the cow, since, moving, standing, eating and stress increases the body temperature. It is suggested that an accelerometer could be used instead of videocamera for automated motion detection. The conductivity measurements were not satisfying since, the contact between the animal and the tissue vere not constant and caused noisy measurments. Yet, some correlation were detected with the cow activity.  \cite{7370219}
-%
-%in the further study the probe measured vaginal temperature, acceleration and vaginal tissue resistance. They had two kinds of probes, a 160 mm \SI{160}{\milli \metre} probe and a 1 \SI{120}{\milli \metre} probe. The longer one caused bleeding during the trials. The shorter one worked out fine but started to rotate during the estrus and it even ejected. Therefore, no sufficient probe desing was found. The 3-axis accelerometer provided different spaces for datapoints when the cow was either standing up, resting wide or resting narrow. \cite{Andersson2016101} accuracy. 
-%\cite{BRUNASSI2010}
-
-
 \clearpage
 
-\section{Research} \label{researchsection}
+\section{Research ok} \label{researchsection}
 
-In previous section \ref{backgroundsection}, the backgrounds of this study were in discussion. The discussions covered the dairy farming in general level and the dairy cow more in detail. Moreover, the section focused in milk yield related estrus and lactation cycles. Additionally, we discussed of current and future solutions for dairy cow health monitoring and estrus detection. In conclusion of the first section, there is a certain need for efficient and cost-effective solutions for dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently promising due their overall performance and availability. Respectively, in this section the target is to develop convenient estrus detection algorithm for a wearable wireless sensor device. Furthermore, the development initiates from a scratch. That is, no assumptions are made based on previous studies. \\
+In previous section \ref{backgroundsection}, we discussed of the essential backgrounds of this study. The discussion started form the beginning of animal husbandry and dairy cow in modern farming. The discussion ended in introduction of currently used methods and survey of recent research and studies. Moreover, the background section focused in milk yield related estrus and lactation cycles in present day farming. In conclusion of the background, there is a certain need for an efficient solutions in dairy cow monitoring. Accordingly, wearable wireless sensor devices are currently the most promising option due their overall performance and availability. Respectively, the target of this study is to develop and evaluate convenient estrus detection algorithms for wearable wireless sensor devices. Therefore, this section discusses of required tools and supportive methods in data recording and algorithm development. Additionally, the data recording software in this study are created from a scratch. Thus, it is necessary to introduce the related software implementations in this study.
 
-In this study, the research section has been divided in three subsections. The first subsections \ref{datarecordingsection}  discusses of data recording. The discussion includes the description of the hardware as well as the software implementation. The hardware description covers the main hardware components in reasonable detail. Additionally, we discuss of the communication between the main components. Respectively, the software implementation description discusses of the work flow of the data recording software. \\
-
-The second subsection \ref{dataprocessingsection} introduces a set of methods applied on the recorded data. The set consists of basic statistics as well as various digital signal processing methods. The basic statistics contains only the most fundamental measures of statistical analysis. Nevertheless, they are discussed only briefly in this section. Conversely, the digital signal processing methods contains more advantageous calculus. Thus, they are discussed more in detail. \\
-
-Lastly in this section \ref{estrusdetectionalgorithmssection}, we develop three different algorithms for dairy cow estrus detection. All these algorithms have their basis in data processing methods introduced in previous subsection \ref{dataprocessingsection}. However, each of them have slightly different approach to detect the estrus. Nevertheless, all the algorithms detects rather the pro-estrus than the actual estrus \ref{estruscyclesection}. All these differences are covered in the discussions. Furthermore, we discuss of the background and describe the evolving of each algorithm in detail. \\
+In this study, the research section has been divided in three subsections. The first subsections \ref{datarecordingsection}  discusses of data recording. The data records are essential component in algorithm development and evaluation. In this study we will not use already existing data. Thus, we will implement required software as well as record the data for further employment. The subsection introduces the hardware design for the data recording. The hardware discussion covers the main hardware components in reasonable detail. In addition to the hardware design, we discuss of the communication protocols between the main hardware components. Respectively, we introduce the principle work flow of the data recording software. Whereas, the hardware of this study was already existing, the software is self-implemented. Thus, we will discuss of  the implementation more in detail. The second subsection \ref{dataprocessingsection} introduces a set of data processing methods applied on the recorded data. The set of methods consists of basic statistics as well as various digital signal processing tools. In this study, we utilize only the basic statistical analysis and they are introduced briefly. In contrast, the digital signal processing tools are covered in more detailed discussion. Lastly in this section \ref{estrusdetectionalgorithmssection}, we develop three different algorithms for dairy cow estrus detection. All these algorithms have their base in the discussed methods. However, each of the algorithms have their own approach to estrus detection. Nevertheless, all the algorithms detects rather the pro-estrus than the actual estrus \ref{lactationandestruscyclessection}. However, the end of pro-estrus indicates the beginning of the estrus. Therefore, this kind of approach is highly applicable. Additionally, it provides the cattle tender more time to prepare for the required actions. 
 
 
-Tähän ehkä jotain hypoteesia tutkimuksesta ja jotain mahdollisia ennakko-oletuksia?
+\subsection{Data Recording ok} \label{datarecordingsection}
+
+Above, we described the research section of this study in general level. As already stated, this subsection will discuss of the data recording process. The data records are essential components in algorithm development and evaluation. The discussions in this subsection will start from the introduction of data recording hardware. The hardware design in this study is an existing hardware setup. Therefore, we will discuss of the main components and functionalities only superficially. Next, we will discuss of the data recording software. The software for this study is created from a scratch. Therefore, the software design is discussed particularly. In this study, we recorded data in three different occasions of which, the first occasion with a different software implementation. Consequently, we introduce two different software implementation.  Lastly in the data recording subsection, we will describe the actual data recording procedure of all the occasions.
 
 
+\subsubsection{Hardware ok} \label{hardwaresection}
 
-\subsection{Data Recording} \label{datarecordingsection}
-
-Formerly, we described the research of this study in general whereas, the topic of this subsection is in the data recording. Altogether, the data recording is divided in three more sections. The first describes the data recording hardware. The hardware was a prototype of a sensor device for dairy cow monitoring. Furthermore, the hardware was modified for data recording purposes. Nevertheless, any hardware design is not included in this study. Next, we discuss of two different software implementations for data recording hardware. The starting point for the first implementation is making of no assumptions whereas, the second implementation is based on the results of the results of first recorded set of data. Lastly in this subsection, we discuss of the data recording process itself.  \\
-
-
-
-\subsubsection{Hardware} \label{hardwaresection}
-
-As discussed previously, the hardware for the data recording was a prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of storage memory for storing the recorded data. Thus, the hardware was customized and a Secure Digital (SD) memory card slot was added. Otherwise, the hardware remained the same during the entire study. In despite of the customization, the hardware design is not in scope of this study. Therefore, the following is rather description of the hardware than comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss the communications between the components. In general, the main hardware components brief descriptions are as follows:
+As stated previously, the data recording hardware in this study is an already existing prototype of a dairy cow sensor device. Originally, the hardware consisted of micro-controller unit (MCU), accelerometer and thermometer. However, it lacked of large enough storage memory for data recording. Thus, the hardware was enhanced with a Secure Digital (SD) memory card slot and with a SD memory card for this study. Otherwise, the hardware design remained the same during the data recording processes. In spite of the mentioned customization, the hardware design is not in the scope of this study. Therefore, the following is rather a description of the hardware than a comprehensive discussion of the design itself. In addition to hardware components, we briefly discuss of the communication between the components. In general, the main hardware components brief descriptions are as follows.
 
 \begin{itemize}
-\item \textit{Atmel ATmega32u4} is a high perforamance low power 8-bit micrto-controller. It is designed for optimizing power consumption versus processing speed. It contains 135 powerful Reduced Instruction Set Computer (RISC) architecture instructions of which most executable in single clock cycle.  \cite{atmega32u4datasheet} 
+\item \textit{Atmel ATmega32u4} is a high perforamance low power 8-bit micro-controller. It is designed for optimizing power consumption versus processing performance. It contains 135 powerful Reduced Instruction Set Computer (RISC) architecture instructions of which most executable in a single clock cycle.  \cite{atmega32u4datasheet} 
 
-
-\item \textit{Bosch Sensortec BMA222E} is an accelerometer with on-chip motion triggered interrupt controller. Thus, it enables motion-based applications even without use of micro-controller. It is capable of measuring acceleration in three perpendicular axes. BMA222E is designed for various consumer products from game controllers to pedometers. It is small sized and low power consuming. Therefore, it is suitable for mobile solutions.  \cite{bma222datasheet} 
+\item \textit{Bosch Sensortec BMA222E} is an accelerometer with on-chip motion triggered interrupt controller. Thus, it enables motion-based applications even without utilizing a micro-controller. It is capable of measuring acceleration in three perpendicular axises. BMA222E is designed for various consumer products from game controllers to pedometers. It is small sized and low power consuming. Therefore, it is suitable for mobile battery-powered solutions.  \cite{bma222datasheet} 
 
 \item \textit{Texas Instruments TMP112} is a high-accuracy, low-power, digital temperature sensor. It is designed for various applications from portable and battery-powered solutions to general temperature merasurements in industrial controls. \cite{tmp112datasheet} 
 
 \item \textit{Secure Digital (SD)} memory card is specially designed to meet the security, capacity and performance requirements in newly emerging consumer electronic devices. The standard capacity of SD memory card is up to \SI{2}{\giga\byte}. However, High Capacity SD (SDHC) extends the maximum capacity to \SI{32}{\giga\byte} and Extended Capacity SD (SDXC) up to \SI{2}{\tera\byte}. \cite{sdspecification}.
 
-\end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Their special assignments are discussed in detail in the following descriptive sections.
-
-In addition to the hardware components, the hardware configurations consists of two serial interfaces as follows:
+\end{itemize} In addition to the hardware components, the hardware configurations utilizes two serial interfaces, \textit{inter-inegrated circuit (I$^2$C) bus} and \textit{serial peripheral interface (SPI)}. They are explained briefly in the following.
 
 \begin{itemize}
-\item \textit{Inter-Inegrated Circuit (I$^2$C) bus} or some times referred as \textit{Two-Wire Interface (TWI)} is a serial communication interface developed by Philips Semiconductor. The first I$^2$C was released in 1982. The design isn rather simple hence, it requires only only two bidirectional open-drain lines, Serial Data Line (SDA) and Serial Clock Line (SCL), pulled up with resistors \cite{i2cmanual}.
+\item \textit{Inter-Inegrated Circuit (I$^2$C) bus} which is some times referred as \textit{Two-Wire Interface (TWI)} is a serial communication interface developed by Philips Semiconductor. The first version of  the I$^2$C was released in 1982. The design of it is rather simple hence, it requires only only two bidirectional open-drain lines, Serial Data Line (SDA) and Serial Clock Line (SCL), with pull-up resistors \cite{i2cmanual}.
 
 
-\item \textit{Serial peripheral interface (SPI)} \cite{spimanual} kjlk l
-\end{itemize}
+\item \textit{Serial peripheral interface (SPI)} \cite{spimanual} is a more complex serial interface than the (I$^2$C) bus. It requires at minimum of three parallel wires in three-wire mode \cite{bma222datasheet} \textit{signal select} ($\bar{SS}$), \textit{serial clock} (SCK) and \textit{serial data input/output} (SDI). However, in normal four-wire mode the data input and output are in separate lines, \textit{master out, slave in} (MOSI) and \textit{master in, slave out} (MISO).
+\end{itemize} Naturally, all of these hardware components are assigned to specific tasks with respect to their functional description. Therefore, their special assignments are discussed in detail in the following descriptive topics.
 
 
-\subsubsection*{Micro-controller}
+\subsubsection*{Micro-controller ok}
 
-The micro-controller unit (MCU) is the fundamental component of the sensors device in this study. It is responsible of execution of the software flow whenever the device is powered. The software flow starts from the boot, that is, after switching the power on or resetting the micro-controller. During the boot, it initializes itself as well as the connected sensors according to the prior set configurations in the software. After the boot, the micro-controller begins the execution of the repetitive software loop including various tasks and events. The initialization configurations and the tasks and events are discussed more the software section \ref{softwaresection}. \\
+The \textit{micro-controller unit (MCU)} is the core component of the sensors device in this study. That is, the micro-controller is responsible of execution of the software flow whenever the device is powered. Typically, the first executable task in the software flow is the system initialization. Normally, system is initialized once in software flow and each time after resetting or starting the micro-controller. During the initialization, the micro-controller sets up its control register according to the configurations in its program memory. These registers contains the configurations for the \textit{general purpose input output} (GPIO) pin configurations as well as timers, serial interfaces and other featured functionalities. In addition to self configuration, the micro-controller initializes connected hardware via serial interfaces according to the configurations in the software memory. Next, after initialization the micro-controller begins the execution of the actual software flow. Typically, this flow is a repetitive software loop including variable tasks and events. The hardware initialization and configurations as well as the application tasks and events are discussed more the software section \ref{softwaresection}.
 
-As stated earlier, the micro-controller unit of the sensor device in this study is Atmel ATmega32u4. The following describes the main features of the MCU considering this study.
+As discussed earlier, Atmel ATmega32u4 \cite{atmega32u4datasheet} is the micro-controller unit of the sensor device in this study. It is a high performance, low power micro-controller for various applications. Therefore, we will discuss of its features and functionalities more in detail. In spite of the wide range of its features, only the most fundamental properties are covered in the following discussion.
+
 
 \begin{itemize}
-\item \textit{\SI{32}{\kilo\byte} of In-System Self-Programmable Flash memory} is the memory space for the actual program storage. Furthermore, the memory space is divided into two sections, Boot Program Section and Application Program section. 
+\item \textit{\SI{32}{\kilo\byte} of In-System Self-Programmable Flash memory} is the memory space for the actual program storage. Furthermore, the memory space is divided into two sections, Boot program Section and application Program section. 
 
-\item \textit{USB 2.0 Full-Speed/Low-speed Device Module} provides interface to write on the In-System Self-Programmable Flash of the controller. Thus, it enables uploading the application software without external USB module. Additionally, Interface contributes serial communication between computer and the device.
+\item \textit{USB 2.0 Full-Speed/Low-speed Device Module} provides interface to write on the in-system self-programmable flash memory of the controller. Thus, it enables uploading the application software without external USB module. Additionally, the interface contributes serial communication between computer and the device.
 
-\item \textit{General I/O} consists of 26 programmable I/O lines. These lines can be set as input or output separately. Furthermore, certain input pins can be configured as interrupt pins. These configurations and features are required for such finctionalities as serial communication, setting and getting statuses.
+\item \textit{General I/O} consists of 26 programmable I/O lines. These lines can be set as input or output separately. Furthermore, specific input pins can be configured as interrupt pins. Typically, interrupts are utilized for triggering events in the software flow. Additionally, interrupts are also a required feature in serial communication events.
 
-\item \textit{Interrupts} are occasions that usually sets an interrupt flag. The Interrupt Service Routines (ISR) corresponding the interrupt flags are executed with respect to their priority. There are internal and external interrupts. The interrupt can be enabled individually. Interrupts are beneficial in generating events into software flow instead of executing tasks periodically.
+\item \textit{Interrupts} are occasions that usually set an interrupt flag. Next, the \textit{interrupt service routine (ISR)} corresponding the interrupt flag is executed with respect to its priority. Optionally, it is possible to execute a task directly in the interrupt. However, it temporarily disables other interrupts, hence, it is not recommended. Furthermore, there are internal and external interrupts. The source of internal interrupts are inside the micro-controller itself, as timers. Correspondingly, the source of external interrupts are external devices such as sensors or memory storages. Additionally, the interrupt can be enabled individually. The main advantage of utilizing interrupts is to execute tasks on-demand instead of periodically.
 
-\item \textit{Watchdog Timer (WDT)} of ATmega32U4 counts time on separate on-chip \SI{128}{\kilo \hertz} oscillator. The WDT is capable of interrupting and/or resetting the system. Additionally, it is enabled in most of the power modes. 
+\item \textit{Watchdog Timer (WDT)} of ATmega32U4 employs a separate on-chip \SI{128}{\kilo \hertz} oscillator for creating timer events. If the WDT is enabled it is capable of resetting the entire micro-controller unless, the WDT is not reset regularly. Normally, WDT is utilized for recovering from deadlocks, unintentional conditions without exit. However, it is possible to utilize the watchdog timer as a wake-up timer in low power modes.
 
 
-\item \textit{Power Management and Sleep Modes} allows the user to tailor the power consumption to the application's requirements. This es beneficial specially with battery-powered solutions where regular re-charging is not effortless.
+\item \textit{Power Management and Sleep Modes} allows the user to tailor the power consumption according the application requirements. Power management is beneficial feature specially with battery-powered solutions when regular re-charging is not effortless to accomplish.
 
-\item \textit{SPI and I$^2$C} serial bus interfaces are used for internal communication the micro-controller and the sensors as well as the SD memory card.
+\item \textit{SPI and I$^2$C} serial bus interfaces are used for device-internal communication of the micro-controller and the sensors as well as the SD memory card. The serial interfaces were briefly discussed in section \ref{hardwaresection}.
 
 \end{itemize}
 
 
 \subsubsection*{Accelerometer}
 
-The BMA222E is a triple-axial accelerometer used for measuring change in motion as well as position recognition. The axis of the accelerometer are in right angle to they each other. Thus, it can measure in all direction. Additionally, it contains several on-chip functions for prior and post filtering as well as detecting different conditions. The filters and the detectable conditions are configurable and they are discussed in detail later in this section.
+As discussed previously, a micro-controller is the core component of the hardware design of the sensor device. Similarly, an accelerometer is the essential sensors providing data for data recording as well as algorithm development. In this study, the utilized accelerometer is the Bosch Sensortech BMA222E \cite{bma222datasheet}. It is a triple-axial accelerometer used for measuring the change in the motion. Additionally, it can be employed in position recognition in constant situations. The axises of the accelerometer are perpendicular. Therefore, it is capable of measuring in all direction. Additionally, it contains several advantageous on-chip functions. It is capable of prior and post filtering acceleration measurements. Additionally, it can detect various conditions and trigger interrupts in result. Moreover, the filters as well as the detectable conditions are highly configurable. These configurations are discussed in the following description. Nevertheless, the accelerometer contains several functionalities without use-cases in this study. Consequently, those features are not covered in the discussions. However, some of the features have no direct use case in this study but are applicable in the future studies that are considered in section \ref{conclusionssection}. Additionally, the sensor configurations varies between two software implementations in this study and they are discussed in the sectin \ref{softwaresection}. The kay features of the BMA222E accelerometer are as follows.
 
-
-This subsection surveys through the most likely worthwhile features of the accelerometer used in this study. However, all of the features discussed features may not be used in this study but may become sensible in future studies. The overview of the hardware of this study was discussed previously. The specific configurations of the sensor are discussed in subsections \ref{firstdatasetconfigurations} and \ref{seconddatasetconfigurations}. The accelerometer used in this study is Bosch Sensortec BMA222e digital, triaxial acceleration sensor. Its key features are 
 
 \begin{itemize}
-\item \textit{On-Chip Interrupt Controller} is capable of generating various interrupt. It yields an opportunity to create device applications even without a micro-controller. Additionally, together with micro-controller there i s no need to continuous sampling by the controller.
+\item \textit{On-chip interrupt controller} is capable of generating  interrupts from various conditions. The conditions are configurable with respect to time or numerous motion statuses. On-chip interrupt controller yields an opportunity to create device applications even without a micro-controller. However, in this study all the interrupts are processed in the micro-controller. Nevertheless, the interrupt controller is utilized to create favorable sampling events instead of continuous sample recording.
 
-\item \textit{On-Chip FIFO Register} is capable of storing up to 32 frames. Depending on the configurations, one frames contains measurements from one or three axis. Additionally, a frame includes whether the data is new or already read.
+\item \textit{On-Chip FIFO Register} is capable of storing up to 32 data frames. Depending on the configurations, one frame contains measurements from chosen or all three axis. Additionally, it is configurable whether the data in the register is filtered or unfiltered. Furthermore, the register contains information whether the data is new or old data.
 
-\item \textit{Range} for acceleration measurements is adjustable within four preset ranges,  $\pm$\SI{2}{\gram}, $\pm$\SI{4}{\gram}, $\pm$\SI{8}{\gram} and $\pm$\SI{16}{\gram}. However, increasing the range decreases the resolution linearly.
+\item \textit{Range} of the acceleration measurements is adjustable within four preset ranges,  $\pm$\SI{2}{\gram}, $\pm$\SI{4}{\gram}, $\pm$\SI{8}{\gram} and $\pm$\SI{16}{\gram}. However, increasing the range decreases the resolution and vice versa. Thus, selecting of appropriate range shall be considered.
 
-\item \textit{8-bit Resolution} for both, acceleration and temperature measurements. The measurement range of acceleration is adjustable. Thus, the resolution depends on the range.  However, the temperature resolution is fixed to \SI{0.5}{\celsius} per least significant bit (LSB).
+\item \textit{8-bit Resolution} is applicable for both, acceleration and temperature measurements. As discussed, the range of acceleration measurements is adjustable and affects the resolution. Consequently, the resolution is from \SI{15.63}{\milli\gram} per \textit{least significant bit (LSB)} to \SI{125}{\milli\gram} per LSB. The  Nevertheless, the temperature resolution is fixed to \SI{0.5}{\celsius} per LSB.
 
-\item \textit{Low Pass Filter} enables removing of high frequency distortions from the measured signals. Thus, no additional low pass filtering is needed.  The low pass filter is configurable with preset frequencies from $7.81$ Hz to $1000$ Hz.
+\item \textit{Low Pass Filter} enables removing of high frequency distortion from the measured signals. Thus, no additional low pass filtering is needed in the micro-controller application. The low pass filter of the accelerometer is configurable with preset frequencies from $7.81$ Hz to $1000$ Hz. The bandwidth configuration effects the interval, how frequently, new data frame is readable from the register of the sensor. Roughly, the values are update twice often than the filter bandwidth according the Shannon-Nyquist sampling theorem.
 
-\item \textit{Offset Compensation} allows removing offsets from the measurements. At sea level, there is always approximately \SI{1}{\gram} offset present. Specially, in integrative calculations it might accumulate and yield misleading results.
+\item \textit{Offset Compensation} allows removing offsets from the measured signals. At sea level, there is always approximately \SI{1}{\gram} offset present. Specially in integrative calculations the presence of offset accumulates and yield misleading results.
 
 
-\item \textit{SPI and I$^2$C digital interfaces} are necessary interfaces for both, configuration and communication between the sensor and the micro-controller.
+\item \textit{SPI and I$^2$C digital interfaces} are necessary interfaces for configuring the sensor as well as data transmission from the accelerometer from the micro-controller. It is configurable, which interface is utilized.
 
-\item \textit{Low Power Consumption} is beneficial in portable and battery-powered solutions such as the sensor device in this study.
+\item \textit{Low Power Consumption} is beneficial in portable and battery-powered solutions such as the sensor device in this study. Additionally, the accelerometer enables improvement of the power consumption with several power modes. However, the power modes are not applicable in this study because, one of the core ideas is to utilize the accelerometer as effectively as possible instead of more  power consuming micro-controller.
  
-\item \textit{On-chip Temperature sensor} of the controller provides resolution of \SI{0.5}{\celsius}. The accuracy of the BMA222E is relatively low in comparison to the TMP112 temperature sensor. However, it can be used as reference or verification value with the temperature sensor. \cite{bma222datasheet}
+\item \textit{On-chip Temperature sensor} of the controller provides a resolution of \SI{0.5}{\celsius}. The accuracy of the BMA222E is relatively low in comparison to the TMP112 temperature sensor discussed later in this section. Nevertheless, it is useful as a reference or verification value with the measurements of the TMP112 temperature sensor. \cite{bma222datasheet}
 
 \end{itemize}
-
-Limited capacities of power sources are significant issue with wireless devices. Therefore, the low power consumption all together with other on-chip features of the accelerometer become useful. That is to say, it is reasonable to maximize the usage of the low power sensor and meanwhile minimize the use of more power consuming micro-controller. 
 
 
 
@@ -542,7 +513,7 @@ This hardware configuration uses a secure digital (SD) memory card as a memory s
 
 \subsubsection{Software} \label{softwaresection}
 
-Previously, we discussed of the data recording hardware and the primary components of it. As stated earlier, the sensor device is a prototype of a dairy cow sensor device. Furthermore, it was customized for data recording by adding a SD card slot on its serial peripheral interface (SPI) bus. Otherwise, no additional modification was required. In contrast to the already existing hardware design, there software had to be implemented from a scratch. Therefore, in this section we discus of the software design as well as the actual software implementation. Additionally, we introduce the software tools form implementing the micro-controller application software for the sensor device. The software design required prior testing of the hardware capabilities as well as studying of the available software libraries. Conversely, the software implementation was more straight forward process based on the software design. \\
+Previously, we discussed of the data recording hardware and the primary components of it. As stated earlier, the sensor device is a prototype of a dairy cow sensor device. Furthermore, it was customized for data recording by adding a SD card slot on its serial peripheral interface (SPI) bus. Otherwise, no additional modification was required. In contrast to the already existing hardware design, there software had to be implemented from a scratch. Therefore, in this section we discus of the software design as well as the actual software implementation. Additionally, we introduce the software tools form implementing the micro-controller application software for the sensor device. The software design required prior testing of the hardware capabilities as well as studying of the available software libraries. Conversely, the software implementation was more straight forward process based on the software design.
 
 In this study, the software tool for sensor application implementation was Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}.  The Arduino IDE provides a fast and easy environment for implementing micro-controller applications without prior expert-level knowledge on micro-controllers. Additionally, Arduino and Arduino community provides comprehensive set of software libraries for various micro-controller applications. The following list describes the fundamental software libraries in this study:
 
@@ -565,7 +536,7 @@ Furthermore, the Arduino programming language is merely a set of C/C++ functions
 
 Additionally, the driver interfaces provided by the sensor manufacturers were not fully compatible with the Arduino. Thus, both driver interfaces were included in the implementation of the device software. 
 
-Data logs are recorded on a regular .txt-file on the SD card.\\
+Data logs are recorded on a regular .txt-file on the SD card.
 
 the actual implementation is created in Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}. The software implementation includes the conduction of the driver interfaces of both, accelerometer and temperature sensor.
 
@@ -655,11 +626,11 @@ and the following tasks:
 
 \end{itemize}
 
-\subsubsection{Procedure}
+\subsubsection{Procedure} \label{proceduresection}
 
-All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording. \\
+All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording. 
 
-The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \\
+The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \dots
 
 
 \subsubsection*{First Data Set} \label{firstdatasetsection}
@@ -667,17 +638,16 @@ The data was recorded in two separate occasions. Furthermore, the software imple
 
 
 
-The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day. \\
+The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day.
 
-The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis. \\
+The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis.
 
 The trail camera as well as the sensor were without proper time stamp. Thus, they were out of synchronization. Consequently, making of conclusion between the recorded data and video was not reasonable. However, it seemed that there were recognizable patterns in the behavior of the cow e.g., eating of feed and walking. Because of these promising results, the same approach was attempted with the further data recordings. We shall discuss of it later in this study.
-\\
 
 
 \subsubsection*{Second Data Set} \label{seconddatasetsection}
 
-The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period. \\
+The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
 
 MAINITSE että lehmillä oli heatime!!!
 
@@ -707,7 +677,7 @@ Put here a sample of log files?
 
 \subsubsection{Statistics} \label{statisticssection}
 
-In this study, statistical methods are included in the estrus detection algorithms discussed in section \ref{algorithms}. Furthermore, statistics are used in analysis of duration of SD file operations in section \ref{generalresultssection}.
+In this study, statistical methods are included in the estrus detection algorithms discussed in section \ref{estrusdetectionalgorithmssection}. Furthermore, statistics are used in analysis of duration of SD file operations in section \ref{generalresultssection}.
 
 
 The statistical methods used in this study are defined as follows \cite{maoltaulukotmatematiikka}:
@@ -755,7 +725,7 @@ Fourier transform is linear mapping from time domain to frequency domain.
 F_n =  \sum \limits^{N-1}_{k=0} f_k e^{-i(2\pi k / N) n} \mathrm{\hspace{1em} , n = 0, \dots , N -1} 
 \end{equation}\label{fftequation}
 
-Discrete Fourier transform (DFT) is linear mapping of a signal from time domain to frequency domain \cite{rao2012fast}. That is, a time variant sample can be transformed into frequency domain for providing the frequency spectrum of the data. In this study, the frequency spectrum of cow behavior is valuable information in deciding the the bandwidth of the accelerometer.\\
+Discrete Fourier transform (DFT) is linear mapping of a signal from time domain to frequency domain \cite{rao2012fast}. That is, a time variant sample can be transformed into frequency domain for providing the frequency spectrum of the data. In this study, the frequency spectrum of cow behavior is valuable information in deciding the the bandwidth of the accelerometer.
 
 
 Frequency analysis is important in designing of sampling rate as well as filters. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least double the highest frequency component. We will discuss of filters in the following subsection.
@@ -804,7 +774,7 @@ and filter with finite impulse respones (FIR):
 
 \subsubsection{Sliding Window} \label{slidingwindowsection}
 
-In this study, windowing is means analysis and calculus of data in segments instead of entire data set. The windowing method in this study is analogous to windowing in signal processing \cite{tan2007digital,miao2007signal} \dots \\
+In this study, windowing is means analysis and calculus of data in segments instead of entire data set. The windowing method in this study is analogous to windowing in signal processing \cite{tan2007digital,miao2007signal} \dots 
 
 The integration period = window
 
@@ -817,29 +787,29 @@ Windowed mean value:
 
 \subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
 
-In previous subsection we surveyed through the micro-controller software implementation of the sensor device. Additionally, we discussed of recording the data to log files. Consequently, this subsection focuses on both, parsing of the log files and specially the estrus detection algorithms. In this study, there are three different algorithms for estrus detection. Nevertheless, they all attempt to detect rather the proestrus than the actual estrus. This differs from the traditional estrus detection by the cattle tender we discussed in section \ref{estruscyclesection}. Traditionally, a cow allowing of being mounted by other cows is reliably considered to be in estrus (standing heat). However, detection of being mounted with accelerometer based sensor is rather unreasonable approach. Fortunately, the activity level of the cow increases in proestrus. Thus, all the following estrus detection algorithms attempt to detect rather the proestrus than the actual estrus. In despite of this similarity, all the following algorithms have their own approach to the topic. The algorithms are discussed more in detail in the following subsections.  \\
+In previous subsection we surveyed through the micro-controller software implementation of the sensor device. Additionally, we discussed of recording the data to log files. Consequently, this subsection focuses on both, parsing of the log files and specially the estrus detection algorithms. In this study, there are three different algorithms for estrus detection. Nevertheless, they all attempt to detect rather the proestrus than the actual estrus. This differs from the traditional estrus detection by the cattle tender we discussed in section \ref{lactationandestruscyclessection}. Traditionally, a cow allowing of being mounted by other cows is reliably considered to be in estrus (standing heat). However, detection of being mounted with accelerometer based sensor is rather unreasonable approach. Fortunately, the activity level of the cow increases in proestrus. Thus, all the following estrus detection algorithms attempt to detect rather the proestrus than the actual estrus. In despite of this similarity, all the following algorithms have their own approach to the topic. The algorithms are discussed more in detail in the following subsections.  
 
-As stated earlier, the sensor device software were implemented in Arduino IDE, an integrated development environment for micro-controller applications. However, the scope of this study is not in developing the estrus detection algorithms for the device directly. Consequently, it eases of implementing the sensor software. Additionally, it enables to choose freely more applicable software tools for developing and testing algorithms with recorded data. Nevertheless, one goal of this study is to create algorithms suitable for micro-controller platforms. The software tool for algorihtm development in this study is \textit{MathWorks MATLAB} (later only Matlab) \cite{matlaboverview}. Matlab is a desktop environment created for various iterative analysis and design processes. It uses a programming language that expresses matrix and array mathematics directly. Furthermore, in contains numerous applications for various needs of engineers. In this study, the the interest is in data plotting and filter designing. Moreover, use of existing Matlab functions altogether with self-implemented functions and scripts provides advisable environment for algorithm development.  \\
+As stated earlier, the sensor device software were implemented in Arduino IDE, an integrated development environment for micro-controller applications. However, the scope of this study is not in developing the estrus detection algorithms for the device directly. Consequently, it eases of implementing the sensor software. Additionally, it enables to choose freely more applicable software tools for developing and testing algorithms with recorded data. Nevertheless, one goal of this study is to create algorithms suitable for micro-controller platforms. The software tool for algorihtm development in this study is \textit{MathWorks MATLAB} (later only Matlab) \cite{matlaboverview}. Matlab is a desktop environment created for various iterative analysis and design processes. It uses a programming language that expresses matrix and array mathematics directly. Furthermore, in contains numerous applications for various needs of engineers. In this study, the the interest is in data plotting and filter designing. Moreover, use of existing Matlab functions altogether with self-implemented functions and scripts provides advisable environment for algorithm development.  
 
 
 
-Considering the activity measurement in wearable devices for people, the activity is typically measured as sum of absolute values of all the axis. In studies, it has been proved it to match to the real energy consumption better than the absolute value. \\
+Considering the activity measurement in wearable devices for people, the activity is typically measured as sum of absolute values of all the axis. In studies, it has been proved it to match to the real energy consumption better than the absolute value. 
 
 
 
 The main features of all the following algorithms are as follows:
 \begin{enumerate}
 
-\item \textbf{Process data} --- Data processing consists of algorithm specific data functions. These functions may include data filtering and other computations. These functions are discussed in detail in the following subsections. All the remaining phases of the algorithms follows the same pattern discussed below. \\
+\item \textbf{Process data} --- Data processing consists of algorithm specific data functions. These functions may include data filtering and other computations. These functions are discussed in detail in the following subsections. All the remaining phases of the algorithms follows the same pattern discussed below. 
 
-\item \textbf{Sum results} --- The results of data processing are summed within time windows. The length of the time window should approximate the duration of the proestrus. Additionally, these time windows shall overlap in order to provide more continuous impression of ongoing state of estrus cycle. Furthermore, excessively long time windows without overlapping could delay the detection of the estrus. Thus, cause the failure of insemination as a consequence. \\
+\item \textbf{Sum results} --- The results of data processing are summed within time windows. The length of the time window should approximate the duration of the proestrus. Additionally, these time windows shall overlap in order to provide more continuous impression of ongoing state of estrus cycle. Furthermore, excessively long time windows without overlapping could delay the detection of the estrus. Thus, cause the failure of insemination as a consequence. 
 
 \begin{equation}
 u(k) =\sum\limits^{nk}_{i = nk - m} x(i) \mathrm{\hspace{1em}, where}
 \end{equation}
 $k$ is the index of summed results, $n$ is an incremental step size and $m$ is the size of the time window.
 
-\item \textbf{Remove offset} --- The resulting data after summing may differ significantly within algorithm depending on the parameters as well as between the algorithms. Therefore, any existing offset in the data should be removed. This means adjusting the data so that the normal behavior appears around the zero. The median of the data describes the amount of the offset more reliable than mean value. Hence, median is less sensitive to proestrus peaks in the data.  \\
+\item \textbf{Remove offset} --- The resulting data after summing may differ significantly within algorithm depending on the parameters as well as between the algorithms. Therefore, any existing offset in the data should be removed. This means adjusting the data so that the normal behavior appears around the zero. The median of the data describes the amount of the offset more reliable than mean value. Hence, median is less sensitive to proestrus peaks in the data.  
 
 \begin{equation}
 u(k) = x(k) - \tilde{x} \mathrm{\hspace{1em}, where}
@@ -853,7 +823,7 @@ u(k) = \frac{x(k)}{\max  \left| x \right|}
 \end{equation}
 
 
-\item \textbf{Threshold} --- Finally, thresholds are used for indicating the beginning and the end of the proestrus. That is, exceeding the first threshold indicates the beginning of the proestrus and next, the going below indicates the end of the proestrus. The thresholds for deciding whether the cow is in estrus or not should be separate. The end of proestrus signals to the cattle tender to prepare for insemination. The principle of the proestrus detection is presented in the following pseudo code.  \\
+\item \textbf{Threshold} --- Finally, thresholds are used for indicating the beginning and the end of the proestrus. That is, exceeding the first threshold indicates the beginning of the proestrus and next, the going below indicates the end of the proestrus. The thresholds for deciding whether the cow is in estrus or not should be separate. The end of proestrus signals to the cattle tender to prepare for insemination. The principle of the proestrus detection is presented in the following pseudo code.  
 
 %\Clanguage
 %\begin{lstlisting}
@@ -872,10 +842,10 @@ u(k) = \frac{x(k)}{\max  \left| x \right|}
 
 \subsubsection{Activity Monitoring} \label{activitymeasurementsection}
 
-The concept of the first estrus detection algorithm is analogous to an accelerometer based estimation of total energy consumption \cite{Kang2012}. However, finding of any correlation between the activity and the energy consumption is not a focus of this study. Nevertheless, this algorithm utilizes the same method for determination of the cow activity level. \\
+The concept of the first estrus detection algorithm is analogous to an accelerometer based estimation of total energy consumption \cite{Kang2012}. However, finding of any correlation between the activity and the energy consumption is not a focus of this study. Nevertheless, this algorithm utilizes the same method for determination of the cow activity level. 
 
 
-The first algorithm is based on pure analysis of full the data set. The algorithm is analogous to an estimation of energy consumption using accelerometers   \dots \\
+The first algorithm is based on pure analysis of full the data set. The algorithm is analogous to an estimation of energy consumption using accelerometers   \dots 
 
 
 
@@ -905,15 +875,15 @@ u(i) = \sqrt{x^2(i) + y^2(i) + z^2(i)}
 
 \subsubsection{Variance Detection} \label{variancedetectionsection}
 
-The first algorithm had a basis in continuous computation of continuous data stream. In contrast to the first algorithm, the second algorithm attempts to reduce the amount of required data. That is, using standard data samples in regular intervals instead of continuous stream. Furthermore, the calculus of the algorithms are different. The ground of the first algorithm was in summing of the lengths of the total acceleration vectors, whereas this algorithms attempts to determinate the level of variance \\
+The first algorithm had a basis in continuous computation of continuous data stream. In contrast to the first algorithm, the second algorithm attempts to reduce the amount of required data. That is, using standard data samples in regular intervals instead of continuous stream. Furthermore, the calculus of the algorithms are different. The ground of the first algorithm was in summing of the lengths of the total acceleration vectors, whereas this algorithms attempts to determinate the level of variance 
 
 
-The first algorithm calculated the length of the total acceleration vectors. Thus, estimated the energy consumption. Alternatively, this second algorithm detects the level of variation in the acceleration data rather than the total amount of movement. \\
+The first algorithm calculated the length of the total acceleration vectors. Thus, estimated the energy consumption. Alternatively, this second algorithm detects the level of variation in the acceleration data rather than the total amount of movement. 
 
-Originally, the concept of a variance based algorithm arose along with the analysis of the recorded data sets.  \\
+Originally, the concept of a variance based algorithm arose along with the analysis of the recorded data sets.  
 
 
-Originally, the concept of a variance based algorithm arose among the analysis of the first recorded data set. The data consisted of two distinct period. They differed in variance as well as in offset. In theory, both of these differences could have been used as a basis of an algorithm. However, the reliability of the offset is questionable, hence the pose of the device is not strictly fixed in the neck of a cow. Additionally, offset based algorithm would prevent the use of the offset compensation of the accelerometer. Consequently, it would set unnecessary restrictions for future development. Moreover, the difference in offset was mostly significant in the x-axis data. Conversely, the amount of variance appeared evenly on each axis. Furthermore, variance is offset independent. Thus, variance based algorithm does not require any high-pass filtering before data processing. \\
+Originally, the concept of a variance based algorithm arose among the analysis of the first recorded data set. The data consisted of two distinct period. They differed in variance as well as in offset. In theory, both of these differences could have been used as a basis of an algorithm. However, the reliability of the offset is questionable, hence the pose of the device is not strictly fixed in the neck of a cow. Additionally, offset based algorithm would prevent the use of the offset compensation of the accelerometer. Consequently, it would set unnecessary restrictions for future development. Moreover, the difference in offset was mostly significant in the x-axis data. Conversely, the amount of variance appeared evenly on each axis. Furthermore, variance is offset independent. Thus, variance based algorithm does not require any high-pass filtering before data processing.
 
 \begin{enumerate}
 
@@ -946,11 +916,11 @@ u_{tot} = u_x + u_y + u_z
 
 \subsubsection{Inactivity Detection} \label{inactivitydetectionsection}
 
-The first two algorithms were based on relatively demanding computations considering micro-controller (MCU) environments. The first algorithm required a continuous data stream and calculating powers of two and square roots. The second algorithm did not require a continuous data stream. However, the algorithm included computing of variance which includes sum, square root and power of two as discussed in section \ref{statisticssection}. Furthermore, the available dynamic memory of micro-controllers are restricted. Therefore, it limits the maximum number of retained data points for computing the variance. In contrast, the third algorithm attempts to reduce the computation in the MCU. Therefore, it requires more advanced deployment of the features of the accelerometer. Accordingly, an interrupt driven approach becomes sensible. That is, the the MCU only counts the number of interrupt events whereas, the accelerometer performs all other computations. \\
+The first two algorithms were based on relatively demanding computations considering micro-controller (MCU) environments. The first algorithm required a continuous data stream and calculating powers of two and square roots. The second algorithm did not require a continuous data stream. However, the algorithm included computing of variance which includes sum, square root and power of two as discussed in section \ref{statisticssection}. Furthermore, the available dynamic memory of micro-controllers are restricted. Therefore, it limits the maximum number of retained data points for computing the variance. In contrast, the third algorithm attempts to reduce the computation in the MCU. Therefore, it requires more advanced deployment of the features of the accelerometer. Accordingly, an interrupt driven approach becomes sensible. That is, the the MCU only counts the number of interrupt events whereas, the accelerometer performs all other computations. 
 
-In addition to transferring most of the calculus from MCU to accelerometer, the logic itself could be inverted. That is, monitoring inactivity instead of activity. For this perspective, the accelerometer provides the feature of \textit{no motion detection} which was discussed in section \ref{hardwaresection}. This feature suits fairly well to the aspect of transferring the computation from MCU to micro-controller and observing inactivity instead of activity. However, this study bases on recorded data instead of testing these configurations real animals. Therefore, the algorithm described below is purely a simulation of the features of the accelerometer. In consequence, the results achieved in this study might differ from those of real life. \\
+In addition to transferring most of the calculus from MCU to accelerometer, the logic itself could be inverted. That is, monitoring inactivity instead of activity. For this perspective, the accelerometer provides the feature of \textit{no motion detection} which was discussed in section \ref{hardwaresection}. This feature suits fairly well to the aspect of transferring the computation from MCU to micro-controller and observing inactivity instead of activity. However, this study bases on recorded data instead of testing these configurations real animals. Therefore, the algorithm described below is purely a simulation of the features of the accelerometer. In consequence, the results achieved in this study might differ from those of real life. 
 
-This inactivity detection algorithm complies with the algorithm structure discussed earlier in this section. The data processing phase of this algorithm is as follows. \\
+This inactivity detection algorithm complies with the algorithm structure discussed earlier in this section. The data processing phase of this algorithm is as follows. 
 
 \begin{enumerate}
 \item \textbf{Get Slope} --- The slope is the acceleration difference. That is, the previous value subtracted from the current value: 
@@ -959,9 +929,9 @@ This inactivity detection algorithm complies with the algorithm structure discus
 u[i] = x[i] - x[i-1]
 \end{equation}
 
-Furthermore, the slope is offset independent. Hence, the slope is actually first order FIR filter with infinite attenuation at zero frequency, sampling frequency and its harmonics. \\
+Furthermore, the slope is offset independent. Hence, the slope is actually first order FIR filter with infinite attenuation at zero frequency, sampling frequency and its harmonics. 
 
-\item \textbf{Detect inactivity} --- According to the specifications of the accelerometer, a no-motion interrupt is triggered if the absolute value of the slope remains below of a preset threshold for a preset duration of time. The following pseudo code represents the software implementation for the no-motion detection. \\
+\item \textbf{Detect inactivity} --- According to the specifications of the accelerometer, a no-motion interrupt is triggered if the absolute value of the slope remains below of a preset threshold for a preset duration of time. The following pseudo code represents the software implementation for the no-motion detection. 
 
 \Clanguage
 \begin{lstlisting}
@@ -973,7 +943,7 @@ for (i = 0 ; i < length(x); i ++)
   prev_i = 1;	
 \end{lstlisting}
 
-In this study, the passivity array has the same length as the acceleration data array and it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Meanwhile, any occurred no-motion condition yields the value of one into the passivity array. In consequence, the resulting passivity array consists mostly of zeros and few of ones within. Furthermore, the indexes of the ones are directly related to the time of the occurrence. Thus, it enables concluding the level of inactivity in certain range of time. \\
+In this study, the passivity array has the same length as the acceleration data array and it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Meanwhile, any occurred no-motion condition yields the value of one into the passivity array. In consequence, the resulting passivity array consists mostly of zeros and few of ones within. Furthermore, the indexes of the ones are directly related to the time of the occurrence. Thus, it enables concluding the level of inactivity in certain range of time.
 
 
 \item \textbf{Sum results} --- sdf
@@ -1011,7 +981,7 @@ This subsection discusses about rather general results whereas the scope of subs
 
 \subsubsection{Frequency Spectrum}
 
-The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{signalprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}.
+The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{dataprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}.
 
 \begin{figure}[h]
 \centering
@@ -1032,26 +1002,26 @@ The frequency spectrum of the first recorded data was analyzed using Fast Fourie
 
 \subsubsection{SD File Operations}
 
-In the first data recording process, it was desired to record the data in as high bandwidth as possible. The maximum bandwidth of the accelerometer were \SI{1000}{\hertz}. Consequently, the update time was \SI{0.5}{\milli \second}. However, the duration of SD file operations restricts the maximum recording bandwidth significantly. Finally, in the first data recording process the bandwidth was selected to be \SI{125}{\hertz}. Yet, the file operations exceeded the time ... \\
+In the first data recording process, it was desired to record the data in as high bandwidth as possible. The maximum bandwidth of the accelerometer were \SI{1000}{\hertz}. Consequently, the update time was \SI{0.5}{\milli \second}. However, the duration of SD file operations restricts the maximum recording bandwidth significantly. Finally, in the first data recording process the bandwidth was selected to be \SI{125}{\hertz}. Yet, the file operations exceeded the time \dots
 
-SD card file operation times were recorded after the actual data recording using the original hardware. The original software was improved with timer operations in order to enable the recording of the file operation times. The file operation times had an affect on the data recording process. The time consumed for opening a file increased among the file size. The minimum opening time was \SI{7.26}{\milli\second} and the maximum time for \SI{1.37}{\giga \byte} file a was \SI{1440}{\milli \second}. The average value was \SI{747.14}{\milli \second}. The file closing times varied from \SI{8.04}{\milli \second} to \SI{160.03}{\milli \second} and seemed not to be dependent on the file size. The average file closing time was \SI{19.75}{\milli \second}. The time spent of writing a single data line was from \SI{56}{\micro \second} to \SI{162.36}{\milli\second} and the average was \SI{997.76}{\milli\second}. \\
+SD card file operation times were recorded after the actual data recording using the original hardware. The original software was improved with timer operations in order to enable the recording of the file operation times. The file operation times had an affect on the data recording process. The time consumed for opening a file increased among the file size. The minimum opening time was \SI{7.26}{\milli\second} and the maximum time for \SI{1.37}{\giga \byte} file a was \SI{1440}{\milli \second}. The average value was \SI{747.14}{\milli \second}. The file closing times varied from \SI{8.04}{\milli \second} to \SI{160.03}{\milli \second} and seemed not to be dependent on the file size. The average file closing time was \SI{19.75}{\milli \second}. The time spent of writing a single data line was from \SI{56}{\micro \second} to \SI{162.36}{\milli\second} and the average was \SI{997.76}{\milli\second}. 
 
 
 
 \begin{figure}[h]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/openclosetimes_vanha.png}
-\caption{} \label{}
+\caption{} \label{openclosetimes_old}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics[width = 0.75\textwidth]{figures/writetimes_vanharauta.png}
-\caption{} \label{}
+\caption{} \label{writetimes_old}
 \end{figure}
 
 
-This subsection concentrates in the results of estrus detection. As discussed in section \ref{datarecordingprocess} six cows were used in data recording process. However, two out of six data recordings failed. Thus, that data had to be discarded. The estruses were confirmed by Heatime estrus detection system. \\
+This subsection concentrates in the results of estrus detection. As discussed in section \ref{proceduresection} six cows were used in data recording process. However, two out of six data recordings failed. Thus, that data had to be discarded. The estruses were confirmed by Heatime estrus detection system. \\
 In this study, a total of six cows were used for long period data recording.
 
 \subsubsection{Behaviour monitoring}
@@ -1069,7 +1039,8 @@ In order to validate the results of the algorithms, it is mandatory to define so
 \item \textit{False negative} mean a condition when the estrus detection algorithm yields not in estrus but the cow is in estrus.
 \end{itemize}
 
-In addition to these measures, it is beneficial to be able to depict the differences between positive and negative periods. For example, comparison of the amplitudes. In the following subsections the results are normalized. That is, a median value is subtracted from all the data. Next the data is normalized so that, the extreme value is either $\pm1$. Therefore, we are able to compare the results within the algorithm as well as between the algorithms. \\
+In addition to these measures, it is beneficial to be able to depict the differences between positive and negative periods. For example, comparison of the amplitudes. In the following subsections the results are normalized. That is, a median value is subtracted from all the data. Next the data is normalized so that, the extreme value is either $\pm1$. Therefore, we are able to compare the results within the algorithm as well as between the algorithms. 
+
 In this study, the detected estruses are verified with Heatime estrus detection and rumination monitoring system. Thus, each cow wearing the sensor device of this study additionally dons Heatime sensor. The Heatime id considered relatively reliable in estrus detection. Nevertheless, none of the detected estruses were not veterinarian verified. Thus the results of this study are at most as reliable as the results of the Heatime. Furthermore, all the possible false detection of Heatime that conflicts with our device will remain unsolved in this study. \\
 As discussed earlier, a total of six cows were used for the actual estrus data recording. The first three cows were 319, 659 and 9885 of which only two sets of data, 319 and 9885, were valid to use in the algorithm development. Both of the cows had two or more estruses in the data log of the Heatime as shown in pictures \ref{heatime_kiima_319} and \ref{heatime_kiima_9885}.The next three cows were 767, 787 and 812 of which only the data of 767 and 787 were valid to use in algorithm tuning and evaluation. Also both of these cows had detectable estruses in the log of Heatime. They are shown in pictures \ref{heatime_kiima_767} and \ref{heatime_kiima_787}. Nevertheless, the data recording period in this study lasted only approximately 30 days per instance. Thus, only one detectable estrus per cow were included in our recording period except the cow 9885 with two periods.
 
@@ -1104,9 +1075,9 @@ The parameters are tuned with iterative methods. That is, testing various values
 \begin{tabular}{| p{1.25cm} | p{2.25cm} | p{8.8cm} |}
 \hline
 \textbf{Cow ID} & \textbf{Occurrence of increased activity} & \textbf{Other notifications} \\  \hline
-319 & 30-11-2016 & High activity period considered as proestrus. However, this period is outside of our sampling period. \\ \hline
-319 & 19-12-2016 &  Second period of high activity considered as proestrus. This activity period is within our data recording period.  \\ \hline
-9885 & 24-11-2016 & First high activity period of this cow and it is considered as a proestrus. However, the occurence is outside of our data recording period.  \\ \hline
+319 & 30-11-2016 & High activity period considered as pro-estrus. However, this period is outside of our sampling period. \\ \hline
+319 & 19-12-2016 &  Second period of high activity considered as pro-estrus. This activity period is within our data recording period.  \\ \hline
+9885 & 24-11-2016 & First high activity period of this cow and it is considered as a pro-estrus. However, the occurrence is outside of our data recording period.  \\ \hline
 9885  & 22-12-2016  & The second activity period of this cow is considered as proestrus. However, this activity period is delayed possibly because of stress cause by the new sensor. Nevertheless, the proestrus is within our data recording period.  \\ \hline
 9885  & 04-01-2017  & Third high activity period of the cow 9885. In contrast to the previous occurrence, this is slightly early. However, also this occurrence is within our data recording period.  \\ \hline
  767 &  21-01-2017 & The first high activity period of this cow. Unfortunately, the occurrence is outside of our data recording period.  \\ \hline
@@ -1129,13 +1100,13 @@ As stated earlier, data of four different cows were used in the algorithm develo
 
 The first estrus detection algorithm was based on activity measurement. In is very straight forwarding and does not require any complex computation. However, the algorithm is sensitive to offset in the data. Thus, the offset shall be removed with appropriate filter before integrating the values together. Developing of such filter requires knowledge of \dots
 
-In despite of the complex algorithm development, the actual filtering requires simple floating point multiplications and summing depending of the order of the filter. Therefore, even with the offset compensating filter this algorithm is rather straight forward and mathematically simple. In contrast to its simplicity this algorithm requires continuous sampling and continuous computing of the samples. First, applying a high-pass filter as an offset compensation. Next, integrating the results. Additionally, there are only few tunable parameters that affect the estrus detection, width of the integration window and threshold. All the other parameters affect only to the computational load and visualization of the results.\\
+In despite of the complex algorithm development, the actual filtering requires simple floating point multiplications and summing depending of the order of the filter. Therefore, even with the offset compensating filter this algorithm is rather straight forward and mathematically simple. In contrast to its simplicity this algorithm requires continuous sampling and continuous computing of the samples. First, applying a high-pass filter as an offset compensation. Next, integrating the results. Additionally, there are only few tunable parameters that affect the estrus detection, width of the integration window and threshold. All the other parameters affect only to the computational load and visualization of the results.
 
 According to the duration of proestrus, the optimal integration window is approximately from 9 to 12 hours. Narrower window might trigger the begin on estrus too early. Additionally, it makes the algorithm more sensitive to detect to false positives because the amplitude difference between proestrus and other periods decrease. Therefore, a scared cow behaving restlessly might yield false positive.
 
 The results of the activity measurement algorithm are shown in figures \ref{ActivityMonitoringCow319}, \ref{ActivityMonitoringCow9885}, \ref{ActivityMonitoringCow767} and \ref{ActivityMonitoringCow787}. In these results, three different integration windows are included, 6 hour, 9 hours and 12 hours. In general, the performance of this algorithm is stable. No false positives of false negatives occurred. The difference between proestrus and other periods are obvious. However, the amplitude outside of proestrus is occasionally significant. In addition to the detected estruses, the affect of the width of the integration window is illustrated in picture \ref{integrationwindows}. It is seen that wider window delays the triggering of the end of the proestrus. Conversely, wider integration window enhances the amplitude of the proestrus phase. 
 
-Quite straight-forward algorithm without any advantageous data processing. That is, the algorithm integrated the activity in certain periods and represented the activity of the period in one number. Required continuous sampling. Nevertheless, it detected all the estruses easily and no false positives were found. \\
+Quite straight-forward algorithm without any advantageous data processing. That is, the algorithm integrated the activity in certain periods and represented the activity of the period in one number. Required continuous sampling. Nevertheless, it detected all the estruses easily and no false positives were found.
 
 
 \subsubsection{Variance Detection} \label{variancedetectionevaluation}
@@ -1145,7 +1116,7 @@ Quite straight-forward algorithm without any advantageous data processing. That 
 
 Previously we discussed of activity measurement which is the most simple estrus detection algorithm of this study. It was based on continuous filtering and data sampling. Computationally, it was relatively simple but it loads the processor continuously. In contrast, the second estrus detection algorithm, variance detection, is based on samples with regular intervals instead of continuous data streams. Nevertheless, it is computationally slightly more complex than the former algorithm. However, it is still considered as suitable for micro-controller platforms. In addition to higher computational complexity of the algorithm, it comes with two additional tunable parameters, the size of the sample and sampling interval. In the optimized solution of this study, the sample size is 32 data frames and sampling interval is \SI{12}{\minute}. According to the configurations of the accelerometer, the 32 data frames responses to approximately 2 second period of data. 
 
-Figures \ref{algorithm2_cow319}, \ref{algorithm2_cow9885}, \ref{algorithm2_cow767} and \ref{algorithm2_cow787} represents the results with optimized parameters. The parameters for all algorithms are common. As seen, the algorithms occationally detects the proestrus. However, the results includes numerous false positives and even one false negative with the cow 9885. The reliability, seems to depend on the cow and individually tuned parameters. Nevertheless, no appropriate parameters were found for all f the cows during this study.
+Figures \ref{VarianceDetectionCow319}, \ref{VarianceDetectionCow9885}, \ref{VarianceDetectionCow767} and \ref{VarianceDetectionCow787} represents the results with optimized parameters. The parameters for all algorithms are common. As seen, the algorithms occationally detects the proestrus. However, the results includes numerous false positives and even one false negative with the cow 9885. The reliability, seems to depend on the cow and individually tuned parameters. Nevertheless, no appropriate parameters were found for all f the cows during this study.
 
 The data of the cow 9885 were analyzed with various parameters because the algorithm yielded one true positive and one false negative. Thus it was interested to tune the parameters and see if the algorithm could yield two true positives.
 
@@ -1216,7 +1187,7 @@ Lastly, the hardware design did not provide optimal performance for high samplin
 
 \subsubsection{Suggestions for Future Studies}
 
-This study has introduced three different sensor based algorithms for dairy cow estrus detection. Furthermore, we have evaluated the algorithms and concluded that the estrus id detectable with accelerometer based wearable sensor. Additionally, we have discussed of secondary products and other observations during this study. Lastly in this study, we will discuss of suggestions for potential future studies based on the introduced results and conclusions.\\
+This study has introduced three different sensor based algorithms for dairy cow estrus detection. Furthermore, we have evaluated the algorithms and concluded that the estrus id detectable with accelerometer based wearable sensor. Additionally, we have discussed of secondary products and other observations during this study. Lastly in this study, we will discuss of suggestions for potential future studies based on the introduced results and conclusions.
 
 Firstly, the detected estruses in this study were not confirmed at any point. The results were verified only with another sensor device as a reference. Thus, the results of this study are not completely reliable. Therefore, the algorithms developed in this study shall be implemented directly for micro-controller. Furthermore, they shall be tested with dairy cattle in real-time instead of posterior data processing sessions. In order to fully validate the algorithms, the results shall be verified by a veterinary. That is, each cow shall be inseminated once an estrus has been detected. Consequently, the detection is considered as true positive if the insemination is successful and the cow becomes pregnant.  Nevertheless, the normal success rate of insemination as well as the estrus cycle shall be taken into account.
 
