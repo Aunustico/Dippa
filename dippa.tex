@@ -521,82 +521,69 @@ rement range is up to \SI{150}{\celsius}. \cite{tmp112datasheet}
 
 
 
-\subsubsection{Software} \label{softwaresection}
+\subsubsection{Software ok} \label{softwaresection}
 
-Previously, we discussed of the data recording hardware and the primary components of it. As stated earlier, the sensor device is a prototype of a dairy cow sensor device. Furthermore, it was customized for data recording by adding a SD card slot on its serial peripheral interface (SPI) bus. Otherwise, no additional modification was required. In contrast to the already existing hardware design, there software had to be implemented from a scratch. Therefore, in this section we discus of the software design as well as the actual software implementation. Additionally, we introduce the software tools form implementing the micro-controller application software for the sensor device. The software design required prior testing of the hardware capabilities as well as studying of the available software libraries. Conversely, the software implementation was more straight forward process based on the software design.
-
-In this study, the software tool for sensor application implementation was Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}.  The Arduino IDE provides a fast and easy environment for implementing micro-controller applications without prior expert-level knowledge on micro-controllers. Additionally, Arduino and Arduino community provides comprehensive set of software libraries for various micro-controller applications. The following list describes the fundamental software libraries in this study:
+As discussed in previous section, the data recording hardware in this study is a prototype of dairy cow sensor device enhanced with memory card slot. By contrast to the hardware, the data recording software had to be implemented from a scratch for this study. Therefore, this section will discuss of the software design as well as the software implementation.  Additionally, we will introduce the software development tools utilized in this study. The design phase of the software development included hardware test for defining the restrictions and capabilities. Consequently, it slowed the design process. Nevertheless, hardware test results that had no effect are not included in the results of this study. However, after proper testing and design, the actual software implementation was rather straight forward process. In this section we will first introduce rduino Integrated Development Environment (Arduino IDE) \cite{arduinoide} as our primary software tool in application development. Next, we will present two different software implementations. The first software implementation was utilized as a test and the results were mainly used in for software improvement. Consequently, the second software implementation differs from the first one and is more optimized for long term data recording. Lastly in this software section we will discuss of the data recording procedures. In the following we have short description of Arduino IDE and of its utilized libraries.
 
 
 \begin{itemize}
+\item \textit{Arduino IDE} provides a fast and easy software development environment for implementing micro-controller applications without prior expert-level knowledge on micro-controllers. Additionally, Arduino and Arduino community supports with comprehensive set of software libraries for various micro-controller applications.
+
 \item \textit{Wire} library provides functionality for Inter-Integrated Circuit (I2C) communication. "This library allows you to communicate with I2C / TWI devices. On the Arduino boards with the R3 layout (1.0 pinout), the SDA (data line) and SCL (clock line) are on the pin headers close to the AREF pin. The Arduino Due has two I2C / TWI interfaces SDA1 and SCL1 are near to the AREF pin and the additional one is on pins 20 and 21." \cite{arduinowire}
 
-\item \textit{SPI} "This library allows you to communicate with SPI devices, with the Arduino as the master device." \cite{arduinospi}
+\item \textit{SPI} library provides the interface for uitlizing of SPI bus for inter-integrated chip communication. Furthermore, Arduino's IDE library provides functionalities for both, master and slave devices \cite{arduinospi}. Nevertheless, in this study the sensor device shall work as a master. 
 
-\item \textit{SD} "The SD library allows for reading from and writing to SD cards, e.g. on the Arduino Ethernet Shield. It is built on sdfatlib by William Greiman. The library supports FAT16 and FAT32 file systems on standard SD cards and SDHC cards. It uses short 8.3 names for files. The file names passed to the SD library functions can include paths separated by forward-slashes, /, e.g. "directory/filename.txt". Because the working directory is always the root of the SD card, a name refers to the same file whether or not it includes a leading slash (e.g. "/file.txt" is equivalent to "file.txt"). As of version 1.0, the library supports opening multiple files." \cite{arduinosd}
+\item \textit{SD} library allows reading from and writing to SD cards. The library supports FAT16 and FAT32 file systems on standard SD cards and SDHC cards. It uses short 8.3 names for files. That is, eight characters for filename and three for extension. \cite{arduinosd}
 
-\item \textit{EnableInterrupt} "enableInterrupt- Enables interrupt on a selected Arduino pin. disableInterrupt - Disables interrupt on the selected Arduino pin." \cite{arduinoenableinterrupt}
+\item \textit{EnableInterrupt} library provides interface for configuring interrupt pins. In additoin to enabling and disabling the interrupts, interrupt conditions e.g. rising edge, faling edge, low are configurable. \cite{arduinoenableinterrupt}
 
-\item \textit{RingBuf} "This is a simple ring (FIFO) buffer library for the Arduino. It is written in vanilla C, and can easily be modified to work with other platforms. It can buffer any fixed size object (ints, floats, structs, etc...)." \cite{arduinoringbuf}
-\end{itemize}
-
-However, the some advantageous features of micro-controllers are not included in standard Arduino libraries. Thus, profound familiarization with the micro-controller data sheet is beneficial for achieving the highest level of performance. In addition to the standard libraries, Arduino community provides plenty of open-source software libraries for various applications. 
-
-Furthermore, the Arduino programming language is merely a set of C/C++ functions. Thus, implementing 
-
-Additionally, the driver interfaces provided by the sensor manufacturers were not fully compatible with the Arduino. Thus, both driver interfaces were included in the implementation of the device software. 
-
-Data logs are recorded on a regular .txt-file on the SD card.
-
-the actual implementation is created in Arduino Integrated Development Environment (Arduino IDE) \cite{arduinoide}. The software implementation includes the conduction of the driver interfaces of both, accelerometer and temperature sensor.
-
-
-This subsection discusses of the data recording software. In contrast to the hardware, the software improved during this study. Thus, the first software implementation differs significantly from the latter. As a matter of fact, the first software implementation based on previous researches and intuition, whereas the latter based on the results received from the first recorded set of data. That is to say, the results of the first set of data formed a general view on typical behavior of a cow, while the purpose of the following data sets were used for the actual estrus detection. \textit{Tähän vielä jokin tarnsitiofraasi, ehkä?}
-
-The software were implemented in Arduino IDE (\textit{Integrated Development Environment}). The use of Arduino IDE offers effective environment for implementing embedded software without expert-level knowledge on micro-controllers. The Arduino provides extensive libraries\dots However, the driver interfaces for accelerometer and temperature sensors as well as the entire flow of the software were self-implemented.
+\item \textit{RingBuf} is a library for simple \textit{first in first out (FIFO)} buffers for the Arduino. Buffers created with the library can buffer any fixed size object such as ints, floats and structs. \cite{arduinoringbuf}
+\end{itemize} In addition to the standard libraries, Arduino community provides plenty of open-source software libraries for various applications. In spite of the numerous software libraries, they do not comprehensively include all the functionalities of the supported micro-controllers. Therefore, a profound familiarization with the micro-controller data sheet is mandatory step in order to achieve the optimal performance of the controller. However, the Arduino programming language is merely a set of C/C++ functions. Thus, it enables of implementation of ad-hoc functions such as hardware configurations. In this study, this flexibility was utilized in driver implementation for the accelerometer and temperature sensor since, their original drivers were not correctly supported in Arduini IDE. Furthermore, the data logging interface was created from s scratch. In result, there are two different log types in this study, one for each software implementation. Nevertheless, in both cases, the logs are written on SD-card on common .txt-files. In the following subtopics, we will discuss both software implementations in detail.
 
 
 
-\subsubsection*{First Software Implementation}\label{firstdatasetconfigurations}
+
+\subsubsection*{First Software Implementation ok}\label{firstdatasetconfigurations}
 
 
 \input{softwareflow1.tex}
 
-The starting point for implementing the first software included only a cursory conception of the behavior of a diary cow. Therefore, the properties of the accelerometer described in section \ref{hardwaresection} are treated with care in order to avoid loss of relevant data. In conclusion, a high data rate was prioritized over other features. Furthermore, it was decided not to use offset compensation since, it could cause unawareness of the pose of the device. 
+In this study, it was considered that software implementation based on strict initial assumptions could impair the the achieved results. Therefore, the approach for the first software implementation was to avoid utilizing unnecessary  or defective functionalities of the accelerometer. In conclusion, it was decided to prioritize high sampling rate over other features. Specially, irreversible pre-processes should be avoided. Thus, e.g. offset compensation was not in use in this software implementation. Furthermore, the offset data can provide vital information of the pose of the sensor. Nevertheless, the data was low-pass filtered in order to avoid the folding of frequencies higher than the half of the sampling rate. The maximum sampling rate of the accelerometer is limited in \SI{2000}{\hertz}. Consequently, the minimum update time is \SI{0.5}{\milli\second}. However, utilizing a filter douples the update time if filtered values are configured as output values. In spite of the high sampling rate of the accelerometer, the usage of secure digital (SD) memory card as a data storage limits the data rate rather effectively. That is, the duration of the SD file operations such as open, write and close exceeds the disposable time at high data rate. In result, it causes the FIFO buffers of the accelerometer to overflow. Consequently, undefined amount of data is lost. In contrast, a low sampling rate could cause a loss of possibly relevant features on higher frequencies. Therefore, the optimization of the data rate is more or less a trade of between data and feature losses.
 
-The accelerometer sets a hard restriction of \SI{2000}{\hertz} for the maximum data rate. However, the usage of secure digital (SD) memory card as a data storage limits the data rate even more as discussed in section \ref{resultssection}. That is, the duration of the SD file operations exceeds the disposable time at high data rate and, thus, causes loss of data. In contrast, a low data rate could cause a loss of possibly relevant features on higher frequencies. Therefore, the selection of the data rate is more or less a trade of between data losses and data bandwidth.
+The software flow of the first data recording software is represented in figure \ref{softwareflow1}. The flowchart consists of tasks (rounded rectangles) and conditions (diamonds). A condition is s state with two or more possible exit branches. In this study, the conditions are of Boolean type with only two following branches. In contrast, tasks are executable functions typically between conditions. Nevertheless, a branch may include a sequence of conditions as well as sequence of beaches. Furthermore, a task might contain smaller tasks and smaller conditions whereas conditions may contain smaller tasks and smaller conditions. Nevertheless, the conditions presented in the flowchart are discussed in the following itemization.
 
-The flow of the software consists of tasks and conditions. Each task contains a single function or a sequence of functions the micro-controller must execute before proceeding to the next task or condition in the flow. In this flow, the conditions are used to decide whether a task is being executed or not. Alternatively, a condition may be followed by an entire branch of tasks instead a single task. The conditions of the software flow and their explanations are:
 
 \begin{itemize}
 \item \textit{Interrupt} is true if an interrupt flag is set by an interrupt from the accelerometer which in this case is a certain FIFO buffer level.
-\item \textit{Timer} condition is used for reading temperature data from both of the sensors periodically.
 
-\item \textit{Timeout}  is a backup feature if an interrupt is being missed and, therefore, no more interrupts received.
+\item \textit{Timer} condition is used for reading temperature data from both of the sensors periodically. The temperature variation is not a high frequency process. Therefore, it is rather reasonable to read temperature values more seldom than accelerometer data.
 
-\item \textit{Errors}  is true if any of the predefined errors have occurred during the execution of  the main loop.
+\item \textit{Timeout} is a backup condition in the case of missed interrupt from the accelerometer. That is, the accelerometer gives FIFO level interrupt only once, unless the micro-controller reads it empty after receiving the interrupt. Therefore, if micro-controller misses the interrupt it will not receive a new one. In consequence, it can cause a deadlock situation.
 
-\item \textit{Buffer empty} condition checks the buffer level of the micro-controller. If the buffer level is non-zero the contents of the buffer will be written to the SD card.
+\item \textit{Errors} condition is for handling of the detecting errors in the software flow. The detectable errors need to be defined. The purpose of error detection is mainly improving the software and evaluation the quality of the recorded data.
 
-\item \textit{Save data}
+\item \textit{Buffer empty} condition checks the buffer level of the micro-controller. If the buffer level is more than zero the values in the buffer will be written to the text file on the SD card.
+
+\item \textit{Save data} condition detects s safe timing for performing save data task. The save data task includes time consuming SD-card file operations such as close file and open file.
 
 \end{itemize}
-and following tasks:
+Correspondingly, the software flow contains the following tasks.
 
 \begin{itemize}
 
-\item \textit{Initialize} task (which is analogous for \textit{setup} function in Arduino IDE) is executed only once right after the device is powered up. This task initializes the desired configurations for the accelerometer and the temperature sensor. It
+\item \textit{Initialize} task (which is analogous for \textit{setup} function in Arduino IDE) is executed only once right after the device is powered up. This task initializes the micro-controller itself as well as the desired configurations for the accelerometer and the temperature sensor.
 
-\item \textit{Read acceleration data} task reads the data from the FIFO buffer of the accelerometer and stores the acceleration data into the FIFO buffer of the micro-controller.
+\item \textit{Read acceleration data} task reads all the data from the FIFO buffer of the accelerometer and stores the it into the FIFO buffer of the micro-controller. Actually, the serial interface is capable of transmitting less than six data frames at a time. Therefore, the task reads sets of five data frames until there are more than zero but less than five frames available. Lastly, the task reads the remaining frames. In result, the FIFO buffer of the accelerometer should be apty.
 
-\item \textit{Save Data to SD-card} task saves the data written on the SD card. That is, the file where data is being written must be closed in order to ensure the written data is being saved. Once the file is closed for saving the data it has to be re-opened for continuing the writing process. Alternatively, if the size of the current file exceeds a preset limit, a new file is opened. Furthermore, the duration of the open and close file operations could exceed the time required to fill up the FIFO buffer of the accelerometer. Thus, the FIFO buffer is being read empty before and after closing the current file and once more after opening a file. 
+\item \textit{Save Data to SD-card} task saves the data written on the SD card. According to the Arduino's SD library, the written data is saved only after the file is closed utilizing the close function. Otherwise, the data will be lost and it is not possible to recover it afterwards. Additionally, in order to continue fluent writing process, the save data task re-opens the file. However, if the size of the log file exceeds the set maximum file size, the save data task will open a new log file. Furthermore, the duration of the open and close file operations could exceed the time required to fill up the FIFO buffer of the accelerometer. Thus, the FIFO buffer is being read empty before and after closing the current file and once more after opening a file. 
 
-\item \textit{Read temperatures} task reads the temperature data of both sensors and stores the value to the memory of the micro-controller. No temperature data are buffered. Thus, only the latest values are written to log file on SD card.
-\item \textit{Set Interrupt flag} sets the interrupt flag without an interrupt if a timeout condition is met. Once the interrupt flag is set, the micro-controller will read the acceleration data from the FIFO buffer of the accelerometer.
+\item \textit{Read temperatures} task reads the temperature data of both sensors and stores the value to the memory of the micro-controller. No temperature data are buffered. Thus, only the latest values are written on the log file on the SD-card.
 
-\item \textit{Handle errors} task handles predefined errors if one or more of them have occurred. In practice, this task writes the name of the occurred to the text file and resets the error flag.
+\item \textit{Set Interrupt flag} sets the interrupt flag without an interrupt if a timeout condition is met. Once the interrupt flag is set, the micro-controller will read the acceleration data from the FIFO buffer of the accelerometer. Consequently, it is possible for the accelerometer to set new interrupt flag once its FIFO buffer is being filled.
 
-\item \textit{Write buffer to SD-card} writes a single line of acceleration data from the FIFO buffer of the micro-controller into a text-file on the SD card.
+\item \textit{Handle errors} task handles predefined errors if one or more of them have occurred. In practice, this task writes the names of the occurred errors into the text file and resets all of the error flags.
+
+\item \textit{Write buffer to SD-card} writes a single line of acceleration data from the FIFO buffer of the micro-controller into a text-file on the SD card. However, in normal execution of the software flow, all conditions are most likely false. In result, the software will sequentially write multiple lines of acceleration data before another condition is met.
 \end{itemize}
 
 
