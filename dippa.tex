@@ -590,26 +590,24 @@ Correspondingly, the software flow contains the following tasks.
 
 
 
-\subsubsection*{Second Software Implementation}\label{seconddatasetconfigurations}
+\subsubsection*{Second Software Implementation ok}\label{seconddatasetconfigurations}
 
 \input{softwareflow2.tex}
+Whereas the first software implementation was created without descent pre-knowledge, the second software implementation benefits from the results of the first data set. As discussed in the results section \ref{generalresultssection} the first data set experienced multiple lost data frames. Furthermore, the frequency analysis showed there is no need for high frequency sampling. Actually, most of the frequency spectrum was less than \SI{8}{\hertz}. Therefore, the approach in this second software implementation is in improving the performance. The focus is specially in avoiding lost data frames. Additionally, a secondary target is reducing the device lifetime considering the battery and memory card capacities. However, battery or memory card capacities were not issues with the first data set. Nevertheless, the improvements are beneficial with possible future studies as well. The flowchart of the second software implementation is represented in figure \ref{softwareflow2}. In comparison to the first implementation, the software design is rather simple in the design level. That is, the second implementation consist of only three conditions whereas the first was designed with six. Furthermore, the number of tasks is reduced by one. Additionally, the task are in sequence without intermediate conditions. The conditions of the second software implementation are described in the following itemization.
 
-The approach for recording the second data set differs significantly from the first one. The first software implementation attempted to maximize the data rate, whereas the second focused on power saving. 
-
-
-The work flow consists of the following conditions:
+ 
 \begin{itemize}
 \item \textit{FIFO-level > 0} condition is true if the FIFO buffer level of the accelerometer is non-zero.
 
 \item \textit{WDT flag} condition is true if the watchdog timer has set a watchdog timer (WDT) flag.
 \end{itemize}
-and the following tasks:
+Correspondingly, the tasks of the second software implementation are as follows.
 
 
 \begin{itemize}
-\item \textit{Initialize}
+\item \textit{Initialize} task initializes the micro-controller as well as the other components of the sensor device.
 
-\item \textit{Read acceleration} task reads all the data from the FIFO buffer of the accelerometer and stores the data into a FIFO buffer of the micro-controller.
+\item \textit{Read acceleration} task reads all the data from the FIFO buffer of the accelerometer and stores the data into the FIFO buffer of the micro-controller.
 
 \item \textit{Read temperature} task reads the temperature of both of the sensors, accelerometer and temperature sensor.
 
@@ -619,18 +617,40 @@ and the following tasks:
 
 \item \textit{Close file} task closes the opened file in order to ensure the written data is being saved. 
 
-\item \textit{Sleep} task puts the micro-controller in a power saving mode. That is, all the other functionalities but watchdog timer and interrupts are disabled in order to minimize the power consumption. The micro-controller remains in the sleep until the watchdog timer or an interrupt from the accelerometer wakes up the micro-controller. After waking up, the 
+\item \textit{Sleep} task sets the micro-controller into a power saving mode. That is, all the other functionalities except the watchdog timer and interrupts are disabled in order to minimize the power consumption. The micro-controller remains in the sleep until the watchdog timer or an interrupt from the accelerometer wakes up the micro-controller. After waking up, the continues the execution of the software flow from the beginning of the repetitive loop.
 
 \end{itemize}
 
 \subsubsection{Procedure} \label{proceduresection}
 
-All the data used in this study were recorded on a dairy farm in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm consists of Ayrshire and Holstein cows, which were also used for data recording. 
+Previously we discussed of the software implementations for the data recording. In this section we will discuss of the actual data recording process on real dairy cow farm. The farm utilized in this study is located in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm contained of Ayrshire and Holstein cows and they both are used in data recording. The data was recorded in total of three separate occasions. First of the sessions was recorded with the first software implementation whereas the last two with the second software implementation. The first data recording session was started on 
 
-The data was recorded in two separate occasions. Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \dots
+Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \dots
 
 
-\subsubsection*{First Data Set} \label{firstdatasetsection}
+
+\begin{table} \caption{Data recording parameters of different data recording occasions and software implementation} \label{softwareparameterstable}
+\centering
+\begin{tabular}{| p{6.25cm} | p{3cm} | p{3cm} |}
+\hline
+\textbf{Parameter name} & \textbf{First software implementation} & \textbf{Second Software Implementation} \\  \hline
+Low-pass filter bandwidth & \SI{125}{\hertz} & \SI{7.81}{\hertz} \\ \hline
+Update interval & \SI{4}{\milli\second} & \SI{64}{\milli\second} \\ \hline
+Measurement range & $\pm$\SI{4}{\gram} & $\pm$\SI{8}{\gram} \\ \hline
+Accelerometer buffer size & 20 & 30 \\ \hline
+Interrupt latching & \SI{12.5}{\milli\second} & latched \\ \hline
+Internal Buffer Size & 200 frames & 200 frames \\ \hline
+SD-memory card size & \SI{8}{\giga\byte} & \SI{16}{\giga\byte}  \\ \hline
+estimated SD-capacity & approx. 16 days & approx. 500 days \\ \hline
+
+
+\end{tabular}
+\end{table}
+
+
+
+
+%\subsubsection*{First Data Set} \label{firstdatasetsection}
 
 
 
@@ -642,7 +662,7 @@ The recording of the first data set was started on Friday September the 9\textsu
 The trail camera as well as the sensor were without proper time stamp. Thus, they were out of synchronization. Consequently, making of conclusion between the recorded data and video was not reasonable. However, it seemed that there were recognizable patterns in the behavior of the cow e.g., eating of feed and walking. Because of these promising results, the same approach was attempted with the further data recordings. We shall discuss of it later in this study.
 
 
-\subsubsection*{Second Data Set} \label{seconddatasetsection}
+%\subsubsection*{Second Data Set} \label{seconddatasetsection}
 
 The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
 
@@ -1069,7 +1089,7 @@ The parameters are tuned with iterative methods. That is, testing various values
 
 \begin{table} \caption{Increased activity periods detected with Heatime cow monitoring system. Increased activity is considered as proestrus. These detections are used as a reference in this study.}
 \centering
-\begin{tabular}{| p{1.25cm} | p{2.25cm} | p{8.8cm} |}
+\begin{tabular}{| p{1.25cm} | p{2.25cm} | p{9 cm} |}
 \hline
 \textbf{Cow ID} & \textbf{Occurrence of increased activity} & \textbf{Other notifications} \\  \hline
 319 & 30-11-2016 & High activity period considered as pro-estrus. However, this period is outside of our sampling period. \\ \hline
