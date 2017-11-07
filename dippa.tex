@@ -704,24 +704,25 @@ s = \sqrt{\frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}}
 
 \subsubsection{Fourier Transform} \label{fouriertransformsection}
 
-Fourier transform is linear mapping from time domain to frequency domain.
+Frequency analysis of a signal is fundamental phase in filter design as well as in adjustment of the sampling rate. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least twice the signal frequency. Otherwise, high frequency components may fold over the lower frequencies and distort the signal. In this study, we did not make initial assumptions of the signal frequency of the acceleration signal. Thus, the sampling frequency was set as high as possible. The purpose is to use the frequency analysis to choose more suitable low-pass filter bandwidth for the second data recording application. Nevertheless, understanding of frequency analysis requires understanding of periodic signals. The basis of fourier transform is in Fourier analysis. That is, in the seventeenth century mathematician Jean Baptiste Fourier discovered that periodic signals could be approximated as series of simple sine and cosine functions. In fact, the Fourer transform is linear mapping of a signal from time domain into frequency domain. COrrespondingly, inverse Fourier transform is inverse linear mapping from frequency to time domain. Continuous time Fourier transform is representend in equation \ref{fouriertransformequation} \cite{khan2005digital}. 
 
-\begin{equation}
+
+\begin{equation} \label{fouriertransformequation}
 \hat{f}(\omega) =  \int_{- \infty} ^{\infty} f(x) ^{-i\omega x} \mathrm{d}x
-\end{equation} \label{fouriertransformequation}
+\end{equation}  
+Similarly as normal Fourier transform, textit{Discrete Fourier transform (DFT)} is also linear mapping of a signal from time domain to frequency domain. However, continuous time equations apply on continuous time signals whereas discrete time equations on discrete signals. Corresponding discrete time Fourier transform is represented in equation \ref{fftequation}.
 
-\begin{equation}
+\begin{equation} \label{fftequation}
 F_n =  \sum \limits^{N-1}_{k=0} f_k e^{-i(2\pi k / N) n} \mathrm{\hspace{1em} , n = 0, \dots , N -1} 
-\end{equation}\label{fftequation}
+\end{equation} 
+Normally, DFT would require approximately $n^2$ iterations for mapping the time domain to the frequency domain. With large samples this becomes mathematically demanding and time consuming process. Therefore, there are alternative approaches called Fast Fourier Transforms (FFT). They require less computing and time, approximately only $n \log n$ iterations. In practice, the fast Fourier Transform is solved numerically instead of solving it mathematically. However, the results may not be as exact as it is with DFT \cite{khan2005digital} \cite{rao2012fast}. Nevertheless, in this study we will use the FFT functions included in the standard libraries of Matlab software \cite{matlabfft}. The theoretical background of FFT is rather profound and therefore, it is not in the scope of this study. The fft function of Matlab does not actually consider frequency at all. In contrast, it provides only a numeric solution. Therefore, corresponding frequency vector needs to be created and mapped manually to the solution. Otherwise, the fft function of Matlab is fast and rather straightforward function.
 
-Discrete Fourier transform (DFT) is linear mapping of a signal from time domain to frequency domain \cite{rao2012fast}. That is, a time variant sample can be transformed into frequency domain for providing the frequency spectrum of the data. In this study, the frequency spectrum of cow behavior is valuable information in deciding the the bandwidth of the accelerometer.
+%Nevertheless, we will briefly discuss of the use of the fft function of Maltab as follows.
+
+%For the fft, it is required to define the length of the sample as well as the sampling frequency. Next, we will create a vector with frequencies from zero to half of the sampling frequency. Actually, the fft of the Matlab does not straight consider the true frequencies. Therefore, the user himself need to set the frequencies correctly. The fft function results the frequency data in complex numbers. Therefore, it is required to get the absolute value of the results. Yet, the the results are two sided data. Thus, we need to exclude the other half of it. Lastly, we correct the amplitude and plot the resulting vector with the frequency vector we created earlier. \cite{matlabfft}.
 
 
-Frequency analysis is important in designing of sampling rate as well as filters. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least double the highest frequency component. We will discuss of filters in the following subsection.
 
-Normally, DFT would require approximately $\mathbf{N}^2$ iterations for mapping the time domain to the frequency domain. With large samples this becomes mathematically demanding and time consuming process. Therefore, there are several approximation approaches called Fast Fourier Transforms (FFT). They require less computing and time. However, the results are not as exact as it is with DFT. In this study we will use the FFT functions included in the standard libraries of Matlab software. The theory behind FFT is quite deep and, therefore, it is not discussed in detail in this study. Nevertheless, we will introduce the use of the fft function of Maltab as follows. For the fft, it is required to define the length of the sample as well as the sampling frequency. $\mathbf{O}( \mathbf{N} \log \mathbf{N})$
-
-Next we will create a vector with frequencies from zero to half of the sampling frequency. Actually, the fft of the Matlab does not straight consider the true frequencies. Therefore, the user himself need to set the frequencies correctly. The fft function results the frequency data in complex numbers. Therefore, it is required to get the absolute value of the results. Yet, the the results are two sided data. Thus, we need to exclude the other half of it. Lastly, we correct the amplitude and plot the resulting vector with the frequency vector we created earlier.
 
 \subsubsection{Digital Filters} \label{digitalfilterssection}
 
@@ -1212,7 +1213,7 @@ Summary of all the previous. Alternatively ``Discussion'' or ``Conclusions''...
 
 \thesisappendix
 
-\input{appendices.tex}
+%\input{appendices.tex}
 
 
 \end{document}
