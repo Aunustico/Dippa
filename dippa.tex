@@ -621,11 +621,26 @@ Correspondingly, the tasks of the second software implementation are as follows.
 
 \end{itemize}
 
-\subsubsection{Procedure} \label{proceduresection}
+\subsubsection{Procedure ok} \label{proceduresection}
 
-Previously we discussed of the software implementations for the data recording. In this section we will discuss of the actual data recording process on real dairy cow farm. The farm utilized in this study is located in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm contained of Ayrshire and Holstein cows and they both are used in data recording. The data was recorded in total of three separate occasions. First of the sessions was recorded with the first software implementation whereas the last two with the second software implementation. The first data recording session was started on 
+Previously we discussed of the software implementations for the data recording. In this section we will discuss of the actual data recording process on real dairy cow farm. The farm utilized in this study is located in coordinates N\ang{63;6;3.6} E\ang{23;10;35.5}. The breed of the farm contained of Ayrshire and Holstein cows and they both are used in data recording. The data was recorded in total of three separate occasions. First of the sessions was recorded with the first software implementation whereas the last two with the second software implementation. The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the target farm. The sensor device was attached to the collar of the selected cow. The target of the first data recording was acquiring initial information of the cows behavior as well as performing frequency analysis of the data. Therefore, the cows was equipped also with additional trail camera. A  \SI{8}{\giga \byte} SD-memory card was used as a log file storage during this occasion. Initially it was estimated to sustain approximately 16 days, hence, the recording required approximately \SI{500}{\mega \byte} per a day. The recording of the first data set was ended on Sunday September the 18\textsuperscript{th}. After removing the devices from from the collar, all the log files as well as trail camera images were stored on computer for further studies. These results are discussed in results section \ref{resultssection}.
 
-Furthermore, the software implementation for these occasions differed significantly as discussed in sections \ref{softwaresection}. The sets of data were recorded in a farm at  The breeds on the farm are \dots
+In contrast to the first data recording event, total of three devices were used on the second and third sessions. In addition to the increased number of devices, the sensor software was improved considering the capacity of data storage and batteries. In result, the memory storage was estimated to sustain roughly for 500 days and batteries at least 60 days. Furthermore, a video camera was mounted on the ceiling of the barn during the second data recording event. Nevertheless, the memory of the camera was fulfilled in 24 hours. The purpose of the video camera was similar to the trail camera in the first session, searching correlation between motion data and the video based behavior monitoring. During the third data recording event, no video devices were used. The second data set was recorded on the test farm from December the 14\textsuperscript{th} to 15\textsuperscript{th}. Meanwhile this data was analyzed and algorithms developed, the third data set was recorded until January the 20\textsuperscript{th}. In addition to the data recording sensors, the cow were equipped with Heatime cow monitoring system. This system was utilized as a reference for the estrus detection algorithms. Figure \ref{sensorikaulassakuva} illustrates the cow with a collar sensor. Additionally, the axises of the accelerometer are shown in the picture. In addition to the picture of cow wearing the sensor, figure \ref{heatconductingtape} shows the heat conducting tape on the bottom side of the sensor device. This aluminum tape is in continuous skin contact with the cow and conducts the heat to the temperature sensor on the circuit board. Furthermore, differences between the software implementations are represented in table \ref{softwareparameterstable}. Additionally, table contains information of fundamental performance estimation.
+
+
+
+\begin{figure}[thb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
+\caption{Cow wearing a sensor device. The axis directions are illustrated with the red arrows in the figure. The sensor is in parallel with a commercial Heatime device also seen in this figure.}\label{sensorikaulassakuva}
+\end{figure}
+
+
+\begin{figure}[thb]
+\centering
+\includegraphics[width = 0.75 \textwidth]{figures/heatConductingTape.jpg}
+\caption{The heat conducting tape on the bottom-side of the sensor device. The purpose of the tape is conducting the skin temperature of the cow to the temperature sensor on the circuit board.}\label{heatconductingtape}
+\end{figure}
 
 
 
@@ -642,74 +657,31 @@ Interrupt latching & \SI{12.5}{\milli\second} & latched \\ \hline
 Internal Buffer Size & 200 frames & 200 frames \\ \hline
 SD-memory card size & \SI{8}{\giga\byte} & \SI{16}{\giga\byte}  \\ \hline
 estimated SD-capacity & approx. 16 days & approx. 500 days \\ \hline
-
-
 \end{tabular}
 \end{table}
 
 
 
 
-%\subsubsection*{First Data Set} \label{firstdatasetsection}
+\subsection{Data Processing ok} \label{dataprocessingsection}
 
+Previously, we have been discussing of the data recording hardware and software as well as the data recording process itself. Accordingly, this section focuses in the data processing methods. The data processing methods consists of basic statistics as well as such digital signal processing methods as \textit{fast Fourier transform (FFT)} and digital filters. Thus, the discussion in this section will start from the most essential statistic methods. Second, we will study the Fourier transform as a tool fro the frequency analysis. Third, we discuss of digital filters. The discussion rest of the fact the accelerometer includes filter for distortion attenuation as well as offset compensation. Last, in this section we introduce a sliding window as an essential principle while processing large amounts of data.
 
+However, prior processing of the data, it is essential to parse the data from log files into applicable form. In this study, we use MatLab \cite{matlaboverview} software for both, log file parsing and data processing. Furthermore, the format of log files varied depending on the software implementation. Therefore, corresponding data parsing scripts are required. In the log files, the data is written as certain rows containing the desired information. The purpose of the data parsing script is to convert the data from text characters into numeric values. Furthermore, the secondary purpose of the data parser is in reorganizing the data into practical structures for the future purposes. Additionally, the amount of data in log files was as minimal as reasonable. However, the paring sequence is capable to compute additional values such as time and include that into the structs for further purposes. In spite of these computational data processing methods, plotting and visual observation is the essential method in algorithms development as well as in feature identification.
 
+\subsubsection{Statistics ok} \label{statisticssection}
 
-The primary objective for the first recorded data set was achieving an overview on the behavior of a dairy cow. Thus, the sensor device was attached to the neck of a cow with a trail camera. In the beginning of the recording of the first data set, only one sensor device and one trail camera were available. Therefore, only one cow could have been chosen for recording simultaneously. In spite of the primary objective of observing the behavior, it was desired to obtain estrus data as well. Thus, the cattle tender assisted choosing a cow that was estimated having an estrus during the recording process. The maximum recording period was approximated up to 16 days, hence the capacity of the SD card was \SI{8}{\giga \byte} and the recording required approximately \SI{500}{\mega \byte} per a day.
-
-The recording of the first data set was started on Friday September the 9\textsuperscript{th} at the farm. The sensor device was attached to the neck of a selected cow with a trail camera. The recording lasted till Sunday September the 18\textsuperscript{th}. After the sensor and the camera were detached from the neck of the cow, the recorded data from both, the sensor device and the trail camera were copied on a computer for analysis.
-
-The trail camera as well as the sensor were without proper time stamp. Thus, they were out of synchronization. Consequently, making of conclusion between the recorded data and video was not reasonable. However, it seemed that there were recognizable patterns in the behavior of the cow e.g., eating of feed and walking. Because of these promising results, the same approach was attempted with the further data recordings. We shall discuss of it later in this study.
-
-
-%\subsubsection*{Second Data Set} \label{seconddatasetsection}
-
-The second data set was recorded in two phases. First phase was recorded from December the 14\textsuperscript{th} to 15\textsuperscript{th}. The second phase was recorded instantly after the first and lasted until January the 20\textsuperscript{th}. The cows selected for the data recording were such that they were estimated to have an estrus during this period.
-
-MAINITSE että lehmillä oli heatime!!!
-
-\begin{figure}[thb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/sensorikaulassa1.png}
-\caption{Cow wearing a sensor device. The axis directions are illustrated as red arrows in the figure. The sensor is in parallel with a commercial Heatime device shown in this figure.}\label{sensorikaulassakuva}
-\end{figure}
-
-ARvioidaan toisen (ja kolmannen) datasetin tuloksia, mutta myös laitteistoa ja ohjelmistoa. Jotain johtopäätöksiä.
-
-\begin{figure}[thb]
-\centering
-\includegraphics[width = 0.75 \textwidth]{figures/heatConductingTape.jpg}
-\caption{The heat conducting tape on the bottom-side of the sensor device. The purpose of the tape is conducting the skin temperature of the cow to the temperature sensor on the circuit board.}\label{heatconductingtape}
-\end{figure}
-
-\subsection{Data Processing} \label{dataprocessingsection}
-
-This subsection discusses about the methods used in data analysis. The used methods consists of pure visual observations as well as statistical analysis and more advanced digital signal processing. However, the visual observations remain the primary tool before and after applying any statistical or signal processing method.
-
-\subsubsection*{Parsing the data}
-
-The sensor data was recorded on .txt-files on the SD card. After recording the data long enough, the sensor was removed from the cow and the log files were copied on a computer. 
-
-Put here a sample of log files?
-
-\subsubsection{Statistics} \label{statisticssection}
-
-In this study, statistical methods are included in the estrus detection algorithms discussed in section \ref{estrusdetectionalgorithmssection}. Furthermore, statistics are used in analysis of duration of SD file operations in section \ref{generalresultssection}.
-
-
-The statistical methods used in this study are defined as follows \cite{maoltaulukotmatematiikka}:
+As already discussed, the data processing methods in this study consists of various tools. The statistics is an effective method of describing large amounts of data in few characteristics. Furthermore, they are relatively easy to compute. Therefore, statistics are one of the fundamental data processing tools in this study. Additionally, the statistics are deployed in several sequences from prior analysis to the various phases of estrus detection algorithms. In spite of the benefits of advanced statistics, in this study we use only the most essential statistical characters. The utilized statistical numbers are discussed in the following itemization \cite{maoltaulukotmatematiikka}.
 
 \begin{itemize}
-\item \textit{Mean} is used for describing the most common value of the data set. It is defined as the sum of all values divided the number of values:
+\item \textit{Mean} is an average value that attempts to describe the most typical value of the data set. However, mean is sensitive to unevenly and asymmetrically distributed values. Therefore, in such cases median is more valuable depicting the most typical value. Nevertheless,  mean is defined as the sum of all values divided the number of values as in the following equation.
 \begin{equation} \label{meanequation}
 \bar{x} = \frac{\displaystyle \sum\limits^{n}_{i = 1} x(i)}{n}
 \end{equation} 
 
-\item \textit{Median} is another number for describing the most common value of the data. In contrast to the mean, it is not that sensitive to exceptionally large or small values. It is defined as the middlemost value of sorted data. If the number of values in the data is even, the median is the sum of two middlemost values divided by two.
+\item \textit{Median} also describes the most common value of the data. In contrast to the mean, it is not that sensitive to unevenly and asymmetrically distributed values. Therfore, it is more applicable when data contains such features as large peaks Median is defined as the middlemost value of sorted data. If the number of values in the data is even, the median is the mean of the two middlemost values.
 
-\textit{Median} is the middlemost number of the data set sorted from smallest to largest numbers. If the number of elements in array is even, the median is the mean value of the two middlemost values.
-
-\item \textit{Variance} describes the expectation of the squared deviation of a random variable from its mean, and it informally measures how far a set of (random) numbers are spread out from their mean:
+\item \textit{Variance} describes the expectation of the squared deviation of a random variable from its mean, and it informally measures how far a set of (random) numbers are spread out from the mean:
 \begin{equation} \label{varianceequation}
 s^2 = \frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}
 \end{equation} 
@@ -719,11 +691,11 @@ s^2 = \frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}
 s = \sqrt{\frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}}
 \end{equation}
 
-\item \textit{Minimum value} is the smallest value in the data set.
+\item \textit{Minimum} is the smallest value in the data set.
 
-\item \textit{Maximum value} is the largest value in the data set.
+\item \textit{Maximum} is the largest value in the data set.
 
-\item \textit{Range} is the difference of the minimum and maximum values.
+\item \textit{Range} is the absolute difference between the minimum and the maximum values.
 \end{itemize}
 
 
