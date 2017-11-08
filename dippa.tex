@@ -702,7 +702,7 @@ s = \sqrt{\frac{ \sum\limits_{i = 1}^{n}(x(i) - \bar{x})^2}{n}}
 
 
 
-\subsubsection{Fourier Transform} \label{fouriertransformsection}
+\subsubsection{Fourier Transform ok} \label{fouriertransformsection}
 
 Frequency analysis of a signal is fundamental phase in filter design as well as in adjustment of the sampling rate. According to the Shannon-Nyquist theorem, the minimum sampling rate shall be at least twice the signal frequency. Otherwise, high frequency components may fold over the lower frequencies and distort the signal. In this study, we did not make initial assumptions of the signal frequency of the acceleration signal. Thus, the sampling frequency was set as high as possible. The purpose is to use the frequency analysis to choose more suitable low-pass filter bandwidth for the second data recording application. Nevertheless, understanding of frequency analysis requires understanding of periodic signals. The basis of fourier transform is in Fourier analysis. That is, in the seventeenth century mathematician Jean Baptiste Fourier discovered that periodic signals could be approximated as series of simple sine and cosine functions. In fact, the Fourer transform is linear mapping of a signal from time domain into frequency domain. COrrespondingly, inverse Fourier transform is inverse linear mapping from frequency to time domain. Continuous time Fourier transform is representend in equation \ref{fouriertransformequation} \cite{khan2005digital}. 
 
@@ -724,55 +724,48 @@ Normally, DFT would require approximately $n^2$ iterations for mapping the time 
 
 
 
-\subsubsection{Digital Filters} \label{digitalfilterssection}
+\subsubsection{Digital Filters ok} \label{digitalfilterssection}
 
-In general, there are four different kinds of filters, high-pass, low-pass, band-pass and band-stop filters. The purpose of the filters is to remove distortions and undesired features from the signal. Usually, filters are applied at least in the beginning of the data processing sequence. However, filters may be applied in several phases depending on the applications.  Low-pass filters are good in removing high-frequency noises and components above the research frequencies. Conversely, high-pass filters are used e.g., removing static off-set components in signal. We will discuss of the use cases of both of these components later in this study. Moreover, filters can be classified as analogous and digital filter. Typically, analog filters are configured in hardware and they are a combination of such analog electrical components as resistors, capacitors and inductors. The type and bandwidth of the filter depends on the design. 
+Filters are one of the fundamental tools in signal processing. Properly designed filter removes such undesired components from the signal as distortion and offset. Typically signal is smoother after applying a filter. Typically, filters are applied in the beginning of the signal processing sequence. However, there are no restrictions of applying filters in multiple phases of the sequence. In general, filters can be divided in four different types, low-pass, high-pass, band-pass and band-stop filters. Low-pass filters are desirable in removing high-frequency components. Normally, the purpose is removing of distortion. Usually, in these cases the source of distortion is external and not a part of the original phenomenon e.g. mechanical vibrations, acoustic and electrical noises. Similarly, high-pass filters are applied when low frequency components e.g. offset and DC voltage are not in the focus of the current application. Furthermore, band-pass and band-stop filters are special combinations of low-pass and high-pass filters. Band-pass filters are designed to pass only specific frequency band and removing components below and above it. Conversely, band-stop filter is design for filtering only a specific frequency band and allowing other frequencies to pass. \cite{digitalfilters} \cite{khan2005digital}
 
-Digital filters require digital technology, which means discrete time signals and discrete time behavior of the circuit.
+Filters can also be separated as analog and digital filters. Analog filters are based on a physical combination of analog electrical components such as resistors, capacitors and inductances. In contrast, digital filters are a sequence of arithmetic operations. Consequently, digital filters can be implemented on specific digital circuits or in software applications. Nevertheless, analog filters are usually present also in digital applications as preliminary and protective filters prior digital sampling. Specially, it is crucial to filter out frequency components above the Nyquist frequency in order to void folding. In this study, we will concentrate only on digital filters. Furthermore, the approach is to imitate the filters inside the Bosch Sensortec BMA222E accelerometer. The Accelerometer contains two configurable on chip filters, 2nd order low-pass filter and 1st order high-pass filter \cite{bma222datasheet}. The bandwidth of the low-pass filter is configured directly via the control register of the sensor. However, the high-pass offset compensating filer depends on the selected bandwidth of the low-pass filter as well as specific preset. That is, the cutoff frequency of the high-pass filter is either one-hundredth or one-thousandth of the low-pass cutoff frequency. Unfortunately, the data sheet of the sensor did not provide further information of the filters except the filter order. Therefore, these filters are replicated in this study based on the available information.
 
-The Bosch Sensortec BMA222e accelerometer provides two on chip filters: one 2nd order low-pass filter and another 1st order high-pass filter for offset compensation \cite{bma222datasheet}. Digital filters can be divided into two categories, filters with finite impulse response (FIR) and filters with infinite impulse response (IIR). The main difference between these filters is that the output of a FIR filter is dependent only on the input, whereas, the output of an IIR filter is dependent also on the previous outputs of the filter. Therefore, \cite{digitalfilters} \cite{khan2005digital}.
-
-The digital signal processing methods consists of applying filter and other mathematical methods. In these methods, any features of the sensors could be simulated afterwards instead of using the features of the sensor. E.g., offset compensation using the low pass filter causes the loss in information of orientation of the device.
-
-Basically, the factors of the filter could be chosen freely. However, commonly the target total gain of the filter is 1.
-
-Filters with infinite impulse response (IIR):
+Digital filters can be divided into two categories, \textit{finite impulse response (FIR)} filters and \textit{infinite impulse response (IIR)} filters. The topology of FIR filter is represented in figure \ref{firfilterdiagram} whereas the topology of IIR filter is shown in figure \ref{iirfilterdiagram}. The names of the filters follow their impulse response. The FIR filter has a finite impulse response whereas the impulse response of IIR filter is infinite. As seen in the FIR filter equation \ref{firequation}, the output of the filter is dependent on only current and previous input signal levels. Therefore, the output signal cannot be longer than the degree of the filter. By contrast, the IIR filter is also dependent on its own current and previous outputs as seen in the equation \ref{iirequation}. Thus, if the filter is stable it converges but never reaches absolute zero after an impulse input.
 
 
 \input{firfilterdiagram.tex}
 
-\begin{equation}
+\begin{equation} \label{firequation}
 y[k] = b_0 x[k] + b_1 x[k-1] + b_2 x[k-2] + \dots + b_{n-1} x[k+1-n] + b_n x[k-n]
-\end{equation}\label{firequation}
+\end{equation}
 
+\input{iirfilterdiagram.tex}
 
-
-\begin{equation}
+\begin{equation} \label{iirequation}
 \begin{aligned}
 y[k] = b_0 x[k] + b_1 x[k-1] + b_2 x[k-2] + \dots + b_n x[k-n] \\
 -a_1 y[n-1] - a_2 y[n-2] - \dots - a_m y[k-m]
 \end{aligned}
-\end{equation}\label{iirequation}
+\end{equation}
+With this ground knowledge of digital filters we are able to create adequate replicates of the filters of the accelerometer. In addition, to the knowledge, we need an effective filter designing tool. The Matlab softeare provides a satisfactory filter designing tool \cite{matlabfilterdesigner} for our purposes. The tool allows of defining the type on order of the filter. Additionally, it provides offers the frequency response of the filter for validation. In this study, both of the filters were assumed as IIR filters. Specially the 1\textsuperscript{st} order high-pass filter would not provide a satisfactory frequency response for offset compensation. Therefore, IIR filter in this application is more reasonable. Nevertheless, same kind of logic could not be used defining the type of the low-pass filter. However, the IIR filter has steeper cutoff frequency than same order FIR filter. Therefore, it also was designed as IIR filter. Nevertheless, designing of an effective 1\textsuperscript{st} order high-pass filter is challenging. Therefore, it was eventually decided to design also the high-pass filter as a 2\textsuperscript{nd} order IIR filter.
 
-
-and filter with finite impulse respones (FIR):
-
-
-
-
-\input{iirfilterdiagram.tex}
+% ehkä taulukko suunnitelluista filttereistä
 
 \subsubsection{Sliding Window} \label{slidingwindowsection}
 
-In this study, windowing is means analysis and calculus of data in segments instead of entire data set. The windowing method in this study is analogous to windowing in signal processing \cite{tan2007digital,miao2007signal} \dots 
+In addition to the methods discussed previously, we deploy one more data processing method called sliding window. In this study, the sliding windowing means applying certain calculus on sliced data. Furthermore, in this study, the result of s single window operation is always a single value instead of array of values. An example of sliding window function is represented in equation \ref{windowedmeanequation}. In this example, the window operator calculates the mean value of the data inside the window instead of entire data set. The $n$ is the size of the window in data samples whereas $k$ is the index of the entire data set. 
+
+ This approach causes certain concerns in the data processing sequence. That is, 
+
+ analysis and calculus of data in segments instead of entire data set. The windowing method in this study is analogous to windowing in signal processing \cite{tan2007digital,miao2007signal} \dots 
 
 The integration period = window
 
 Windowed mean value:
 
-\begin{equation}
-\bar{x}(k) = \frac{ \sum\limits^{k}_{i = k - n} x(i)}{n} \mathrm{,}
-\end{equation} where $n$ is the size of the window.
+\begin{equation} \label{windowedmeanequation}
+\bar{x}(k) = \frac{ \sum\limits^{k}_{i = k - n} x(i)}{n}
+\end{equation} 
 
 
 \subsection{Estrus Detection Algorithms} \label{estrusdetectionalgorithmssection}
