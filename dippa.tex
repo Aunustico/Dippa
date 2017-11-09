@@ -840,18 +840,12 @@ The benefit of this algorithm is its simplicity. The offset compensation filteri
 
 \subsubsection{Variance Detection} \label{variancedetectionsection}
 
-In contrast to the previous algorithm, this algorithm attempts to avoid the requirement of continuous data streams. That is, using of small standard-sized samples in certain intervals. The achieved benefit is the improved possibility of utilizing the power saving modes of the micro-controller. In result it increases the battery life and thus, cuts the maintenance costs of the device. In addition to the standardized samples, also the core of the algorithm shall be re-considered in order to achieve another approach to the topic.
+In contrast to the previous algorithm, this algorithm attempts to avoid the requirement of continuous data streams. That is, using of small standard-sized samples in certain intervals. The achieved benefit is the improved possibility of utilizing the power saving modes of the micro-controller. In result it increases the battery life and thus, cuts the maintenance costs of the device. In addition to the standardized samples, this algorithm consists of different calculus. 
+
+Originally, the concept of a variance based algorithm arose among the analysis of the first data set. The data consisted of two distinct period. The periods differed in both, variance and offset. In theory, both of these features could have been used as a sound for the algorithm. However, an offset based algorithm seemed unreliable, hence, the collar was not in a fixed pose on the cow collar. Thus, the pose of the sensor can change accidentally and corrupt the results. Furthermore, the offset was present and varied only among the x-axis. By contrast, the variance in motion were present evenly on each axis. Additionally, variance in more tolerant against accidental change of the pose of the sensor. Thus, the variance together with the sampling principle discussed were selected as the key methods for the second estrus detection algorithm.
 
 
 
-The first algorithm had a basis in continuous computation of continuous data stream. In contrast to the first algorithm, the second algorithm attempts to reduce the amount of required data. That is, using standard data samples in regular intervals instead of continuous stream. Furthermore, the calculus of the algorithms are different. The ground of the first algorithm was in summing of the lengths of the total acceleration vectors, whereas this algorithms attempts to determinate the level of variance 
-
-The first algorithm calculated the length of the total acceleration vectors. Thus, estimated the energy consumption. Alternatively, this second algorithm detects the level of variation in the acceleration data rather than the total amount of movement. 
-
-Originally, the concept of a variance based algorithm arose along with the analysis of the recorded data sets.  
-
-
-Originally, the concept of a variance based algorithm arose among the analysis of the first recorded data set. The data consisted of two distinct period. They differed in variance as well as in offset. In theory, both of these differences could have been used as a basis of an algorithm. However, the reliability of the offset is questionable, hence the pose of the device is not strictly fixed in the neck of a cow. Additionally, offset based algorithm would prevent the use of the offset compensation of the accelerometer. Consequently, it would set unnecessary restrictions for future development. Moreover, the difference in offset was mostly significant in the x-axis data. Conversely, the amount of variance appeared evenly on each axis. Furthermore, variance is offset independent. Thus, variance based algorithm does not require any high-pass filtering before data processing.
 
 \begin{enumerate}
 
