@@ -838,27 +838,25 @@ u(i) = \sqrt{x^2(i) + y^2(i) + z^2(i)}
 The benefit of this algorithm is its simplicity. The offset compensation filtering can be performed in the accelerometer with few easy configurations. Furthermore, the absolute value of the motion vector is replaceable with the sum of absolute values of the motion vector if necessary. Also summing of the results within a certain time frame is s straight forward process. Furthermore, the steps from four to seven are not required in real algorithm implementation. Conversely, the purpose of these final steps is to modify the information into more understandable form. However, continuous sampling deteriorates the possibility of deployment of power saving  features of the micro-controller. This might be a critical issue with battery-powered solution. Nevertheless, the results of this algorithm are discussed in section \ref{activitymeasurementevaluation}. 
 
 
-\subsubsection{Variance Detection} \label{variancedetectionsection}
+\subsubsection{Variance Detection ok} \label{variancedetectionsection}
 
 In contrast to the previous algorithm, this algorithm attempts to avoid the requirement of continuous data streams. That is, using of small standard-sized samples in certain intervals. The achieved benefit is the improved possibility of utilizing the power saving modes of the micro-controller. In result it increases the battery life and thus, cuts the maintenance costs of the device. In addition to the standardized samples, this algorithm consists of different calculus. 
 
-Originally, the concept of a variance based algorithm arose among the analysis of the first data set. The data consisted of two distinct period. The periods differed in both, variance and offset. In theory, both of these features could have been used as a sound for the algorithm. However, an offset based algorithm seemed unreliable, hence, the collar was not in a fixed pose on the cow collar. Thus, the pose of the sensor can change accidentally and corrupt the results. Furthermore, the offset was present and varied only among the x-axis. By contrast, the variance in motion were present evenly on each axis. Additionally, variance in more tolerant against accidental change of the pose of the sensor. Thus, the variance together with the sampling principle discussed were selected as the key methods for the second estrus detection algorithm.
-
-
+Originally, the concept of a variance based algorithm arose among the analysis of the first data set. The data consisted of two distinct period. The periods differed in both, variance and offset. In theory, both of these features could have been used as a sound for the algorithm. However, an offset based algorithm seemed unreliable, hence, the collar was not in a fixed pose on the cow collar. Thus, the pose of the sensor can change accidentally and corrupt the results. Furthermore, the offset was present and varied only among the x-axis. By contrast, the variance in motion were present evenly on each axis. Additionally, variance in more tolerant against accidental change of the pose of the sensor. Thus, the variance together with the sampling principle discussed were selected as the key methods for the second estrus detection algorithm. The work flow of the algorithm is explained in the following description.
 
 
 \begin{enumerate}
 
-\item \textbf{Get a sample} --- In this algorithm, the data is processed in samples instead of data stream. The length of a sample is variable. Furthermore, there are no restrictions for overlapping. However, the purpose of this algorithm is to reduce the amount of required data frames.
+\item \textbf{Get a sample} --- In this algorithm, the data is processed in samples instead of data stream. The length of the samples is configurable. Naturally, there are no restrictions for overlapping the samples. However, the purpose of the algorithm is to reduce the amount of required data. Thus, overlapping is not reasonable approach from the perspective.
 
-\item \textbf{Compute Variance} --- A sample consists of predefined amount of data frames. Computing of variance means calculating the variance of single data sample. However, in this study we have all the data available. Thus, the sampling and computing the variance are combined in the following equation:
+\item \textbf{Compute Variance} --- A data sample consists of predefined number of data frames. Here, the computing of the variance means calculating the variance of a single sample. However, in this study we use the entire data set as an input data. Thus, we need an sliding window method \ref{slidingwindowsection} for sampling as well as calculating the variance. Furthermore, in this point we calculate the variance for each axis separately. Therefore, the outcome consists of three output arrays. The following equation represents the working principle of sliding variance window.
 
 \begin{equation} \label{samplevariance}
-u_x(k) = \frac{\sum \limits_{i=nk-m}^{nk} (x(i) - \bar{x})^2}{m} \mathrm{\hspace{1em},}
+u_x(k) = \frac{\sum \limits_{i=mk-n}^{mk} (x(i) - \bar{x})^2}{n} \mathrm{\hspace{1em},}
 \end{equation}
-where $m$ is the size of the data sample, $n$ is the distance between the samples and $k$ is the index of the output data. The product $nk$ shall not exceed the index of the maximum samples.
+where $n$ is the size of the data sample, $m$ is the interval between the samples and $k$ is the index of the output data. Furthermore, the algorithm implementation shall consider avoiding of exceeding the range of the input data indexes.
 
-\item \textbf{Sum results} --- The variance of each axis are calculated separately. However, in this study we will not compare the algorithms for each axis separately. Thus, the resulting variances are summed index by index as follows:
+\item \textbf{Sum results} --- In this study, the variance of each axis are calculated separately. Next, they are summed up into one resulting output data. as the seen in the following equation.
 
 \begin{equation}
 u_{tot} = u_x + u_y + u_z
@@ -866,15 +864,15 @@ u_{tot} = u_x + u_y + u_z
 
 \item \textbf{Remove offset} --- Similarly as before, the median value of the resulting data is considered as the offset and it will be deducted from all of the data points.
 
-
 \item \textbf{Normalize} --- After removing the offset, the resulting data set is divided by the maximum of the absolute extreme value. In result, all the data points are between values $\pm 1$.
 
-\item \textbf{Threshold} --- Next, exceeding of preset threshold is considered as the beginning of the proestrus. Conversely, falling below second threshold indicates the end of proestrus and the beginning of estrus.
+\item \textbf{Threshold} --- Next, exceeding of preset threshold is considered as the beginning of the pro-estrus. Conversely, falling below second threshold indicates the end of proestrus and the beginning of estrus.
 
 \item \textbf{Plot data} --- Finally, the data is presented in plot. The plot shows the algorithm results against time. In addition to the data, also the beginning and the end of proestrus are shown in the plot.
 
 \end{enumerate}
 
+By contrast to the previous algorithm, the benefit of variance detection is in the potential power saving. That is, continuous sampling requires continuous readiness of the micro-controller, which is the most power consuming component the the sensor device in this study. Additionally, this algorithm is tolerant to offsets. Thus, it is not required to apply any offset filtering prior calculating the variance. However, this algorithm is more complex, hence it has more tunable parameters than the first one. Therefore, it is more complex to tune and might result non-satisfactory results. The results of the variance detection algorithm are discussed in section \ref{variancedetectionevaluation}. 
 
 \subsubsection{Inactivity Detection} \label{inactivitydetectionsection}
 
