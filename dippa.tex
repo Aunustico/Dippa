@@ -32,25 +32,49 @@
 \newcommand{\mx}[1]{\mathbf{\bm{#1}}} % Matrix command
 \newcommand{\vc}[1]{\mathbf{\bm{#1}}} % Vector command
 
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
 \renewcommand{\labelenumii}{\theenumii}
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 
-\newcommand{\Clanguage}{\lstset{
-  language=C++,                % choose the language of the code
-  basicstyle=\ttfamily,
-  %numbers=left,                   % where to put the line-numbers
-  %stepnumber=1,                   % the step between two line-numbers.        
-  %numbersep=5pt,                  % how far the line-numbers are from the code
-  %backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
-  %showspaces=false,               % show spaces adding particular underscores
-  %showstringspaces=false,         % underline spaces within strings
-  %showtabs=false,                 % show tabs within strings adding particular underscores
- % tabsize=2,                      % sets default tabsize to 2 spaces
- % captionpos=b,                   % sets the caption-position to bottom
-  %breaklines=true,                % sets automatic line breaking
-  %breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
-  title=\lstname,                 % show the filename of files included with \lstinputlisting;
-}}
+% load package with some of the available options - you may not need this!
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+%\newcommand{\Clanguage}{\lstset{
+%  language=C++,                % choose the language of the code
+%  basicstyle=\ttfamily,
+%  %numbers=left,                   % where to put the line-numbers
+%  %stepnumber=1,                   % the step between two line-numbers.        
+%  %numbersep=5pt,                  % how far the line-numbers are from the code
+%  %backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+%  %showspaces=false,               % show spaces adding particular underscores
+%  %showstringspaces=false,         % underline spaces within strings
+%  %showtabs=false,                 % show tabs within strings adding particular underscores
+% % tabsize=2,                      % sets default tabsize to 2 spaces
+% % captionpos=b,                   % sets the caption-position to bottom
+%  %breaklines=true,                % sets automatic line breaking
+%  %breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+%  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+%}}
+%
+%\lstset{language=Matlab,%
+%    %basicstyle=\color{red},
+%    breaklines=true,%
+%    morekeywords={matlab2tikz},
+%    keywordstyle=\color{blue},%
+%    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+%    identifierstyle=\color{black},%
+%    stringstyle=\color{mylilas},
+%    commentstyle=\color{mygreen},%
+%    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+%    %numbers=left,%
+%    %numberstyle={\tiny \color{black}},% size of the numbers
+%    %numbersep=9pt, % this defines how far the numbers are from the text
+%    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+%    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+%}
 
 %% Jos et jostain syystä pidä, miten alla oleva hyperref-paketti käyttää
 %% fontteja, värejä yms., käytä tämän paketin makroja muuttamaan
@@ -649,8 +673,8 @@ In contrast to the first data recording event, total of three devices were used 
 \begin{tabular}{| p{6.25cm} | p{3cm} | p{3cm} |}
 \hline
 \textbf{Parameter name} & \textbf{First software implementation} & \textbf{Second Software Implementation} \\  \hline
-Low-pass filter bandwidth & \SI{125}{\hertz} & \SI{7.81}{\hertz} \\ \hline
-Update interval & \SI{4}{\milli\second} & \SI{64}{\milli\second} \\ \hline
+Low-pass filter bandwidth & \SI{62.5}{\hertz} & \SI{7.81}{\hertz} \\ \hline
+Update interval & \SI{8}{\milli\second} & \SI{64}{\milli\second} \\ \hline
 Measurement range & $\pm$\SI{4}{\gram} & $\pm$\SI{8}{\gram} \\ \hline
 Accelerometer buffer size & 20 & 30 \\ \hline
 Interrupt latching & \SI{12.5}{\milli\second} & latched \\ \hline
@@ -791,17 +815,25 @@ u(k) = \frac{x(k)}{\max  \left| x \right|}
 \end{equation}
 
 
-\item \textbf{Threshold} --- Finally, thresholds are used for indicating the beginning and the end of the proestrus. That is, exceeding the first threshold indicates the beginning of the proestrus and next, the going below indicates the end of the proestrus. The thresholds for deciding whether the cow is in estrus or not should be separate. The end of proestrus signals to the cattle tender to prepare for insemination. The principle of the proestrus detection is presented in the following pseudo code.  
+\item \textbf{Threshold} --- Finally, thresholds are used for indicating the beginning and the end of the proestrus. That is, exceeding the first threshold indicates the beginning of the proestrus and next, the going below indicates the end of the proestrus. The thresholds for deciding whether the cow is in estrus or not should be separate. The end of proestrus signals to the cattle tender to prepare for insemination. The principle of the proestrus detection is presented in the following Matlab code.  
 
-%\Clanguage
-%\begin{lstlisting}
-%for (i = 0 ; i < length(x); i ++)
-% if (x(i) > threshold1 && proestrus == false)	
-%  proestrus = true;
-% else if (x(i) < threshold && proestrus == true)
-%  proestrus = false;	
-%\end{lstlisting}
-%Additionally, each change of the estrus state should trigger an alert.
+
+\begin{lstlisting}
+% Initialize the estrus status
+proestrus = false;
+estrus = false;
+% Process through the entire data set
+for i = 1: length(x)
+	% Check if the value exceeds the threshold
+	if (x(i) > threshold1 && proestrus == false)	
+		proestrus = true;
+	% Check if the value falls below the second threshold
+	else if (x(i) < threshold2 && proestrus == true)
+ 		proestrus = false;
+ 		estrus = true;
+end
+\end{lstlisting}
+Additionally, each change of the estrus state should trigger an alert.
 
 \item \textbf{Plot data} --- Plotting of the resulting data visualizes the results. Nevertheless, it does not effect to the results directly. However, plotting makes the algorithm evaluation quicker and easier by brief visual inspections. Furthermore, plotting can reveal some features that might not be detected in pure numeral form.
 
@@ -874,39 +906,50 @@ u_{tot} = u_x + u_y + u_z
 
 By contrast to the previous algorithm, the benefit of variance detection is in the potential power saving. That is, continuous sampling requires continuous readiness of the micro-controller, which is the most power consuming component the the sensor device in this study. Additionally, this algorithm is tolerant to offsets. Thus, it is not required to apply any offset filtering prior calculating the variance. However, this algorithm is more complex, hence it has more tunable parameters than the first one. Therefore, it is more complex to tune and might result non-satisfactory results. The results of the variance detection algorithm are discussed in section \ref{variancedetectionevaluation}. 
 
-\subsubsection{Inactivity Detection} \label{inactivitydetectionsection}
+\subsubsection{Inactivity Detection ok} \label{inactivitydetectionsection}
 
-The first two algorithms were based on relatively demanding computations considering micro-controller (MCU) environments. The first algorithm required a continuous data stream and calculating powers of two and square roots. The second algorithm did not require a continuous data stream. However, the algorithm included computing of variance which includes sum, square root and power of two as discussed in section \ref{statisticssection}. Furthermore, the available dynamic memory of micro-controllers are restricted. Therefore, it limits the maximum number of retained data points for computing the variance. In contrast, the third algorithm attempts to reduce the computation in the MCU. Therefore, it requires more advanced deployment of the features of the accelerometer. Accordingly, an interrupt driven approach becomes sensible. That is, the the MCU only counts the number of interrupt events whereas, the accelerometer performs all other computations. 
 
-In addition to transferring most of the calculus from MCU to accelerometer, the logic itself could be inverted. That is, monitoring inactivity instead of activity. For this perspective, the accelerometer provides the feature of \textit{no motion detection} which was discussed in section \ref{hardwaresection}. This feature suits fairly well to the aspect of transferring the computation from MCU to micro-controller and observing inactivity instead of activity. However, this study bases on recorded data instead of testing these configurations real animals. Therefore, the algorithm described below is purely a simulation of the features of the accelerometer. In consequence, the results achieved in this study might differ from those of real life. 
+The first two estrus detection algorithms were based on continuous sampling or calculating of variance of samples. Considering the micro-controller environments, these are relatively demanding operations. Furthermore, micro-controllers work in single thread. Thus, it is not possible to execute other tasks in parallel. In results, it degrade the performance capabilities of the device. Additionally, both of the first algorithms allocates significant part of the available memory for storing the intermediate and final results. By contrast, the third algorithm attempts to reduce the amount of required computation in the micro-controller. Basically, there are to options to ease to workload of the micro-controller. First, simplifying the arithmetic or reducing the amount of data frames reduces the workload. Second, utilizing the on-chip functionalities of the accelerometer also reduces the workload of the micro-controller. Actually, the first option is sort of a combination of the first two algorithms and possibly could provide satisfactory results. However, in this study we want to have three different approaches. Thus, the second option of utilizing the features of the accelerometer becomes more reasonable.
 
-This inactivity detection algorithm complies with the algorithm structure discussed earlier in this section. The data processing phase of this algorithm is as follows. 
+Once we have chosen to utilize one of the on-chip functionalities, we still need to decide which of the functionalities we shall utilize. As we already discussed in section \ref{variancedetectionsection}, the pose of the device is not satisfactory reliable option for being the observed measure. Therefore, angle detection features of the accelerometer are excluded. However, the accelerometer contains a functionality which provides a new perspective to the activity monitoring. The functionality is \textit{called no-motion / slow motion detection}. Thus, it detects the absence of motions instead of detecting motion directly. In fact, the accelerometer triggers an interrupt when detects the state of no-motion. Normally, the cow lies down half of the day and changes its place occasionally. These resting resting and rumination activities should appear as detected inactivity. Correspondingly, the highly active period of proestrus should appear as reduced inactivity.  Thus, proestrus period triggers less interrupts than the normal state of the cow.
+
+As already discussed, the implementation the algorithms for the micro-controller is not in the scope of this study. Therefore, the no-motion detection is imitated in a Matlab script as a part of the algorithm. This methods allows us to test and re-configure the no-motion detection parameters freely. The no-motion detection has two configurable parameters, motion threshold ans delay. The motion threshold means the value that the slope of the motion shall not exceed. Correspondingly, the delay is the period when the slope shall not exceed the threshold in order to generate an interrupt condition. The complete algorithm description is discussed in the following sequence.
 
 \begin{enumerate}
-\item \textbf{Get Slope} --- The slope is the acceleration difference. That is, the previous value subtracted from the current value: 
+\item \textbf{Get Slope} --- The slope is the difference between sequential acceleration values. That is, the previous value subtracted from the current value as shown in the following equation. 
 
 \begin{equation}
 u[i] = x[i] - x[i-1]
 \end{equation}
 
-Furthermore, the slope is offset independent. Hence, the slope is actually first order FIR filter with infinite attenuation at zero frequency, sampling frequency and its harmonics. 
+Additionally, the slope is offset independent hence, it actually is a first order FIR filter. Furthermore, it has infinite attenuation on zero frequency, sampling frequency and all of its harmonics. 
 
-\item \textbf{Detect inactivity} --- According to the specifications of the accelerometer, a no-motion interrupt is triggered if the absolute value of the slope remains below of a preset threshold for a preset duration of time. The following pseudo code represents the software implementation for the no-motion detection. 
+\item \textbf{Detect inactivity} --- According to the specifications of the accelerometer, a no-motion interrupt is triggered if the absolute value of the slope remains below of a preset threshold for a delay. The following Matlab code represents a software implementation for the no-motion detection. 
 
-\Clanguage
+%\Clanguage
 \begin{lstlisting}
-for (i = 0 ; i < length(x); i ++)
- if (x(i) > threshold)	
-  prev_i = i;
- if (i - prev_i > passivity_period)
-  passivity(i) = 1;
-  prev_i = 1;	
+% Initialize the output data array as zeros
+data_out = zeros(length(data_in), 1);
+% Initialize the index of previous exceeding of the threshold
+prev_i = 0; 
+% Process through the entire data set
+for i = 1: length(data_in)
+	% Comapre slope value to the threshold
+    if abs(data_in(i)) > threshold
+        prev_i = i;
+    end
+    % Compare the index reminder to duration threshold
+    if i - prev_i >= duration
+        data_out(i) = 1;
+        prev_i = i;
+    end
+end	
 \end{lstlisting}
 
-In this study, the passivity array has the same length as the acceleration data array and it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Meanwhile, any occurred no-motion condition yields the value of one into the passivity array. In consequence, the resulting passivity array consists mostly of zeros and few of ones within. Furthermore, the indexes of the ones are directly related to the time of the occurrence. Thus, it enables concluding the level of inactivity in certain range of time.
+In this algorithm, the output array has the same length as the input data array. Furthermore, it is initialized as zeros. During the execution, the algorithm processes through the entire data set. Whenever a no-motion condition is met, the algorithm sets the value of one into the output array. In consequence, the resulting passivity array consists mostly of zeros and few ones. Thus, the zeros in the output array represent activity or undefined activity whereas ones represent detection of inactivity. Additionally, because input and output array are equally long, there is no need to scale the time array of the measurement. Thus, it enables the discovering of the level of inactivity in desired time frame.
 
 
-\item \textbf{Sum results} --- sdf
+\item \textbf{Sum results} --- The results are integrated within certain time window using the sliding window principle.
 
 \item \textbf{Remove offset} --- The median value of the resulting array is considered as the mean offset. The offset is deducted from all the data points.
 
@@ -919,29 +962,25 @@ In this study, the passivity array has the same length as the acceleration data 
 
 \end{enumerate}
 
-Next, after these two specific phases of data processing phases the algorithm proceeds its normal sequence as discussed earlier in this section.
+The obvious benefit of this algorithms is performing the possibility of performing the core functions on the accelerometer instead. Thus, it releases the resources of the micro-controller for other tasks or for power saving modes. Furthermore, the configuration of the delay sets the minimum interval between the interrupts. Therefore, it is easily possible to calculate the theoretical maximum amount on interrupts within a certain time frame. In consequence, it helps to estimate the power consumption and the battery-life of the device. Nevertheless, the results of the inactivity detection algorithms are discussed and evaluated in section \ref{inactivitydetectionevaluation}.
 
 
 \clearpage
 
-\section{Results} \label{resultssection}
+\section{Results ok} \label{resultssection}
+
+In previous sections, we have discussed of the background of this study as well as surveyed through the research tools and methods. In the background section we considered the history of milk production and discussed of modern farming technologies. Additionally, we viewed recent research and studies of dairy cow monitoring solutions. Correspondingly, the research section introduces the sensor device for data recording in this study. Second, we discussed of the software implementations for the sensor device. Next, we surveyed through data processing methods utilized during this study. Last in the research section we introduced three different estrus detection algorithms suitable for micro-controller devices. Consequently, this section discusses of the results of this study. The discussion will start from viewing general results. The general results include intermediate results utilized in software implementation as well as in algorithm development. Furthermore, we discuss briefly of the secondary results occurred during this study. Next after general results, we represent the results of the estrus detection algorithms and evaluate the algorithm performance. Lastly in this section, we conclude the results and discuss of possible improvements as well topics for future studies.
  
-In this section we will represent the results of this study. The results are achieved following the instructions of the section \ref{researchsection}. First, we will discuss of the results in general. The discussion covers several topics and phenomena arisen during this study. The second subsection focuses on revealing the results of the estrus detection. Lastly in this section, we will discuss of conclusions based on the results. The conclusions includes a summary of algorithm evaluation, discussion of failures during this study and suggestions for future studies.
+
+\subsection{General Results ok} \label{generalresultssection}
+
+In this subsection we discuss of general results of this study. The general results consists of intermediate and secondary results of this study. The intermediate results are essential information in algorithm development and improvement of the devices software. Mostly, these results are based on the first recorded data set discussed in section \ref{proceduresection}. The cow was wearing the sensor for 16 days and the data recording period included an proestrus according to the cattle tender. However, the data record consisted of only six days of valid motion data and the data from the remaining ten days was corrupted for unknown reason. Unfortunately, the proestrus occurred during the remaining ten days. Therefore, estrus or proestrus detection were not possible with the first data set. Nevertheless, the first data set provided us the frequency spectrum of dairy cow motion. Furthermore, we were able to analyze the performance of the SD-memory card as a data storage. Additionally, the first and second data sets were utilized in behavior monitoring. Nevertheless, the results were invalid in lack of proper time synchronization. However, the general results are discussed in detail in the following subsection.
 
 
+\subsubsection{Frequency Spectrum ok}
 
-\subsection{General Results} \label{generalresultssection}
+As discussed, the first recorded data set did not include estrus or proestrus. Thus, it could not have been used directly in algorithm development. However, it provided us beneficial secondary information such as frequency spectrum of the motion data. The frequency spectrum of the first data set was analyzed with a Fast Fourier Transform (FFT). The principles of FFT were discussed in section \ref{fouriertransformsection}. Actually, in this study we utilized the fft function of the Matlab software, which is actually a discrete time Fourier transform (DFT) applicable for discrete signals as our data records. The fast Fourier Transform was applied directly on raw data. That is, preliminary data processes such as filters were not used in order to avoid corrupting the frequency spectrum. However, the on-chip low-pass filter of the accelerometer was enabled with the cut-off requency of \SI{62.5}{\hertz}. The corresponding update time was \SI{8}{\milli\second}. Because other filters were no used, the data consisted of an offset on each axis. In consequence, the frequency spectrum of each axis consists of significant amplitude on zero frequency and nearby. Optionally, the presence of the offset components could have been reduces with an high-pass filter. Nevertheless, the presence of the peak values nearby zero in the frequency domain are no disturbing the analysis. The results of the frequency analysis are represented in figure \ref{frequenyspectrumfigure}. 
 
-This subsection discusses about rather general results whereas the scope of subsection \ref{algorithmevaluationsection} is in the detection of estrus. In despite of the general nature of these results, they are advantageous considering research in future. Furthermore, some early stage results such as the frequency analysis discussed later in this section were used for improving the sensor device software. This subsection covers the frequency analysis of the first recorder data set as well as statistical analysis of the acceleration data and some interesting features of SD file operations.
-
-
-
-
-
-
-\subsubsection{Frequency Spectrum}
-
-The frequency spectrum of the first recorded data was analyzed using Fast Fourier Transform (FFT) as discussed in section \ref{dataprocessingsection}. The Fourier Transform was applied on the raw data without any other signal processing methods such as offset compensation. Therefore, the frequency spectrum of each axis consists of significant components at zero frequency and nearby. These components could have been reduced using such offset compensation as a high-pass filter discussed in section \ref{hardwaresection}. However, applying offset compensation to the data does not provide any additional information in frequency domain. Thus, awareness of the offset component is enough considering the usage of the results. The results of the FFT are represented in figure \ref{frequenyspectrumfigure}.
 
 \begin{figure}[h]
 \centering
@@ -949,22 +988,13 @@ The frequency spectrum of the first recorded data was analyzed using Fast Fourie
 \caption{The results of the frequency analysis of the first data set. The frequency spectrum of each axis consists of significant components at frequencies close to zero-frequency and minor components at non-zero frequencies.} \label{frequenyspectrumfigure}
 \end{figure}
 
-
-\begin{figure}[h]
-\centering
-\includegraphics[width = 0.75\textwidth]{figures/lehma9885temperature.png}
-\caption{The temperature sensor readings do not correlate with any other results. More likely, temperature correlates with the air temperature inside cowshed.} \label{cowtemperature}
-\end{figure}
+As seen from the figure, most of the cow activity has the frequency of \SI{8}{\hertz} or less. Additionally, there is a significant peak value nearby zero. The peak is a result of passivity of the cow as well as result of the data offset. Actually, the peak was so high that it was necessary to crop it out from the figure in order to emphasize the non-zero frequencies. Nevertheless, the frequency analysis shows us that \SI{62.5}{\hertz} cut-off frequency is unnecessary high. Actually, the cut-off frequency could be reduced down to \SI{7.81}{\hertz}. The corresponding update time is 16 seconds. This frequency information was applied in the second data recording software implementation. The benefits were in reduced amount of required memory capacity of SD-memory card, less buffer overflows and data retention and possibility of utilizing the low power modes of the micro-controller. Nevertheless, the frequency analysis was not performed on the second and third data sets.
 
 
 
+\subsubsection{SD File Operations ok}
 
-
-\subsubsection{SD File Operations}
-
-In the first data recording process, it was desired to record the data in as high bandwidth as possible. The maximum bandwidth of the accelerometer were \SI{1000}{\hertz}. Consequently, the update time was \SI{0.5}{\milli \second}. However, the duration of SD file operations restricts the maximum recording bandwidth significantly. Finally, in the first data recording process the bandwidth was selected to be \SI{125}{\hertz}. Yet, the file operations exceeded the time \dots
-
-SD card file operation times were recorded after the actual data recording using the original hardware. The original software was improved with timer operations in order to enable the recording of the file operation times. The file operation times had an affect on the data recording process. The time consumed for opening a file increased among the file size. The minimum opening time was \SI{7.26}{\milli\second} and the maximum time for \SI{1.37}{\giga \byte} file a was \SI{1440}{\milli \second}. The average value was \SI{747.14}{\milli \second}. The file closing times varied from \SI{8.04}{\milli \second} to \SI{160.03}{\milli \second} and seemed not to be dependent on the file size. The average file closing time was \SI{19.75}{\milli \second}. The time spent of writing a single data line was from \SI{56}{\micro \second} to \SI{162.36}{\milli\second} and the average was \SI{997.76}{\milli\second}. 
+The approach of the first data recording software was to maximize the cutoff frequency of the accelerometer. Thus, acquire data in maximum frequency and avoid the loss of potential features in the signal. The maxmimum  cutoff frequency of the ccelerometer is \SI{1000}{\hertz} and the corresponding update time is \SI{0.5}{\milli \second}. However, the file operations of the SD-memory card were relatively slow and formed bottleneck for the maximum cutoff frequency. The preliminary testes with the sensor device established the \SI{62.5}{\hertz} as the absolute maximum cutoff frequency. Nevertheless, it caused occasional buffer overflow and data retention. In spite of the preliminary testes, the frequency \SI{62.5}{\hertz} was configured as the cutoff frequency during the first data record. However, the software was prepare for logging possible buffer overflows in order to validate the recorded data. Furthermore, the software logged also the duration of SD file operation times. The results of file operation logs are presented in figures \ref{openclosetimes_old} and \ref{writetimes_old}. The figure \ref{openclosetimes_old} compares the time consumption of open file and close file operations. The close file operations is fundamental  to execute regularly, hence it secures and saves the written data. Correspondingly, a file must be open before it could be written on. Therefore, closing a file and opening a file are sequential tasks for enabling data writing and securing the written data. The figure \ref{writetimes_old} represents the write times of each write data execution.
 
 
 
@@ -980,11 +1010,26 @@ SD card file operation times were recorded after the actual data recording using
 \caption{} \label{writetimes_old}
 \end{figure}
 
+It should be noticed that, the x-axis of these figures does not represent the real time or the amount of data written into the SD card. The x-axis simply represents the number of executions of the corresponding file operations. Thus, these results are not applicable in evaluation of the operation time versus the file size. Unfortunately, it would have been more relevant information, hence, the open file operation is related to the amount of data on the SD-card \cite{spimanual}. In summary, the close file and write file operations were not related to the file size. Conversely, the open file time increased all the time. The minimum, maximum and average file operation times are represented in table \ref{fileoperationstable}. If we compare the average file operation time to the filling time of the FIFO buffer of the accelerometer $8 \times 32=256$\SI{}{\milli\second}, it is obvious the buffer will overflow. Nevertheless, in the beginning of the recording process the duration of the file operations were more tolerable.
 
-This subsection concentrates in the results of estrus detection. As discussed in section \ref{proceduresection} six cows were used in data recording process. However, two out of six data recordings failed. Thus, that data had to be discarded. The estruses were confirmed by Heatime estrus detection system. \\
-In this study, a total of six cows were used for long period data recording.
+\begin{table} \caption{The durations of the SD file operations of the first data record.} \label{fileoperationstable}
+\centering
+\begin{tabular}{| p{2.75cm} | p{3cm} | p{3cm} | p{3cm} |}
+\hline
+\textbf{Measure} & \textbf{Open File} [\SI{}{\milli\second}] & \textbf{Write Data} [\SI{}{\milli\second}] & \textbf{Close File} [\SI{}{\milli\second}] \\  \hline
+\textbf{Minimum} & 7.26 & 0.056 & 8.04 \\ \hline
+\textbf{Average} & 747.14 & 9.98 & 19.75 \\ \hline
+\textbf{Maximum} & 1440 & 16.24 & 160.03 \\ \hline
+\end{tabular}
+\end{table}
 
-\subsubsection{Behaviour monitoring}
+
+
+\subsubsection{Behavior monitoring}
+
+In the beginning of this study, the behavior monitoring was in our scope as a secondary target. In order to reach this target we used trail and action cameras in parallel with the sensor device. The purpose was to find correlation between visually detected behavior and the characteristics in the data. 
+
+\subsubsection{Skin Temperature}
 
 \subsection{Algorithm Evaluation} \label{algorithmevaluationsection}
 
